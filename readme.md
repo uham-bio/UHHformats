@@ -7,11 +7,12 @@
 
 This R package provides ready-to-use R Markdown and **now also Quarto
 templates** for HTML, PDF and Microsoft Word output formats, which are
-used within the Biology Department of the University of Hamburg (UHH)
-and its *Data Science in Biology* program. The package aims to encourage
-reproducible research using simple Markdown syntax while embedding all
-of the R code to produce plots and analyses as well. Included in the
-package are templates for
+used within the Department of Biology, University of Hamburg (German:
+Universität Hamburg, also referred to as **UHH**), and its *Data Science
+in Biology* program. The package aims to encourage reproducible research
+using simple Markdown syntax while embedding all of the R code to
+produce plots and analyses as well. Included in the package are
+templates for
 
 - student assignments
   - [R Markdown: Simple PDF document in English (default) or German -
@@ -80,7 +81,7 @@ Install the development version from GitHub using the *remotes* package:
 
 ``` r
 if (!require("remotes")) install.packages("remotes")
-remotes::install_github("uham-bio/uhhformats", build_vignettes = TRUE)
+remotes::install_github("uham-bio/UHHformats", build_vignettes = TRUE)
 ```
 
 Make sure that you also have the latest versions of the R packages

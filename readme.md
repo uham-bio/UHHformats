@@ -13,37 +13,36 @@ reproducible research using simple Markdown syntax while embedding all
 of the R code to produce plots and analyses as well. Included in the
 package are templates for
 
--   student assignments
-    -   [R Markdown: Simple PDF document in English (default) or
-        German -
-        `pdf_simple`](#r-markdown-simple-pdf-document-in-english-default-or-german---pdf_simple)
-    -   [Quarto: Output format for a simple PDF document in English
-        (default) or German -
-        `pdf_simple`](#quarto-output-format-for-a-simple-pdf-document-in-english-default-or-german---pdf_simple)
--   project HTML files
-    -   [R Markdown: HTML document (simple design) -
-        `html_simple`](#r-markdown-html-document-simple-design---html_simple)
-    -   [R Markdown: HTML document (with bootstrap design ‘Material’) -
-        `html_material`](#r-markdown-html-document-with-bootstrap-design-material---html_material)
-    -   [Quarto: Simple HTML output format -
-        `html`](#quarto-simple-html-output-format---html)
--   PDF reports
-    -   [R Markdown: UHH report in in English (default) or German -
-        `pdf_report`](#r-markdown-uhh-report-in-in-english-default-or-german---pdf_report)
-    -   [Quarto: Output format for a PDF report in English (default) or
-        German -
-        `pdf_report`](#quarto-output-format-for-a-pdf-report-in-english-default-or-german---pdf_report)
--   cheat sheets
-    -   [R Markdown: Output format for a simple cheat sheet (PDF) -
-        `pdf_cheatsheet`](#r-markdown-output-format-for-a-simple-cheat-sheet-pdf---pdf_cheatsheet)
--   MS Word documents
-    -   [R Markdown: Simple Microsoft Word document -
-        `word_doc`](#r-markdown-simple-microsoft-word-document---word_doc)
-    -   [Quarto: Simple Microsoft Word output format -
-        `word`](#quarto-simple-microsoft-word-output-format---word)
--   conversions from R Markdown documents to Jupyter Notebooks
-    -   [R Markdown: Jupyter Notebook output format -
-        `rmd_to_jupyter`](#r-markdown-jupyter-notebook-output-format---rmd_to_jupyter)
+- student assignments
+  - [R Markdown: Simple PDF document in English (default) or German -
+    `pdf_simple`](#r-markdown-simple-pdf-document-in-english-default-or-german---pdf_simple)
+  - [Quarto: Output format for a simple PDF document in English
+    (default) or German -
+    `pdf_simple`](#quarto-output-format-for-a-simple-pdf-document-in-english-default-or-german---pdf_simple)
+- project HTML files
+  - [R Markdown: HTML document (simple design) -
+    `html_simple`](#r-markdown-html-document-simple-design---html_simple)
+  - [R Markdown: HTML document (with bootstrap design ‘Material’) -
+    `html_material`](#r-markdown-html-document-with-bootstrap-design-material---html_material)
+  - [Quarto: Simple HTML output format -
+    `html`](#quarto-simple-html-output-format---html)
+- PDF reports
+  - [R Markdown: UHH report in in English (default) or German -
+    `pdf_report`](#r-markdown-uhh-report-in-in-english-default-or-german---pdf_report)
+  - [Quarto: Output format for a PDF report in English (default) or
+    German -
+    `pdf_report`](#quarto-output-format-for-a-pdf-report-in-english-default-or-german---pdf_report)
+- cheat sheets
+  - [R Markdown: Output format for a simple cheat sheet (PDF) -
+    `pdf_cheatsheet`](#r-markdown-output-format-for-a-simple-cheat-sheet-pdf---pdf_cheatsheet)
+- MS Word documents
+  - [R Markdown: Simple Microsoft Word document -
+    `word_doc`](#r-markdown-simple-microsoft-word-document---word_doc)
+  - [Quarto: Simple Microsoft Word output format -
+    `word`](#quarto-simple-microsoft-word-output-format---word)
+- conversions from R Markdown documents to Jupyter Notebooks
+  - [R Markdown: Jupyter Notebook output format -
+    `rmd_to_jupyter`](#r-markdown-jupyter-notebook-output-format---rmd_to_jupyter)
 
 The default font for all templates is ‘Helvetica’ but the font can be
 replaced with the University’s own font style ‘TheSans UHH’ in the PDF
@@ -62,19 +61,18 @@ cross-references and including references.
 
 **NEW in this version**:
 
--   The templates for the Bachelor and Master thesis have been moved
-    into a separate R package named *UHHthesis* (see
-    <https://github.com/saskiaotto/UHHthesis/>).
--   Small design makeover of various templates.
--   A new Word template for R Markdown was added.
--   This package also contains now templates for Quarto documents that
-    generate HTML, PDF, and MS Word output (see [Quarto template
-    gallery](#quarto-template-gallery)). [Quarto](https://quarto.org) is
-    a next generation version of R Markdown from RStudio, which supports
-    more languages and environments such as Python, Julia, or Jupyter.
-    Like R Markdown, Quarto uses Knitr to execute R code, and is
-    therefore able to render most existing Rmd files without
-    modification.
+- The templates for the Bachelor and Master thesis have been moved into
+  a separate R package named *UHHthesis* (see
+  <https://github.com/saskiaotto/UHHthesis/>).
+- Small design makeover of various templates.
+- A new Word template for R Markdown was added.
+- This package also contains now templates for Quarto documents that
+  generate HTML, PDF, and MS Word output (see [Quarto template
+  gallery](#quarto-template-gallery)). [Quarto](https://quarto.org) is a
+  next generation version of R Markdown from RStudio, which supports
+  more languages and environments such as Python, Julia, or Jupyter.
+  Like R Markdown, Quarto uses Knitr to execute R code, and is therefore
+  able to render most existing Rmd files without modification.
 
 ## Installation
 
@@ -82,7 +80,7 @@ Install the development version from GitHub using the *remotes* package:
 
 ``` r
 if (!require("remotes")) install.packages("remotes")
-remotes::install_github("saskiaotto/uhhformats", build_vignettes = TRUE)
+remotes::install_github("uham-bio/uhhformats", build_vignettes = TRUE)
 ```
 
 Make sure that you also have the latest versions of the R packages
@@ -267,7 +265,7 @@ The current R Markdown template has in the YAML header:
     ---
     title: "Title"
     author: "Name"
-    date: "2022-09-08"
+    date: "2022-12-02"
     output:
       UHHformats::html_simple:
         highlight: kate
@@ -319,10 +317,10 @@ or `rmarkdown::html_document`.
 Some extra features were adopted from the
 [rmdformats](https://github.com/juba/rmdformats) package, i.e. 
 
--   tabsets are supported like in the default template made with
-    `rmarkdown::html_document()`
--   both templates provide automatic thumbnails for figures with
-    lightbox display
+- tabsets are supported like in the default template made with
+  `rmarkdown::html_document()`
+- both templates provide automatic thumbnails for figures with lightbox
+  display
 
 ### R Markdown: Simple Microsoft Word document - `word_doc`
 
@@ -462,13 +460,13 @@ into Jupyter Notebooks. Although I found some packages such as
 [notedown](https://github.com/aaren/notedown) (which the former depends
 on) I ran into few issues:
 
--   you have to have Python and notedown installed and correctly setup
-    before you can start
--   when opening the notebooks in Jupyter Notebook locally or using a
-    remote server, either no or the Phyton kernel was automatically
-    started as all code chunks were read as Python code
--   when choosing the R kernel for the notebook, the `%%R` flag appeared
-    in each code chunk and had to be removed manually
+- you have to have Python and notedown installed and correctly setup
+  before you can start
+- when opening the notebooks in Jupyter Notebook locally or using a
+  remote server, either no or the Phyton kernel was automatically
+  started as all code chunks were read as Python code
+- when choosing the R kernel for the notebook, the `%%R` flag appeared
+  in each code chunk and had to be removed manually
 
 So eventually I found a simpler approach in the
 [rmd2jupyter](https://github.com/mkearney/rmd2jupyter) package developed
@@ -495,13 +493,13 @@ was saved. And you’re done!
 
 When opening your file in Jupyter Notebook, please note that
 
--   if you use a local installation of Jupyter Notebook, the program
-    will automatically have access to all the subdirectories that your
-    file links to (e.g. the `images/` folder or any `data/` folder)
--   if you use Jupyter Notebook server you need to upload the `.ipynb`
-    file as well as all subdirectories together as a zip file. To unzip,
-    simply open a new R notebook and write into the first cell:
-    `unzip("zip_file_name.zip")`.
+- if you use a local installation of Jupyter Notebook, the program will
+  automatically have access to all the subdirectories that your file
+  links to (e.g. the `images/` folder or any `data/` folder)
+- if you use Jupyter Notebook server you need to upload the `.ipynb`
+  file as well as all subdirectories together as a zip file. To unzip,
+  simply open a new R notebook and write into the first cell:
+  `unzip("zip_file_name.zip")`.
 
 <img src="vignettes/images/img_rmd_to_jupyter.png" alt="RMarkdown demo rmd_to_jupyter template" style="display: block; margin: auto;" />
 
@@ -620,27 +618,27 @@ help, go to Quarto’s PDF documentation:
 
 ## Useful resources
 
--   R Markdown
-    -   The official [R Markdown
-        documentation](https://rmarkdown.rstudio.com/lesson-1.html) from
-        RStudio
-    -   R Markdown [reference
-        guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
-    -   R Markdown
-        [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf)
-    -   The online book [R Markdown: The Definitive
-        Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui
-        Xie, J. J. Allaire, and Garrett Grolemund
--   Quarto
-    -   The official [Quarto guide](https://quarto.org/docs/guide/)
-    -   Quarto’s [Gallery](https://quarto.org/docs/gallery/)
--   LaTeX
-    -   The official [LaTeX help and
-        documentation](https://www.latex-project.org/help/documentation/)
-    -   The [overleaf](https://www.overleaf.com/learn) documentation
--   W3Schools Online Web Tutorial for
-    [HTML](https://www.w3schools.com/html/default.asp) and for
-    [CSS](https://www.w3schools.com/css/default.asp).
+- R Markdown
+  - The official [R Markdown
+    documentation](https://rmarkdown.rstudio.com/lesson-1.html) from
+    RStudio
+  - R Markdown [reference
+    guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+  - R Markdown
+    [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf)
+  - The online book [R Markdown: The Definitive
+    Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui Xie, J. J.
+    Allaire, and Garrett Grolemund
+- Quarto
+  - The official [Quarto guide](https://quarto.org/docs/guide/)
+  - Quarto’s [Gallery](https://quarto.org/docs/gallery/)
+- LaTeX
+  - The official [LaTeX help and
+    documentation](https://www.latex-project.org/help/documentation/)
+  - The [overleaf](https://www.overleaf.com/learn) documentation
+- W3Schools Online Web Tutorial for
+  [HTML](https://www.w3schools.com/html/default.asp) and for
+  [CSS](https://www.w3schools.com/css/default.asp).
 
 ## Credits
 

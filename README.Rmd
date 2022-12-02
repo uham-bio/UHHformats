@@ -51,7 +51,7 @@ Install the development version from GitHub using the *remotes* package:
 
 ```{r, eval = FALSE}
 if (!require("remotes")) install.packages("remotes")
-remotes::install_github("saskiaotto/uhhformats", build_vignettes = TRUE)
+remotes::install_github("uham-bio/uhhformats", build_vignettes = TRUE)
 ```
 
 Make sure that you also have the latest versions of the R packages *rmarkdown* and *knitr* installed. For some R Markdown templates you also need the R package *bookdown*. 

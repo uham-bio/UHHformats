@@ -148,7 +148,7 @@ Table \ref{tab:rmd_tab} is a R Markdown table including a caption (note: the tab
 |:-------------|:----------------:|---------------:|
 |left-aligned  |center-aligned    |right-aligned   |
 |$123          |$456              |$789            |
-|*italics*     |~~strikethrough~~ |**boldface**    |
+|*italics*     |                  |**boldface**    |
 
 Table: Your Caption \label{tab:rmd_tab}
 

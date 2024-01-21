@@ -6,6 +6,7 @@ Date: 2022-9-06
 Authors@R: c(person("Saskia", "Otto", email="saskia.a.otto@gmail.com",
     role=c("aut","cre")))
 Maintainer: Saskia Otto <saskia.a.otto@gmail.com>
+URL: https://github.com/uham-bio/UHHformats
 Description: R Markdown and Quarto templates for HTML, PDF, and MS Word documents, which are used 
     within the Biology Department of the University of Hamburg (UHH) and its 'Data Science in Biology'
     program. These include templates for student assignments, project reports,
@@ -35,4 +36,4 @@ Suggests:
 SystemRequirements: pandoc (>= 2.1) - http://pandoc.org
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3

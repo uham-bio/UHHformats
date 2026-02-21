@@ -309,7 +309,7 @@ Cell level options are here indicated with `%%|` instead of `#|`!
 :::
 
 ```{mermaid}
-%%| label: fig-mermaid-diagram
+%%| label: fig-mermaid-diagram2
 %%| fig-cap: A sequence diagram based on Mermaid.
 %%| fig-width: 6
 

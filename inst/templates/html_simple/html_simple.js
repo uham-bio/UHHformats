@@ -6,7 +6,7 @@ $(function() {
 
     $('body').scrollspy({target: '#toc'});
 
-    $("#toc .close").click(function() {
+    $("#toc .btn-close").click(function() {
       $("#toc").slideUp();
     })
 

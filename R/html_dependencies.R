@@ -25,11 +25,11 @@ html_dependency_jquery_stickytableheaders <- function()  {
 # create an html dependency for bootstrap (from rmarkdown)
 html_dependency_bootstrap <- function(theme = "bootstrap") {
   htmltools::htmlDependency(name = "bootstrap",
-                 version = "3.3.7", #   "3.3.6"  "5.0.2"
-                 src = system.file("templates/bootstrap-3.3.7", package = "UHHformats"),
+                 version = "5.3.3",
+                 src = system.file("templates/bootstrap-5.3.3", package = "UHHformats"),
                  meta = list(viewport = "width=device-width, initial-scale=1"),
                  script = c(
-                   "js/bootstrap.min.js"
+                   "js/bootstrap.bundle.min.js"
                  ),
                  stylesheet = paste("css/", theme, ".min.css", sep = ""))
 }
@@ -38,11 +38,11 @@ html_dependency_bootstrap <- function(theme = "bootstrap") {
 # create an html dependency for bootstrap js only (function copied from rmarkdown)
 html_dependency_bootstrap_js <- function() {
   htmltools::htmlDependency(name = "bootstrap_js",
-                            version = "3.3.7",
-                            src = system.file("templates/bootstrap-3.3.7", package = "UHHformats"),
+                            version = "5.3.3",
+                            src = system.file("templates/bootstrap-5.3.3", package = "UHHformats"),
                             meta = list(viewport = "width=device-width, initial-scale=1"),
                             script = c(
-                              "js/bootstrap.min.js"
+                              "js/bootstrap.bundle.min.js"
                             ))
 }
 

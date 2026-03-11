@@ -16,3 +16,4 @@
 ^resources
 ^\.github$
 ^_extensions$
+^\.claude$

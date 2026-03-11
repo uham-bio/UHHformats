@@ -23,7 +23,6 @@ Imports:
     htmltools,
     knitr,
     rmarkdown (>= 2.25),
-    tinytex (>= 0.45),
     utils
 Suggests:
     huxtable,

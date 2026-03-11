@@ -1,0 +1,445 @@
+% Cheatsheet template for Quarto PDF output.
+% Based on the RMarkdown version in UHHformats. The LaTeX template by Sarah Lang
+% served as inspiration: https://www.overleaf.com/latex/templates/colourful-cheatsheet-template/qdsshbjktndd
+
+% -------------------------------
+% --- PREAMBLE ---
+% -------------------------------
+
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode$for(hyperrefoptions)$,$hyperrefoptions$$endfor$}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+$if(colorlinks)$
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+$endif$
+
+% Define document type (here article) {{{
+\documentclass[
+$if(fontsize)$
+$fontsize$,
+$endif$
+a4paper, landscape]{article}
+% }}}
+
+% Settings specified by user {{{
+$for(header-includes)$
+  $header-includes$
+$endfor$
+% }}}
+
+
+% Packages {{{
+\usepackage[german, english]{babel}
+\usepackage{silence}
+\usepackage{fontspec}
+\usepackage[T1]{fontenc}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape, a4paper]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{overpic}
+\usepackage{soul}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+  \tcbuselibrary{many, skins, breakable}
+\usepackage{colortbl}
+\usepackage{adjustbox}
+
+% should always come last:
+\usepackage{hyperref}
+% }}}
+
+
+% Define Layout {{{
+\usepackage{geometry}
+ \geometry{
+ left=10mm,
+ right=10mm,
+ top=15mm,
+ bottom=10mm,
+ includefoot,
+ }
+% }}}
+
+
+% URLs {{{
+\urlstyle{same}
+% }}}
+
+% Colors {{{
+% Define colors for hyperlinks and assign them to the urlcolor:
+\definecolor{urlcol}{rgb}{0, 0, 238}
+\hypersetup{
+colorlinks=true,
+urlcolor=$if(urlcolor)$$urlcolor$$else$urlcol$endif$,
+pdffitwindow=true,
+bookmarks=true,
+bookmarksopen=false,
+}
+
+% Define colors for text based on user input
+$if(col-title)$
+\definecolor{colortitle}{HTML}{$col-title$}
+$else$
+\definecolor{colortitle}{HTML}{000000}
+$endif$
+$if(col-sections)$
+\definecolor{colorsections}{HTML}{$col-sections$}
+$else$
+\definecolor{colorsections}{HTML}{000000}
+$endif$
+$if(col-code)$
+\definecolor{colorcode}{HTML}{$col-code$}
+$else$
+\definecolor{colorcode}{HTML}{000000}
+$endif$
+
+% Define colors for boxes
+$if(col-redbox)$
+\definecolor{colredbox}{HTML}{$col-redbox$}
+$else$
+\definecolor{colredbox}{HTML}{bc0000}
+$endif$
+$if(col-redbox2)$
+\definecolor{colredbox2}{HTML}{$col-redbox2$}
+$else$
+\definecolor{colredbox2}{HTML}{bc0000}
+$endif$
+$if(col-redbox3)$
+\definecolor{colredbox3}{HTML}{$col-redbox3$}
+$else$
+\definecolor{colredbox3}{HTML}{bc0000}
+$endif$
+
+$if(col-bluebox)$
+\definecolor{colbluebox}{HTML}{$col-bluebox$}
+$else$
+\definecolor{colbluebox}{HTML}{027BCB}
+$endif$
+$if(col-bluebox2)$
+\definecolor{colbluebox2}{HTML}{$col-bluebox2$}
+$else$
+\definecolor{colbluebox2}{HTML}{027BCB}
+$endif$
+$if(col-bluebox3)$
+\definecolor{colbluebox3}{HTML}{$col-bluebox3$}
+$else$
+\definecolor{colbluebox3}{HTML}{027BCB}
+$endif$
+
+$if(col-greenbox)$
+\definecolor{colgreenbox}{HTML}{$col-greenbox$}
+$else$
+\definecolor{colgreenbox}{HTML}{7fa16a}
+$endif$
+$if(col-greenbox2)$
+\definecolor{colgreenbox2}{HTML}{$col-greenbox2$}
+$else$
+\definecolor{colgreenbox2}{HTML}{7fa16a}
+$endif$
+$if(col-greenbox3)$
+\definecolor{colgreenbox3}{HTML}{$col-greenbox3$}
+$else$
+\definecolor{colgreenbox3}{HTML}{7fa16a}
+$endif$
+
+$if(col-yellowbox)$
+\definecolor{colyellowbox}{HTML}{$col-yellowbox$}
+$else$
+\definecolor{colyellowbox}{HTML}{eeb422}
+$endif$
+$if(col-yellowbox2)$
+\definecolor{colyellowbox2}{HTML}{$col-yellowbox2$}
+$else$
+\definecolor{colyellowbox2}{HTML}{eeb422}
+$endif$
+$if(col-yellowbox3)$
+\definecolor{colyellowbox3}{HTML}{$col-yellowbox3$}
+$else$
+\definecolor{colyellowbox3}{HTML}{eeb422}
+$endif$
+
+$if(col-graybox)$
+\definecolor{colgraybox}{HTML}{$col-graybox$}
+$else$
+\definecolor{colgraybox}{HTML}{8c8c8c}
+$endif$
+$if(col-graybox2)$
+\definecolor{colgraybox2}{HTML}{$col-graybox2$}
+$else$
+\definecolor{colgraybox2}{HTML}{8c8c8c}
+$endif$
+$if(col-graybox3)$
+\definecolor{colgraybox3}{HTML}{$col-graybox3$}
+$else$
+\definecolor{colgraybox3}{HTML}{8c8c8c}
+$endif$
+
+$if(col-blackbox)$
+\definecolor{colblackbox}{HTML}{$col-blackbox$}
+$else$
+\definecolor{colblackbox}{HTML}{191919}
+$endif$
+$if(col-blackbox2)$
+\definecolor{colblackbox2}{HTML}{$col-blackbox2$}
+$else$
+\definecolor{colblackbox2}{HTML}{191919}
+$endif$
+$if(col-blackbox3)$
+\definecolor{colblackbox3}{HTML}{$col-blackbox3$}
+$else$
+\definecolor{colblackbox3}{HTML}{191919}
+$endif$
+
+$if(col-whitebox)$
+\definecolor{colwhitebox}{HTML}{$col-whitebox$}
+$else$
+\definecolor{colwhitebox}{HTML}{FBEFCE}
+$endif$
+$if(col-whitebox2)$
+\definecolor{colwhitebox2}{HTML}{$col-whitebox2$}
+$else$
+\definecolor{colwhitebox2}{HTML}{FBEFCE}
+$endif$
+$if(col-whitebox3)$
+\definecolor{colwhitebox3}{HTML}{$col-whitebox3$}
+$else$
+\definecolor{colwhitebox3}{HTML}{FBEFCE}
+$endif$
+
+
+% Define color for headerbox
+$if(col-headerbox)$
+\definecolor{colheaderbox}{HTML}{$col-headerbox$}
+$else$
+\definecolor{colheaderbox}{HTML}{DDD2C3}
+$endif$
+
+% }}}
+
+
+% Graphics {{{
+\usepackage{etoolbox}
+
+% Define specific graphic classes
+\newcommand{\icon}[1]{\includegraphics[height=0.5cm]{#1}}
+\robustify{\icon}
+
+% }}}
+
+
+% Do allow syntax highlighting:
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+
+% Text formatting  {{{
+
+% Font is set via the 'mainfont' YAML option (default: "Helvetica Neue").
+% When using the R package version, fonts are copied as TTF files instead.
+
+
+% Paragraph settings
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.5em}
+\renewcommand{\baselinestretch}{1.0}
+
+% for being able to center text in columns vertically and horizontally:
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+% Reduce vertical spacing before 1) source code chunks and 2) code output
+$if(reduce-space-before-code)$
+\setlength{\OuterFrameSep}{0pt}
+$endif$
+\makeatletter
+\preto{\@verbatim}{\topsep=0pt \partopsep=0pt }
+\makeatother
+
+
+% Redefine section commands to use less space and have smaller text.
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\color{colortitle}\normalfont\huge\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\color{colorsections}\normalfont\Large\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\color{colorsections}\normalfont\large\bfseries}}
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+            {-2.5ex\@plus -1ex \@minus -.25ex}%
+            {1.25ex \@plus .25ex}%
+            {\color{colorsections}\normalfont\normalsize\bfseries}}
+\makeatother
+
+% How many sectioning levels to show in ToC
+\setcounter{tocdepth}{$toc-depth$}
+% No section numbers
+\setcounter{secnumdepth}{0}
+
+% change the spacing in enumerated/itemized lists:
+\setlist[itemize, 1]{leftmargin=1.25pc, rightmargin=1pc, topsep=5pt, partopsep=-1pt}
+\setlist[itemize, 2]{leftmargin=1.25pc, topsep=0pt, partopsep=-1pt}
+\setlist[itemize, 3]{leftmargin=1.25pc, topsep=0pt, partopsep=-1pt}
+\setlist[enumerate, 1]{leftmargin=1.25pc, rightmargin=1pc, topsep=5pt,partopsep=-1pt}
+\setlist[enumerate, 2]{leftmargin=1.25pc, topsep=0pt,partopsep=-1pt}
+\setlist[enumerate, 3]{leftmargin=1.25pc, topsep=0pt,partopsep=-1pt}
+
+% from Sarah Lang's template
+\newcommand{\mycommand}[2]{{\ttfamily\detokenize{#1}}~\dotfill{}~{\footnotesize #2}\\}
+
+
+% Adopted from Pandoc:
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% }}}
+
+
+% Set color for R code {{{
+% redefinition of \texttt
+\let\Oldtexttt\texttt
+\renewcommand\texttt[1]{{\ttfamily\color{colorcode}#1}}
+% redefinition of \verb
+\makeatletter
+\def\verb{\relax\ifmmode\hbox\else\leavevmode\null\fi
+  \bgroup\color{colorcode}
+    \verb@eol@error \let\do\@makeother \dospecials
+    \verbatim@font\@noligs
+    \@ifstar\@sverb\@verb}
+\makeatother
+% }}}
+
+
+% Define boxes{{{
+
+% Define a simple header box (similar to header 3 level, with a colored background):
+\newcommand{\headerbox}[1]{{\colorbox{colheaderbox}{\parbox{\linewidth}{\strut \normalfont\small\bfseries #1}}}}
+
+% Define entire textboxes with header and text inside:
+\tcbset{tcbox width=auto,left=1mm,top=1mm,bottom=1mm,
+right=1mm,boxsep=1mm,middle=1pt}
+
+\newenvironment{mycolorbox}[2]{%
+\begin{tcolorbox}[grow to left by=-.5em,grow to right by=-.5em,
+capture=minipage,fonttitle=\normalsize\bfseries, enhanced jigsaw,boxsep=1mm,colback=#1!30!white,on line,
+tcbox width=auto, left=0.3em,right=0.3em, toptitle=0mm,colframe=#1,opacityback=0.7, nobeforeafter, breakable,
+title=#2
+]%
+}{\end{tcolorbox}}%
+
+
+\newenvironment{subbox}[2]{%
+\begin{tcolorbox}[capture=minipage,fonttitle=\small\bfseries, enhanced jigsaw,boxsep=0.5mm,colback=#1!30!white,on line,tcbox width=auto,left=0.3em,right=0.3em,top=1mm, toptitle=0mm,colframe=#1,opacityback=0.7,nobeforeafter,title=#2]\footnotesize %
+}{\normalsize\end{tcolorbox}\vspace{0.1em}}
+
+\newenvironment{multibox}[1]{%
+\begin{tcbraster}[raster columns=#1,raster equal height,nobeforeafter,raster column skip=1em,raster left skip=0.5em,raster right skip=0.5em]}{\end{tcbraster}}
+
+\newenvironment{greenbox}[1]{\begin{mycolorbox}{colgreenbox}{#1}}{\end{mycolorbox}}
+\newenvironment{greenbox2}[1]{\begin{mycolorbox}{colgreenbox2}{#1}}{\end{mycolorbox}}
+\newenvironment{greenbox3}[1]{\begin{mycolorbox}{colgreenbox3}{#1}}{\end{mycolorbox}}
+\newenvironment{redbox}[1]{\begin{mycolorbox}{colredbox}{#1}}{\end{mycolorbox}}
+\newenvironment{redbox2}[1]{\begin{mycolorbox}{colredbox2}{#1}}{\end{mycolorbox}}
+\newenvironment{redbox3}[1]{\begin{mycolorbox}{colredbox3}{#1}}{\end{mycolorbox}}
+\newenvironment{bluebox}[1]{\begin{mycolorbox}{colbluebox}{#1}}{\end{mycolorbox}}
+\newenvironment{bluebox2}[1]{\begin{mycolorbox}{colbluebox2}{#1}}{\end{mycolorbox}}
+\newenvironment{bluebox3}[1]{\begin{mycolorbox}{colbluebox3}{#1}}{\end{mycolorbox}}
+\newenvironment{yellowbox}[1]{\begin{mycolorbox}{colyellowbox}{#1}}{\end{mycolorbox}}
+\newenvironment{yellowbox2}[1]{\begin{mycolorbox}{colyellowbox2}{#1}}{\end{mycolorbox}}
+\newenvironment{yellowbox3}[1]{\begin{mycolorbox}{colyellowbox3}{#1}}{\end{mycolorbox}}
+\newenvironment{graybox}[1]{\begin{mycolorbox}{colgraybox}{#1}}{\end{mycolorbox}}
+\newenvironment{graybox2}[1]{\begin{mycolorbox}{colgraybox2}{#1}}{\end{mycolorbox}}
+\newenvironment{graybox3}[1]{\begin{mycolorbox}{colgraybox3}{#1}}{\end{mycolorbox}}
+\newenvironment{blackbox}[1]{\begin{mycolorbox}{colblackbox}{#1}}{\end{mycolorbox}}
+\newenvironment{blackbox2}[1]{\begin{mycolorbox}{colblackbox2}{#1}}{\end{mycolorbox}}
+\newenvironment{blackbox3}[1]{\begin{mycolorbox}{colblackbox3}{#1}}{\end{mycolorbox}}
+\newenvironment{whitebox}[1]{\begin{mycolorbox}{colwhitebox}{#1}}{\end{mycolorbox}}
+\newenvironment{whitebox2}[1]{\begin{mycolorbox}{colwhitebox2}{#1}}{\end{mycolorbox}}
+\newenvironment{whitebox3}[1]{\begin{mycolorbox}{colwhitebox3}{#1}}{\end{mycolorbox}}
+
+
+% }}}
+
+
+% Start with an empty page
+\pagestyle{empty}
+
+
+% Header and footer {{{
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{}
+\chead{}
+\rhead{}
+$if(footer-logo)$
+\lfoot{\includegraphics[height=7mm]{$footer-logo$}}
+$else$
+\lfoot{}
+$endif$
+\rfoot{\footnotesize $author$ \enspace \textbullet  \enspace $date$ \enspace \textbullet  \enspace  $if(license)$$license$$endif$}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+% }}}
+
+% Get number of columns
+$if(multicols)$
+\newcommand{\numbermulticols}{$multicols$}
+$else$
+\newcommand{\numbermulticols}{3}
+$endif$
+
+% -----------------------------------------------------------------------
+
+% Canonical "init" statement.
+\begin{document}
+
+% Font size.
+\footnotesize
+
+% Specifying number of columns.
+\begin{multicols*}{\numbermulticols}
+
+% To avoid automatic spacing of elements vertically:
+\raggedcolumns
+
+
+\setlength{\premulticols}{0.25pt}
+\setlength{\postmulticols}{0.25pt}
+\setlength{\multicolsep}{0.25pt}
+\setlength{\columnsep}{2mm}
+
+
+$for(include-before)$
+  $include-before$
+$endfor$
+
+% This is where the Quarto document body is inserted.
+$body$
+
+% `\end` statements to match the `\begin`s.
+\end{multicols*}
+
+
+$for(include-after)$
+  $include-after$
+$endfor$
+
+\end{document}

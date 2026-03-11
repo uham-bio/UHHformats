@@ -1,0 +1,19 @@
+<script type = "application/javascript">
+  "use strict";
+  const divSidebarLeft = window.document.getElementById("quarto-sidebar-toc-left");
+  const toc = window.document.getElementById("TOC");
+  const divLogo = window.document.createElement("div");
+  divLogo.classList.add("logo");
+  divLogo.style.width = "150px";
+  divLogo.style.height = "50px";
+  divLogo.style.backgroundImage = "url('images/uhh_logo.png')";
+  divLogo.style.backgroundRepeat = "no-repeat";
+  divLogo.style.backgroundSize = "cover";
+  
+  // remove and append TOC later to change order
+  // in case .prepend does not work in internet explorer
+  divSidebarLeft.removeChild(toc); 
+  divSidebarLeft.appendChild(divLogo); 
+  divSidebarLeft.appendChild(toc); 
+
+</script>

@@ -1,0 +1,74 @@
+/* -------------- Background style ------------- */
+
+/* #quarto-content {
+  background: linear-gradient(0.25turn, #0271BB, #3B515B);
+} */
+
+body {
+  background: linear-gradient(0.25turn, #0271BB, #3B515B);
+}
+
+
+/* -------------- Style of left sidebar ------------- */
+
+.sidebar {
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
+  margin-left: -50px;
+  padding-left: 30px;
+}
+
+.sidebar nav[role=doc-toc] a.active {
+  border-left: 1px solid white !important;  
+  color: white !important;  
+  text-decoration: underline white !important;  
+}
+
+#toc-title {
+  /* font-weight: bold; */
+  font-size: 1.2rem;
+}
+
+.sidebar .header-section-number {
+  color: white;
+}
+
+#TOC a.nav-link.active {
+  color: white !important;  
+  font-weight: bold;
+  font-size: 1rem;
+  }
+
+
+/* -------------- Style of right sidebar ------------- */
+
+.margin-sidebar  {
+  background-color: white;
+  margin-left: 0;
+  margin-right: -50px;
+}
+
+
+/* -------------- Style of main container in the center ------------- */
+
+main.content  {
+  background-color: white;
+  margin-top: 0;
+  margin-bottom: -60px;
+  margin-right: -30px;
+  margin-left: -30px;
+  padding-top: 18px;
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-bottom: 30px;
+}
+
+
+/* -------------- Display of logo in left sidebar ------------- */
+
+/* Show Logo only if left sidebar is displayed  */
+@media (max-width: 770px) {
+  div.logo {
+      display: none;
+  }
+}

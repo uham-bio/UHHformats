@@ -1,0 +1,52 @@
+title: UHHformats
+author: University of Hamburg, Institute of Marine Ecosystem and Fishery Science
+version: 1.1.0
+quarto-required: ">=1.4.0"
+contributes:
+  formats:
+    html:
+      theme: default
+      css: styles/styles.css
+      include-after-body: styles/js_logo.html
+      self-contained: true
+      toc: true
+      toc-depth: 3
+      toc-location: left
+    pdf-simple:
+      documentclass: scrartcl
+      pdf-engine: xelatex
+      mainfont: "Helvetica Neue"
+      include-in-header: styles/in-header-simple.tex
+      toc: false
+      number-sections: true
+    pdf-report:
+      documentclass: scrbook
+      pdf-engine: xelatex
+      mainfont: "Helvetica Neue"
+      include-in-header: styles/in-header-report.tex
+      include-before-body: styles/before-body-report.tex
+      toc: true
+      toc-depth: 3
+      number-sections: true
+    pdf-cheatsheet:
+      template: styles/cheatsheet-template.tex
+      pdf-engine: xelatex
+      mainfont: "Helvetica Neue"
+      highlight-style: kate
+      toc-depth: 1
+    typst-simple:
+      format: typst
+      template: styles/uhh-template.typ
+      section-numbering: "1.1.1"
+      toc: false
+      toc-depth: 3
+      columns: 1
+      mainfont: "Helvetica Neue"
+    typst-report:
+      format: typst
+      template: styles/uhh-report-template.typ
+      section-numbering: "1.1.1"
+      toc: true
+      toc-depth: 3
+      columns: 1
+      mainfont: "Helvetica Neue"

@@ -1,0 +1,49 @@
+% This is a combination of Pandoc templating and LaTeX
+% Pandoc templating https://pandoc.org/MANUAL.html#templates
+% See the README for help
+% This template is based on a post by Arun Debray to tex.stackoverflow
+% https://tex.stackexchange.com/posts/554962/revisions
+
+\newgeometry{left=1in, right=1in,top=2in, bottom=0in}
+\begin{minipage}[b][\textheight][s]{\textwidth}
+
+% Title color
+$if(cover-fade-effect)$
+\definecolor{txtcolor}{HTML}{$cover-text-color$}
+$else$
+\definecolor{txtcolor}{HTML}{3A515C}
+$endif$
+
+% Page color
+$if(cover-page-color)$
+\definecolor{pgcolor}{HTML}{$cover-page-color$}
+$else$
+\definecolor{pgcolor}{HTML}{FFFFFF}
+$endif$
+\pagecolor{pgcolor}\afterpage{\nopagecolor}
+
+\thispagestyle{empty}
+\begin{flushleft}
+    \color{txtcolor}\headingfont{\fontsize{40}{48}\selectfont $title$}\\[1em]
+    \vspace{0.5em}
+    \color{txtcolor}\headingfont\itshape{\fontsize{20}{24}\selectfont  $subtitle$}\\[1em]
+\end{flushleft}
+\vfill
+$if(cover-bg-image)$
+\begin{center}
+    $if(cover-fade-effect)$
+    \begin{tikzpicture}
+    \node[scope fading=north, inner sep=0pt, outer sep=0pt]{
+     \makebox[\textwidth]{\includegraphics[width=\paperwidth]{$cover-bg-image$}}
+    };
+    \end{tikzpicture}
+    $else$
+    \makebox[\textwidth]{\includegraphics[width=\paperwidth]
+    {$cover-bg-image$}}
+    $endif$
+ \end{center}
+ $endif$
+
+\end{minipage}%
+\clearpage
+\restoregeometry

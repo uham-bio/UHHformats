@@ -1,0 +1,138 @@
+% This is an UHH LaTeX template for a Quarto PDF document.
+
+% -----------------------------------------------------
+% --- FORMAT STYLE FOR KOMA DOCUMENT CLASS SCRARTCL ---
+% -----------------------------------------------------
+
+
+% %----------------------------------------------- General format
+
+\KOMAoptions{paper=a4, pagesize=pdftex}
+
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% Paragraph settings {{{
+\setlength{\parindent}{0em}           %  indentation at the first line of a paragraph (here set to 0)
+\setlength{\parskip}{0.5em}             % paragraph spacing
+\renewcommand{\baselinestretch}{1.0}    % line spacing (here single)
+% }}}
+
+
+% %----------------------------------------------- Fonts
+
+% General {{{
+% Font is set via the 'mainfont' YAML option (default: "Helvetica Neue").
+% When using the R package version, fonts are copied as TTF files instead.
+% }}}
+
+% Title and header {{{
+\setkomafont{title}{\rmfamily\huge\bfseries}
+\setkomafont{subtitle}{\rmfamily\Large}
+\setkomafont{author}{\rmfamily\large\bfseries}
+\setkomafont{date}{\rmfamily\small\bfseries}
+\setkomafont{sectioning}{\rmfamily\large\bfseries}
+% }}}
+
+% setting caption text
+\usepackage[font=small,labelfont=bf]{caption}
+
+
+
+% %----------------------------------------------- Colors
+
+\usepackage{xcolor}				% extends LATEX's color facilities
+\usepackage{colortbl}			% to add colour to LaTeX tables
+\usepackage{hyperref}			% to handle cross-referencing commands in LaTeX
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor} % for colorlinks
+
+% Define colors for headers and links: {{{
+\definecolor{bluegray}{HTML}{3B515B} 
+\definecolor{blue}{HTML}{0271BB} 
+% }}}
+
+% Font colors {{{
+\addtokomafont{title}{\color{bluegray}}           % text color for title
+\addtokomafont{subtitle}{\color{bluegray}}        % text color for subtitle
+\addtokomafont{author}{\color{bluegray}}          % text color for author
+\addtokomafont{date}{\color{bluegray}}            % text color for date
+\addtokomafont{disposition}{\color{bluegray}}     % text color for toc section header
+\addtokomafont{section}{\color{blue}}             % text color for section header
+\addtokomafont{subsection}{\color{bluegray}}      % text color for subsection header
+\addtokomafont{subsubsection}{\color{bluegray}}   % text color for subsubsection header
+% }}}
+
+% Hypersetup for links {{{
+\hypersetup{
+colorlinks=true,
+linkcolor=blue,
+filecolor=blue,
+urlcolor=blue,
+citecolor=blue,
+bookmarks=true,
+linktocpage=true,
+pdfpagemode=UseOutlines
+}
+% }}}
+
+
+% %----------------------------------------------- Title page
+
+% Aligning title to the left {{{
+\usepackage{xpatch}
+\makeatletter
+\xpatchcmd{\@maketitle}{\begin{center}}{\begin{flushleft}}{}{}
+\xpatchcmd{\@maketitle}{\end{center}}{\end{flushleft}}{}{}
+\xpatchcmd{\@maketitle}{\begin{tabular}[t]{c}}{\begin{tabular}[t]{@{}l@{}}}{}{}
+\makeatother
+% }}}
+
+% Adjust abstract section (full width and left aligned) {{{
+\renewenvironment{abstract}
+ {\rmfamily\small
+  \begin{flushleft}
+  \rmfamily\bfseries\color{bluegray} \abstractname\vspace{-0.5em}\vspace{0pt}
+  \end{flushleft}
+  \list{}{
+    \setlength{\leftmargin}{.0cm}
+    \setlength{\rightmargin}{\leftmargin}
+  }
+  \item\relax}
+ {\endlist}
+% }}}
+ 
+% %----------------------------------------------- Header and footer
+
+% Delete default settings and define your own {{{
+\usepackage[headsepline, automark]{scrlayer-scrpage}
+\clearpairofpagestyles
+\ohead[]{\headmark} 
+\ofoot[\pagemark]{\pagemark}
+\ifoot[]{\includegraphics[height=10mm]{logo.png}}
+% }}}
+
+
+% %----------------------------------------------- Lists
+
+\usepackage{enumitem}
+
+% Itemized lists {{{
+\renewcommand{\labelitemi}{\tiny\textcolor{blue}{$\blacksquare$}}
+\renewcommand{\labelitemii}{\textcolor{bluegray}{$\bullet$}}
+\renewcommand{\labelitemiii}{\textcolor{blue}{$\bullet$}}
+\renewcommand{\labelitemiv}{\textcolor{bluegray}{$\bullet$}}
+% }}}
+
+% Enumerated lists {{{ --> does not work currently
+% \renewcommand{\theenumi}{\color{blue}}
+% \renewcommand{\theenumii}{\color{bluegray}}
+% \renewcommand{\theenumiii}{\textcolor{blue}}
+% \renewcommand{\theenumiv}{\textcolor{bluegray}}
+% }}}
+
+
+% %----------------------------------------------- Graphics
+
+\usepackage{graphicx}
+\graphicspath{ {images/} } % images have to be in the /image subfolder

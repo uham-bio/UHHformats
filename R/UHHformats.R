@@ -15,6 +15,10 @@
 #'     English (default) and German.
 #'   \item \emph{'pdf_report'}: Creates a report-like PDF/LaTeX document in
 #'     English (default) and German.
+#'   \item \emph{'typst_simple'}: Creates a simple PDF document via Typst
+#'     (no TeX installation required).
+#'   \item \emph{'typst_report'}: Creates a report-like PDF document via Typst
+#'     with cover page, title page, and table of contents (no TeX required).
 #' }
 #'
 #'

@@ -35,6 +35,29 @@ test_that("create_quarto_doc() rejects invalid templates", {
   })
 })
 
+test_that("create_quarto_doc() creates typst_simple template", {
+  withr::with_tempdir({
+    create_quarto_doc("test_doc", template = "typst_simple")
+    expect_true(dir.exists("test_doc"))
+    expect_true(file.exists("test_doc/test_doc.qmd"))
+    expect_true(dir.exists("test_doc/styles"))
+    expect_true(file.exists("test_doc/styles/uhh-template.typ"))
+    # Font files should be copied
+    expect_true(file.exists("test_doc/font_regular.ttf"))
+  })
+})
+
+test_that("create_quarto_doc() creates typst_report template", {
+  withr::with_tempdir({
+    create_quarto_doc("test_doc", template = "typst_report")
+    expect_true(dir.exists("test_doc"))
+    expect_true(file.exists("test_doc/test_doc.qmd"))
+    expect_true(file.exists("test_doc/styles/uhh-report-template.typ"))
+    expect_true(file.exists("test_doc/font_regular.ttf"))
+    expect_true(dir.exists("test_doc/images"))
+  })
+})
+
 test_that("create_rmd_doc() errors when directory already exists", {
   withr::with_tempdir({
     dir.create("existing_dir")

@@ -1,0 +1,192 @@
+---
+title: "Document title"
+subtitle: "Subtitle of document"
+author: "Author name(s)"
+date: "`r Sys.Date()`"
+### Uncomment the following line if a summary should be shown after the title
+# abstract: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit odio. Donec fermentum tellus neque, vitae fringilla orci pretium vitae. Fusce maximus finibus facilisis. Donec ut ullamcorper turpis. Donec ut porta ipsum. Nullam cursus mauris a sapien ornare pulvinar. Aenean malesuada molestie erat quis mattis. Praesent scelerisque posuere faucibus."
+### Uncomment the following line if the document language is German
+# language: custom_lang.yml
+### Comment or remove the following two lines if NO references are used
+bibliography: [bib/references.bib, bib/packages.bib] # Path to bibliography files
+csl: bib/sage-harvard.csl                            # Path to reference style file
+### Settings for rendering the document:
+format:
+  typst:
+    template: styles/uhh-template.typ
+    section-numbering: "1.1.1"
+    toc: false
+    toc-depth: 3
+    toc-title: Contents       # remove line or adjust if language is German
+    columns: 1
+    # Font options: "Helvetica Neue" (default) or "TheSansUHH"
+    mainfont: "Helvetica Neue"
+    # Uncomment the following line to add a logo in the footer
+    # footer-logo: images/logo.png
+execute:
+  echo: false
+  warning: false
+  message: false
+fig-align: center
+editor: source
+---
+
+```{r}
+#| label: load-packages
+#| include: false
+# Load all your packages that you need later
+library(knitr)
+```
+
+```{r}
+#| label: generate-package-refs
+#| include: false
+# Automatically create a bib database for R packages used above
+knitr::write_bib(
+  x = c(.packages(), 'rmarkdown', 'UHHformats',
+    # Add here now all packages that are loaded above:
+    'knitr'),
+  file = 'bib/packages.bib')
+```
+
+# Introduction
+
+## About this template
+
+This template uses **Typst** instead of LaTeX to generate PDF output. Typst is a modern typesetting system that compiles much faster than LaTeX and does not require a TeX installation. The UHH design (colors, fonts, list markers, table styling) is preserved.
+
+Configure the YAML header including the following elements:
+
+- `title`: Title
+- `subtitle`: Subtitle; remove option completely if you don't need a subtitle.
+- `author`: Character of single or multiple author(s)
+- `date`: A date
+- `abstract`: The abstract will be shown right after the title in smaller font size.
+- `language`: If language is NOT English refer to the file `custom_lang.yml` for automatic text in German.
+- `bibliography`: A path to the bibliography file to use for references (BibTeX `.bib` file).
+- `csl`: The style is provided in the 'sage-harvard.csl' file.
+- `format - typst`: In this template the Quarto options for Typst output are listed in the YAML header. See the [Typst format reference](https://quarto.org/docs/output-formats/typst.html) for more options.
+- `mainfont`: Choose between "Helvetica Neue" (default) and "TheSansUHH" (UHH members only).
+
+The font is set when running the function, e.g., `UHHformats::create_quarto_doc(dirname = "my_doc", template = "typst_simple", font = "TheSansUHH")`.
+
+
+## Advantages of Typst over LaTeX
+
+- **No TeX installation required** -- Typst is bundled with Quarto (version 1.4+)
+- **Much faster compilation** -- milliseconds instead of seconds
+- **Simpler syntax** -- easier to customize templates
+- All UHH design elements (colors, fonts, headers, list markers) are supported
+
+
+## Code blocks
+
+Code blocks work identically to other Quarto formats:
+
+```{r}
+#| eval: false
+summary(cars)
+```
+
+
+## Callout blocks
+
+::: callout-note
+Quarto callout blocks work with Typst output just as with other formats.
+:::
+
+::: callout-tip
+## Tip With Caption
+
+This is an example of a callout with a caption.
+:::
+
+
+# Methods
+
+## Cross-references
+
+Cross-references work as in other Quarto formats: `@fig-label` for figures, `@tbl-label` for tables, `@sec-label` for sections.
+
+This is a cross-reference to @tbl-kable in @sec-tables and to @fig-base in @sec-figures.
+
+
+## Mathematical equations
+
+Use mathematics as usual with the dollar sign `$`: inline mode $E = mc^2$ or display mode: $$E = mc^2$$
+
+
+## Images
+
+[![Single image of Iris setosa.](images/wikipedia_iris_setosa.jpg)](https://en.wikipedia.org/wiki/Iris_setosa){fig-align="left" fig-alt="Wikipedia image of Iris setosa."}
+
+::: {layout-ncol=2 layout-valign="bottom"}
+
+![Iris versicolor](images/wikipedia_iris_versicolor.jpg){#fig-versicolor}
+
+![Iris virginica](images/wikipedia_iris_virginica.jpg){#fig-virginica}
+
+:::
+
+
+# Results
+
+## R output
+
+```{r}
+mtcars <- read.csv("data/mtcars.csv")
+summary(mtcars[,1:4])
+```
+
+
+## Tables {#sec-tables}
+
+### Using the *knitr* package
+
+@tbl-kable is an example of using `knitr::kable()` to generate a table.
+
+```{r}
+#| label: tbl-kable
+#| tbl-cap: "This is a table produced with knitr::kable()."
+df <- mtcars[1:5, 1:6]
+knitr::kable(df)
+```
+
+
+## Figures {#sec-figures}
+
+A base graphics scatterplot (@fig-base).
+
+```{r}
+#| label: fig-base
+#| fig-cap: "Relationship between horsepower and fuel economy."
+plot(mtcars$hp, mtcars$mpg,
+xlab = "Gross Horsepower",
+ylab = "Miles Per Gallon",
+pch = 19)
+abline(lm(mpg ~ hp, data = mtcars), col = "red")
+```
+
+```{r}
+#| label: fig-boxplot
+#| fig-cap: "Fuel differences between transmission types (0 = automatic, 1 = manual)."
+#| fig-height: 3
+#| fig-width: 3
+boxplot(mpg ~ am, mtcars)
+```
+
+
+# Adding citations and bibliography
+
+Link a `.bib` document via the YAML header. References can be cited using `[@key]`, e.g., [@Taylor1937]. Multiple entries: [@Knupp1999; @Kamm2000]. In-text: @Taylor1937.
+
+
+## Software
+
+All analyses were performed using the statistical software R (version `r paste(R.Version()$major, R.Version()$minor, sep = ".")`) [@R-base]. This document was generated using the R packages 'rmarkdown' (version `r packageVersion("rmarkdown")`) [@R-rmarkdown], 'UHHformats' (version `r packageVersion("UHHformats")`) [@R-UHHformats], and 'knitr' (version `r packageVersion("knitr")`) [@R-knitr].
+
+
+# References
+
+::: {#refs}
+:::

@@ -10,7 +10,7 @@ create_rmd_doc(dirname = "new-doc", template = "html_simple")
 \item{dirname}{Name of the directory to create.}
 
 \item{template}{The name of the template to use. Default is "html_simple", other
-options are "html_material", "pdf_simple", "pdf_report", "word_doc", and
+options are "pdf_simple", "pdf_report", "word_doc", and
 "pdf_cheatsheet".}
 }
 \description{
@@ -28,4 +28,7 @@ create_rmd_doc("my_html_doc", template = "html_simple")
 # Create template for a PDF report document
 create_rmd_doc("my_report", template = "pdf_report")
 }
+}
+\seealso{
+\code{\link{create_quarto_doc}} for Quarto templates.
 }

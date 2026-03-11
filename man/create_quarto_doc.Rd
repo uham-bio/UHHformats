@@ -10,10 +10,12 @@ create_quarto_doc(dirname = "new-doc", template = "html", font = "Helvetica")
 \item{dirname}{character; the name of the directory to create.}
 
 \item{template}{character; the template type to use. Choose "html" (default),
-"pdf_simple", "pdf_report", or "word".}
+"pdf_simple", "pdf_report", "pdf_cheatsheet", "word_doc", "typst_simple",
+or "typst_report".}
 
 \item{font}{The font family of the document. Default is "Helvetica" (i.e. Helvetica Neue).
-For members of the UHH, there is also the font "TheSansUHH" available for the PDF and Word document.}
+For members of the UHH, there is also the font "TheSansUHH" available for the PDF, Word,
+and Typst document.}
 }
 \description{
 \code{create_quarto_doc} creates a new subdirectory inside the current directory, which will
@@ -28,6 +30,15 @@ based on the standard template of the University of Hamburg.
  create_quarto_doc(dirname = "my_pdf_doc", template = "pdf_simple")
  # Create template for Word document using the University's
  # font 'TheSansUHH'
- create_quarto_doc(dirname = "my_word_doc", template = "word", font = "TheSansUHH")
+ create_quarto_doc(dirname = "my_word_doc", template = "word_doc", font = "TheSansUHH")
+ # Create template for simple Typst PDF (no TeX required)
+ create_quarto_doc(dirname = "my_typst_doc", template = "typst_simple")
+ # Create template for PDF cheatsheet (landscape, multi-column)
+ create_quarto_doc(dirname = "my_cheatsheet", template = "pdf_cheatsheet")
+ # Create template for Typst report with cover page
+ create_quarto_doc(dirname = "my_typst_report", template = "typst_report")
 }
+}
+\seealso{
+\code{\link{create_rmd_doc}} for R Markdown templates.
 }

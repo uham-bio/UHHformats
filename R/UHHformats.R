@@ -39,6 +39,4 @@
 #'   \item \code{\link{pdf_cheatsheet}}: Creates a simple PDF cheatsheet with
 #'     box layouts.
 #' }
-#' @docType package
-#' @name UHHformats
-NULL
+"_PACKAGE"

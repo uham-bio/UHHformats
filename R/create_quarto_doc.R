@@ -28,6 +28,7 @@
 #'  # Create template for Typst report with cover page
 #'  create_quarto_doc(dirname = "my_typst_report", template = "typst_report")
 #' }
+#' @seealso \code{\link{create_rmd_doc}} for R Markdown templates.
 #' @export
 
 create_quarto_doc <- function(dirname = "new-doc", template = "html",

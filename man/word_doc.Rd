@@ -64,6 +64,6 @@ The Word template is based on the standard template of the University of Hamburg
 \examples{
 \dontrun{
  # put in YAML header:
- output: UHHthesis::word_doc
+ output: UHHformats::word_doc
 }
 }

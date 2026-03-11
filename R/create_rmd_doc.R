@@ -18,6 +18,7 @@
 #' # Create template for a PDF report document
 #' create_rmd_doc("my_report", template = "pdf_report")
 #' }
+#' @seealso \code{\link{create_quarto_doc}} for Quarto templates.
 #' @export
 #'
 create_rmd_doc <- function(dirname = "new-doc", template = "html_simple") {

@@ -6,7 +6,8 @@
 #'
 #' @param dirname character; the name of the directory to create.
 #' @param template character; the template type to use. Choose "html" (default),
-#'   "pdf_simple", "pdf_report", "word_doc", "typst_simple", or "typst_report".
+#'   "pdf_simple", "pdf_report", "pdf_cheatsheet", "word_doc", "typst_simple",
+#'   or "typst_report".
 #' @param font The font family of the document. Default is "Helvetica" (i.e. Helvetica Neue).
 #'   For members of the UHH, there is also the font "TheSansUHH" available for the PDF, Word,
 #'   and Typst document.
@@ -22,6 +23,8 @@
 #'  create_quarto_doc(dirname = "my_word_doc", template = "word_doc", font = "TheSansUHH")
 #'  # Create template for simple Typst PDF (no TeX required)
 #'  create_quarto_doc(dirname = "my_typst_doc", template = "typst_simple")
+#'  # Create template for PDF cheatsheet (landscape, multi-column)
+#'  create_quarto_doc(dirname = "my_cheatsheet", template = "pdf_cheatsheet")
 #'  # Create template for Typst report with cover page
 #'  create_quarto_doc(dirname = "my_typst_report", template = "typst_report")
 #' }
@@ -34,8 +37,8 @@ create_quarto_doc <- function(dirname = "new-doc", template = "html",
     stop('Set the font option to "Helvetica" or "TheSansUHH".')
   }
 
-  templates <- c("html", "pdf_simple", "pdf_report", "word_doc",
-    "typst_simple", "typst_report")
+  templates <- c("html", "pdf_simple", "pdf_report", "pdf_cheatsheet",
+    "word_doc", "typst_simple", "typst_report")
   template <- match.arg(template, templates)
   tmp_dir <- paste(dirname, "_tmp", sep = "")
   if (file.exists(dirname) || file.exists(tmp_dir)) {
@@ -58,7 +61,7 @@ create_quarto_doc <- function(dirname = "new-doc", template = "html",
 
 
   # Copy selected resource file into new path
-  if (template %in% c("pdf_simple", "pdf_report", "typst_simple", "typst_report")) {
+  if (template %in% c("pdf_simple", "pdf_report", "pdf_cheatsheet", "typst_simple", "typst_report")) {
     copy_font_files(template, font, type = "quarto", current_dir = tmp_dir)
   }
 

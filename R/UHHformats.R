@@ -17,6 +17,8 @@
 #'     English (default) and German.
 #'   \item \emph{'typst_simple'}: Creates a simple PDF document via Typst
 #'     (no TeX installation required).
+#'   \item \emph{'pdf_cheatsheet'}: Creates a landscape PDF cheatsheet with
+#'     configurable multi-column layout and colored textboxes.
 #'   \item \emph{'typst_report'}: Creates a report-like PDF document via Typst
 #'     with cover page, title page, and table of contents (no TeX required).
 #' }

@@ -1,0 +1,252 @@
+---
+author: "created by Jane Doe"
+date: today
+### Cheatsheet layout settings:
+multicols: 3                       # number of columns (any value > 1)
+reduce-space-before-code: false    # reduce space before code blocks (set true if echo: true)
+footer-logo: images/uhh_logo.png   # path to logo in footer (remove line for no logo)
+license: "CC-BY-SA"                # license displayed in footer
+### Color settings (hex codes WITHOUT hashtag):
+col-title: "8B8B83"                # title color
+col-sections: "000000"             # section header color
+col-code: "014979"                 # inline code color
+col-headerbox: "FBEFCE"            # headerbox background
+col-redbox: "C34A47"               # redbox color
+col-whitebox: "e0e0e0"             # whitebox color
+# col-bluebox: "027BCB"            # bluebox color (default)
+# col-greenbox: "7fa16a"           # greenbox color (default)
+# col-yellowbox: "eeb422"          # yellowbox color (default)
+# col-graybox: "8c8c8c"            # graybox color (default)
+# col-blackbox: "191919"           # blackbox color (default)
+### Rendering settings:
+format:
+  pdf:
+    template: styles/cheatsheet-template.tex
+    pdf-engine: xelatex
+    highlight-style: kate
+    toc-depth: 1
+execute:
+  echo: false
+  warning: false
+  message: false
+editor: source
+---
+
+```{r}
+#| label: load-packages
+#| include: false
+library(knitr)
+```
+
+# A Cheatsheet Template
+
+## Section 1
+
+### Subsection 1
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+
+\begin{bluebox}{Lorem ipsum in a bluebox}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+\end{bluebox}
+
+### Options and color adjustments
+
+You can define in the YAML header:
+
+* the path to a **footer logo** (optional)
+* the **creative commons license** displayed in the footer (optional)
+* the **number of columns** (`multicols`); you can choose any value > 1, default is 3
+* whether the **space before the code block** (when echo = true) should be reduced
+* the **title** color (default is black)
+* the color for the **(sub)section header** (default is black)
+* the color for **inline code** (default is black)
+* the color for the **headerbox** (default is FBEFCE)
+* the color for the different **textboxes**:
+    + `col-redbox` for the `redbox` (default is bc0000)
+    + `col-bluebox` for the `bluebox` (default is 027BCB)
+    + `col-greenbox` for the `greenbox` (default is 7fa16a)
+    + `col-yellowbox` for the `yellowbox` (default is eeb422)
+    + `col-graybox` for the `graybox` (default is 8c8c8c)
+    + `col-blackbox` for the `blackbox` (default is 191919)
+    + `col-whitebox` for the `whitebox` (default is e0e0e0)
+
+Note that you have to use the color hex coding **without** the hashtag. If you need more colors than these 7, you can define 14 more colors by appending the number 2 or 3 to each color and box, e.g. `col-redbox2` and `col-redbox3` for `redbox2` and `redbox3`, respectively.
+
+
+### Overview of some package functions
+
+`install.packages()`: Install packages from repositories or local files.
+
+`library()`: Loading/attaching and listing of packages.
+
+`require()`: library(pkg) and require(pkg) both load the namespace of the package *pkg* and attach it on the search list.
+
+`vignette()`: View, list or get R source of package vignettes.
+
+\begin{graybox}{Inline code inside the colored textboxes has to be written in \LaTeX}
+
+\verb!search()!: \newline
+Give search path for R objects.
+
+\verb!attach()!: \\
+Attach set of R objects to search path.
+
+\verb!detach()!: \\
+Detach objects from the search path.
+
+\end{graybox}
+
+
+### Listings of functions in tabular style
+
+Pandoc converts Markdown tables into `longtable` objects, which do not work with the multi-column layout. Use \LaTeX code directly instead. Beware that inside any \LaTeX command you **cannot** use **Markdown syntax** anymore!
+
+<!-- column widths should not be > 7cm in total if multicols = 3 -->
+\begin{tabular}{p{2cm}p{5cm}}
+  \verb!search()! & Give search path for R objects. \\
+  \verb!attach()! & Attach set of R objects to search path. \\
+  \verb!detach()! & Detach objects from the search path. \\
+\end{tabular}
+
+\begin{yellowbox}{Table of key object types in a textbox}
+  \begin{center}
+  \begin{tabular}{p{2cm}P{2cm}P{2cm}}
+  object & dimensions & data type\\
+  \hline
+  \verb!vector!  & 1 & homogeneous \\
+  \verb!list!  & 1 & heterogeneous \\
+  \verb!matrix! & 2 & homogeneous \\
+  \verb!array!  & >2 & homogeneous \\
+  \verb!data.frame!  & 2 & heterogeneous
+  \end{tabular}
+  \end{center}
+\end{yellowbox}
+
+
+## Some R code demonstration
+
+### R input and output
+```{r}
+x <- rnorm(n = 5, mean = 100, sd = 50)
+mean_x <- round(mean(x), 1)
+sd_x <- round(sd(x),1)
+print(paste("This sample has a mean of",
+  mean_x, "\u00b1", sd_x)
+)
+```
+
+### Plotting example with `mtcars`
+```{r}
+#| fig-height: 6
+#| out-width: "80%"
+#| fig-align: left
+plot(mtcars$mpg, mtcars$disp, pch = 20, cex = 2,
+  xlab = "Displacement (cu.in.)", ylab = "Miles/(US) gallon")
+```
+
+\newpage
+
+## Images
+
+```{r}
+#| out-width: "80%"
+#| fig-align: center
+knitr::include_graphics("images/example_image.png")
+```
+
+
+\begin{wrapfigure}[4]{l}{1cm}
+  \centering
+  \includegraphics[width=0.5cm]{images/lightbulb.png}
+\end{wrapfigure}
+
+Images are best included using the `include_graphics()` function so that the size and position can be easily defined.
+
+Or use \LaTeX syntax, which gives you even more control!
+
+\vfill
+
+## Textbox Layouts
+
+\begin{redbox}
+
+  Textbox with no header and two list examples: \\
+
+  \underline{Ordered list}
+  \begin{enumerate}
+  \item \textbf{Explore} your data
+  \item \textbf{Extract} the key information
+  \item \textbf{Present} your findings
+  \end{enumerate}
+
+  \underline{Unordered list}
+  \begin{itemize}
+      \item One
+      \item Two
+      \item Three
+  \end{itemize}
+\end{redbox}
+
+\begin{greenbox}{Multiple columns in a box}
+  \begin{multicols}{2}
+  \includegraphics[width=0.5cm]{images/calculator.png}
+  \textbf{column 1} \\
+  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+  \columnbreak
+
+  \includegraphics[width=0.5cm]{images/checklist2.png}
+  \textbf{column 2}\\
+  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+  \end{multicols}
+\end{greenbox}
+
+
+\begin{blackbox}{Boxes inside a box}
+
+ \begin{whitebox}
+
+  With the \verb!\multibox! command you can place one or more \verb!\subbox!es next to each other:
+  \end{whitebox}
+
+  \begin{multibox}{3}
+  \begin{subbox}{colgraybox}{Info 1}
+  info
+  \end{subbox}
+  \begin{subbox}{colgraybox}{Info 2}
+  $a \to b$
+  \mycommand{CTRL+C}{copy}
+  \end{subbox}
+  \begin{subbox}{colgraybox}{Info 3}
+  more text
+  \end{subbox}
+  \end{multibox}
+
+\end{blackbox}
+
+\columnbreak
+
+## Use of colored header box
+
+You can also use a colored headerbox to separate sections more visually. The advantage here is that all the text below the headerbox can be written in normal Markdown syntax:
+
+\headerbox{Subsection 1}
+
+`install.packages()`: Install packages from repositories or local files.
+
+`library()`: Loading/attaching and listing of packages.
+
+`require()`: library(pkg) and require(pkg) both load the namespace of the package *pkg* and attach it on the search list.
+
+`vignette()`: View, list or get R source of package vignettes.
+
+\headerbox{Subsection 2}
+
+`search()`
+Give search path for R objects.
+
+`attach()`
+Attach set of R objects to search path.
+
+`detach()`
+Detach objects from the search path.

@@ -1,9 +1,0 @@
-name: HTML document (material design)
-description: >
-  HTML template that has a navigation bar on the left and in
-  which the different sections are displayed on individual
-  pages or cards. The design is an adaptation from the
-  Material design theme for Bootstrap 3. This template represents a
-  modified version of the 'material' template in the 'rmdformats'
-  package.
-create_dir: true

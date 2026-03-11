@@ -1,7 +1,7 @@
 
 #-----------------------------------------------------------------------
 # The following template function is adopted from the 'rmdformats' package
-# that is called by html_simple() and html_material()
+# that is called by html_simple()
 #-----------------------------------------------------------------------
 
 html_template <- function(template_name, template_path,

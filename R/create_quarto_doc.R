@@ -6,7 +6,7 @@
 #'
 #' @param dirname character; the name of the directory to create.
 #' @param template character; the template type to use. Choose "html" (default),
-#'   "pdf_simple", "pdf_report", or "word".
+#'   "pdf_simple", "pdf_report", or "word_doc".
 #' @param font The font family of the document. Default is "Helvetica" (i.e. Helvetica Neue).
 #'   For members of the UHH, there is also the font "TheSansUHH" available for the PDF and Word document.
 #'
@@ -18,7 +18,7 @@
 #'  create_quarto_doc(dirname = "my_pdf_doc", template = "pdf_simple")
 #'  # Create template for Word document using the University's
 #'  # font 'TheSansUHH'
-#'  create_quarto_doc(dirname = "my_word_doc", template = "word", font = "TheSansUHH")
+#'  create_quarto_doc(dirname = "my_word_doc", template = "word_doc", font = "TheSansUHH")
 #' }
 #' @export
 
@@ -29,7 +29,7 @@ create_quarto_doc <- function(dirname = "new-doc", template = "html",
     stop('Set the font option to "Helvetica" or "TheSansUHH".')
   }
 
-  templates <- c("html", "pdf_simple", "pdf_report", "word")
+  templates <- c("html", "pdf_simple", "pdf_report", "word_doc")
   template <- match.arg(template, templates)
   tmp_dir <- paste(dirname, "_tmp", sep = "")
   if (file.exists(dirname) || file.exists(tmp_dir)) {
@@ -56,11 +56,11 @@ create_quarto_doc <- function(dirname = "new-doc", template = "html",
     copy_font_files(template, font, type = "quarto", current_dir = tmp_dir)
   }
 
-  if (template == "word") {
+  if (template == "word_doc") {
     if (font == "Helvetica") filename <- "uhh-template-helvetica.docx"
     if (font == "TheSansUHH") filename <- "uhh-template-thesansuhh.docx"
     file.copy(
-      from = find_resource("word", file = filename, type = "quarto"),
+      from = find_resource("word_doc", file = filename, type = "quarto"),
       to = file.path(tmp_dir, "uhh-template.docx")
     )
   }

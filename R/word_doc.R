@@ -40,7 +40,7 @@
 #' @examples
 #' \dontrun{
 #'  # put in YAML header:
-#'  output: UHHthesis::word_doc
+#'  output: UHHformats::word_doc
 #' }
 word_doc <- function(toc = FALSE, toc_depth = 4, number_sections = FALSE,
   highlight = "default", reference_docx = "uhh-template", font = "Helvetica",

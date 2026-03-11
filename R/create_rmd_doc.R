@@ -5,7 +5,7 @@
 #'
 #' @param dirname Name of the directory to create.
 #' @param template The name of the template to use. Default is "html_simple", other
-#'   options are "html_material", "pdf_simple", "pdf_report", "word_doc", and
+#'   options are "pdf_simple", "pdf_report", "word_doc", and
 #'   "pdf_cheatsheet".
 #' @details
 #' The function is a modified version of the `create.doc` function in the
@@ -21,7 +21,7 @@
 #' @export
 #'
 create_rmd_doc <- function(dirname = "new-doc", template = "html_simple") {
-  templates <- c("html_material", "html_simple", "pdf_report",
+  templates <- c("html_simple", "pdf_report",
     "pdf_simple", "word_doc", "pdf_cheatsheet")
   template <- match.arg(template, templates)
   tmp_dir <- paste(dirname, "_tmp", sep = "")

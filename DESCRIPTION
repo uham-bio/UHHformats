@@ -1,39 +1,40 @@
 Package: UHHformats
 Type: Package
 Title: Templates for HTML and PDF/LaTeX Output Formats Designed for the UHH
-Version: 1.0.0.9000
-Date: 2022-9-06
+Version: 1.1.0.9000
+Date: 2026-03-11
 Authors@R: c(person("Saskia", "Otto", email="saskia.a.otto@gmail.com",
     role=c("aut","cre")))
 Maintainer: Saskia Otto <saskia.a.otto@gmail.com>
 URL: https://github.com/uham-bio/UHHformats
-Description: R Markdown and Quarto templates for HTML, PDF, and MS Word documents, which are used 
+Description: R Markdown and Quarto templates for HTML, PDF, and MS Word documents, which are used
     within the Biology Department of the University of Hamburg (UHH) and its 'Data Science in Biology'
-    program. These include templates for student assignments, project reports,
-    and conversions to Jupyter Notebooks. The package aims to encourage
-    reproducible research using simple Markdown syntax while embedding all of the R code to 
-    produce plots and analyses as well. Many templates are inspired by or based on other 
-    packages such as 'rmdformats', 'ireports' or 'rmd2jupyter'.
+    program. These include templates for student assignments and project reports.
+    The package aims to encourage reproducible research using simple Markdown syntax while
+    embedding all of the R code to produce plots and analyses as well. Many templates are
+    inspired by or based on other packages such as 'rmdformats' and 'ireports'.
 License: CC BY 4.0
 Encoding: UTF-8
 Depends:
-    R(>= 4.0.0)
+    R(>= 4.1.0)
 LazyData: true
-Imports: 
+Imports:
     bookdown,
     htmltools,
     knitr,
-    rmarkdown (>= 2.11),
-    tinytex (>= 0.33),
+    rmarkdown (>= 2.25),
+    tinytex (>= 0.45),
     utils
 Suggests:
     huxtable,
-    jsonlite,
     kableExtra,
     plotly,
     quarto,
+    testthat (>= 3.0.0),
+    withr,
     xtable
-SystemRequirements: pandoc (>= 2.1) - http://pandoc.org
+Config/testthat/edition: 3
+SystemRequirements: pandoc (>= 2.17) - http://pandoc.org
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
 RoxygenNote: 7.2.3

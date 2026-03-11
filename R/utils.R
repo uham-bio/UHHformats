@@ -26,25 +26,28 @@ find_resource <- function(template, file, type = "rmarkdown") {
 
 # Helper function to copy font files under different name into working directory
 copy_font_files <- function(template, font, type = "rmarkdown", current_dir = ".") {
-  types <- c("rmarkdown", "quarto")
-  type <- match.arg(type, types)
-  file_copy <- function(template, font, input, output, type, current_dir) {
+  find_font <- function(font_family, filename) {
+    res <- system.file("fonts", font_family, filename, package = "UHHformats")
+    if (res == "") stop("Couldn't find font file ", font_family, "/", filename, call. = FALSE)
+    return(res)
+  }
+  file_copy <- function(font, input, output, current_dir) {
     file.copy(
-      from = find_resource(template, file = file.path("fonts", font, input), type),
+      from = find_font(font, input),
       to = file.path(current_dir, output), overwrite = TRUE
     )
   }
   if (font == "Helvetica") {
-    file_copy(template, font, "HelNeueLight8.ttf", "font_regular.ttf", type, current_dir)
-    file_copy(template, font, "HelNeueLightItalic9.ttf", "font_italic.ttf", type, current_dir)
-    file_copy(template, font, "HelNeueBold2.ttf", "font_bold.ttf", type, current_dir)
-    file_copy(template, font, "HelNeueBoldItalic4.ttf", "font_bolditalic.ttf", type, current_dir)
+    file_copy(font, "HelNeueLight8.ttf", "font_regular.ttf", current_dir)
+    file_copy(font, "HelNeueLightItalic9.ttf", "font_italic.ttf", current_dir)
+    file_copy(font, "HelNeueBold2.ttf", "font_bold.ttf", current_dir)
+    file_copy(font, "HelNeueBoldItalic4.ttf", "font_bolditalic.ttf", current_dir)
   }
   if (font == "TheSansUHH") {
-    file_copy(template, font, "ftsr8a.ttf", "font_regular.ttf", type, current_dir)
-    file_copy(template, font, "ftsri8a.ttf", "font_italic.ttf", type, current_dir)
-    file_copy(template, font, "ftsb8a.ttf", "font_bold.ttf", type, current_dir)
-    file_copy(template, font, "ftsbi8a.ttf", "font_bolditalic.ttf", type, current_dir)
+    file_copy(font, "ftsr8a.ttf", "font_regular.ttf", current_dir)
+    file_copy(font, "ftsri8a.ttf", "font_italic.ttf", current_dir)
+    file_copy(font, "ftsb8a.ttf", "font_bold.ttf", current_dir)
+    file_copy(font, "ftsbi8a.ttf", "font_bolditalic.ttf", current_dir)
   }
 }
 

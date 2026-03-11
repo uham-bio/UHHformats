@@ -1,7 +1,0 @@
-name: Jupyter Notebook
-description: >
- Template for converting an .Rmd file into a Jupyter notebook using the
- jsonlite R package. Installations of Jupyter notebook, Python or any
- other program are note required to use this template.
-create_dir: true
-

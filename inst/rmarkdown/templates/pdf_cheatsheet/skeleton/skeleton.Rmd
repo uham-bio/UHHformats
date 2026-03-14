@@ -1,6 +1,6 @@
 ---
 author: "created by Jane Doe"
-date: \today
+date: "`r Sys.Date()`"
 fontsize: 11pt
 params:
   logo: images/uhh_logo.png

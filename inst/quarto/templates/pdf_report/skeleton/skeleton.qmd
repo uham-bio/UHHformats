@@ -27,7 +27,7 @@ csl: bib/sage-harvard.csl                            # Path to reference style f
 format: 
   pdf:
     documentclass: scrbook  
-    classoption: ["onepage", "openany"]
+    classoption: ["oneside", "openany"]
     geometry:   
       - top=25mm     # margin settings
       - bottom=35mm
@@ -212,7 +212,7 @@ For instance, if you have several figures that appear as a group, you can create
 
 The layout attribute enables the creation of much more complex layouts. @fig-custom-layout provides an example with a common figure caption and one identifier for all three.
 
-::: {#fig-custom-layout layout="[20,-2,46,-2,30]" layout-valign="bottom"}
+::: {#fig-custom-layout layout="[20,-5,40,-5,30]"}
 
 ![Iris setosa](images/wikipedia_iris_setosa.jpg)
 

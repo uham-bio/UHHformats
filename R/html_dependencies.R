@@ -22,30 +22,6 @@ html_dependency_jquery_stickytableheaders <- function()  {
 }
 
 
-# create an html dependency for bootstrap (from rmarkdown)
-html_dependency_bootstrap <- function(theme = "bootstrap") {
-  htmltools::htmlDependency(name = "bootstrap",
-                 version = "5.3.3",
-                 src = system.file("templates/bootstrap-5.3.3", package = "UHHformats"),
-                 meta = list(viewport = "width=device-width, initial-scale=1"),
-                 script = c(
-                   "js/bootstrap.bundle.min.js"
-                 ),
-                 stylesheet = paste("css/", theme, ".min.css", sep = ""))
-}
-
-
-# create an html dependency for bootstrap js only (function copied from rmarkdown)
-html_dependency_bootstrap_js <- function() {
-  htmltools::htmlDependency(name = "bootstrap_js",
-                            version = "5.3.3",
-                            src = system.file("templates/bootstrap-5.3.3", package = "UHHformats"),
-                            meta = list(viewport = "width=device-width, initial-scale=1"),
-                            script = c(
-                              "js/bootstrap.bundle.min.js"
-                            ))
-}
-
 # Mathjax (functions copied from rmarkdown)
 default_mathjax <- function() {
   paste0("https://mathjax.rstudio.com/latest/", mathjax_config())

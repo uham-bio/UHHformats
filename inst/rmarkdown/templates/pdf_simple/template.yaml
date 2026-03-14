@@ -1,6 +1,0 @@
-name: Simple PDF document
-description: >
- Template for creating simple PDF/LaTeX-based document suitable for
- short reports and student asignments (in English). The underlying function
- is a wrapper of rmarkdown::pdf_document.
-create_dir: true

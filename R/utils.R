@@ -24,30 +24,50 @@ find_resource <- function(template, file, type = "rmarkdown") {
 }
 
 
-# Helper function to copy font files under different name into working directory
+# Get the path to the font directory for a given font family in the package.
+font_dir <- function(font) {
+  res <- system.file("fonts", font, package = "UHHformats")
+  if (res == "") stop("Couldn't find font directory for ", font, call. = FALSE)
+  return(res)
+}
+
+# Standard font filenames (same for all font families)
+font_files <- c(
+  font_regular    = "regular.ttf",
+  font_italic     = "italic.ttf",
+  font_bold       = "bold.ttf",
+  font_bolditalic = "bolditalic.ttf"
+)
+
+# Build pandoc variable arguments for font files.
+# Returns a character vector of --variable args for fontpath and font filenames.
+# Used by R Markdown format functions so LaTeX templates reference fonts from
+# the package directory without copying.
+font_pandoc_args <- function(font) {
+  if (!font %in% c("Helvetica", "TheSansUHH")) return(character(0))
+  fontpath <- font_dir(font)
+  c(
+    "--variable", paste0("fontpath=", fontpath),
+    "--variable", paste0("font_regular=", font_files["font_regular"]),
+    "--variable", paste0("font_italic=", font_files["font_italic"]),
+    "--variable", paste0("font_bold=", font_files["font_bold"]),
+    "--variable", paste0("font_bolditalic=", font_files["font_bolditalic"])
+  )
+}
+
+
+# Copy font files into styles/ subdirectory for standalone Quarto documents.
 copy_font_files <- function(template, font, type = "rmarkdown", current_dir = ".") {
-  find_font <- function(font_family, filename) {
-    res <- system.file("fonts", font_family, filename, package = "UHHformats")
-    if (res == "") stop("Couldn't find font file ", font_family, "/", filename, call. = FALSE)
-    return(res)
-  }
-  file_copy <- function(font, input, output, current_dir) {
+  if (!font %in% c("Helvetica", "TheSansUHH")) return(invisible(NULL))
+  fontpath <- font_dir(font)
+  styles_dir <- file.path(current_dir, "styles")
+  if (!dir.exists(styles_dir)) dir.create(styles_dir, recursive = TRUE)
+  for (f in font_files) {
     file.copy(
-      from = find_font(font, input),
-      to = file.path(current_dir, output), overwrite = TRUE
+      from = file.path(fontpath, f),
+      to = file.path(styles_dir, paste0("font_", f)),
+      overwrite = TRUE
     )
-  }
-  if (font == "Helvetica") {
-    file_copy(font, "HelNeueLight8.ttf", "font_regular.ttf", current_dir)
-    file_copy(font, "HelNeueLightItalic9.ttf", "font_italic.ttf", current_dir)
-    file_copy(font, "HelNeueBold2.ttf", "font_bold.ttf", current_dir)
-    file_copy(font, "HelNeueBoldItalic4.ttf", "font_bolditalic.ttf", current_dir)
-  }
-  if (font == "TheSansUHH") {
-    file_copy(font, "ftsr8a.ttf", "font_regular.ttf", current_dir)
-    file_copy(font, "ftsri8a.ttf", "font_italic.ttf", current_dir)
-    file_copy(font, "ftsb8a.ttf", "font_bold.ttf", current_dir)
-    file_copy(font, "ftsbi8a.ttf", "font_bolditalic.ttf", current_dir)
   }
 }
 

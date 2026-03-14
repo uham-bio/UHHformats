@@ -1,32 +1,59 @@
 ---
-title: "Document title"   
-subtitle: "Subtitle of document"
-author: "Author name(s)"
-date: "`r Sys.Date()`"
-### Uncomment the following line if a summary should be shown after the title 
-# abstract: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr." 
-lang: en # German would be 'de'
+title: "Document title"
+subtitle: "Subtitle"
+description: |
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit odio. Donec fermentum tellus neque, vitae fringilla orci pretium vitae. Fusce maximus finibus facilisis. Donec ut ullamcorper turpis.
+date: "01/04/2022"
+author:
+  - name: Author name 
+    url: https://www.biologie.uni-hamburg.de/en.html
+    affiliation: Universität Hamburg
+    affiliation-url: https://www.uni-hamburg.de/en.html
+citation:
+  url: https://example.com/summarizing-output
+license: "CC BY-SA" 
+### Uncomment the following line if the document language is German
+# language: custom_lang.yml
 ### Comment or remove the following two lines if NO references are used
 bibliography: [bib/references.bib, bib/packages.bib] # Path to bibliography files 
 csl: bib/sage-harvard.csl                            # Path to reference style file
 ### Settings for rendering the document:
 format: 
-  docx:
-    toc: false
+  html:
+    theme:  default 
+    include-after-body: styles/js_logo.html # adds a logo to navbar
+    css: styles/styles.css                  # modifies layout style
+    self-contained: true
+    toc: true
     toc-depth: 3
-    toc-title: Contents
+    toc-location: left
+    toc-title: Contents   # remove line or adjust if language is German
     number-sections: true
-    reference-doc: "uhh-template.docx"
+    number-depth: 3
+    anchor-sections: true
+    smooth-scroll: true
+    citations-hover: true
+    footnotes-hover: true
     crossref: 
       chapters: false     # set to 'true' if figure numbering should follow subsections
       fig-prefix: Fig.    # (default is 'Figure'; adjust if language is German)
     # Code options:
     highlight-style: arrow # default
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    code-fold: true
+    code-summary: "Show the code"
+    code-overflow: wrap
+    code-copy: hover
+    code-link: false
+    code-tools:
+      source: false
+      toggle: true
+      caption: "CODE"
 execute:
-  echo: false
+  echo: true
   warning: false
   message: false
-editor: source
 ---
 
 ```{r}
@@ -52,22 +79,9 @@ knitr::write_bib(
 
 ## YAML header
 
-Configure the YAML header including the following elements:
+In this template many of the Quarto options for HTML output are listed in the YAML header. If you want to know more about these settings I recommend the [HTML format reference](https://quarto.org/docs/reference/formats/html.html) for a complete list of available options.
 
-- *title*: Title
-- *subtitle*: Subtitle; remove option completely if you don't need a subtitle.
-- *author*: Character of single or multiple author(s)
-- *date*: A date
-- *abstract*: The abstract will be shown right after the title in smaller font size. 
-- *lang*: The language of the document. Default is English ('en'). For German use 'de'.
-- *bibliography*: A path to the bibliography file to use for references (BibTeX *.bib* file). The current file includes 3 dummy references; either insert your references into this file or replace the file with your own.
-- *csl*: The style is provided in the 'sage-harvard.csl' file, which adopts the [SAGE Harvard](https://uk.sagepub.com/sites/default/files/sage_harvard_reference_style_0.pdf) reference style. Just leave the file as it is.
-- *format - docx*: In this template many of the Quarto options for Word output are listed in the YAML header. If you want to know more about these settings I recommend the [MS Word format reference](https://quarto.org/docs/reference/formats/docx.html) for a complete list of available options. For instance, you can adjust the figure and table references with *fig-title*, *tbl-title*, *fig-prefix*, and *tbl-prefix*.
-- *execute*: Global options for customizing output from executed code are specified within this execute key.
-
-This Quarto template uses a 'uhh-template.docx' Word file, which is based on the [standard template file](https://www.kus.uni-hamburg.de/themen/oeffentlichkeitsarbeit/corporate-design/vorlagen.html) of the University of Hamburg (UHH) except for the font type, which is by default 'Helvetica'.  If you are associated with the UHH you are allowed to use the University's own font style 'TheSansUHH'. You can choose between both fonts when running the function, e.g., `UHHformats::create_quarto_doc(dirname = "your_word_doc", template = "word", font = "TheSansUHH")`.
-
-If you feel like using your own template or the standard Word template (i.e. the Normal.dot file), simply provide the path to your file or comment/delete this line, respectively. 
+Quarto offers also extensive YAML intelligence (completion and diagnostics) in the RStudio IDE and in VS Code for project files, YAML front matter, and executable cell options. Just start with some letters and press the tab key on the keyboard. You will see a small dialog box with a list of available options.
 
 
 ## Code blocks
@@ -98,6 +112,12 @@ The color and icon will be different depending upon the type that you select. Yo
 This is an example of a callout with a caption.
 :::
 
+::: {.callout-caution collapse="true"}
+## Expand To Learn About Collapse
+
+This is an example of a 'folded' caution callout that can be expanded by the user. You can use `collapse="true"` to collapse it by default or `collapse="false"` to make a collapsible callout that is expanded by default.
+:::
+
 
 # Methods
 
@@ -109,7 +129,7 @@ Tables require similarly a label and table caption for cross-referencing. But he
 
 Cross-references to individual sections can simply be made with the prefix 'sec' and by adding a '{#sec-identifier}' to any heading.
 
-This is for example a cross-reference to @tbl-kable in @sec-tables and a cross-reference to @fig-base in @sec-figures.
+This is for example a cross-reference to @tbl-irismeans in @sec-tables and a cross-reference to @fig-boxplottab in @sec-figures.
 
 To create a reference-able code block, add a #lst-identifier along with a lst-cap attribute inside the curly braces (see code chunk example @lst-codeblock). Note that the indication of the programming language requires for this static code block a dot set before the 'r'.
 
@@ -118,19 +138,13 @@ To create a reference-able code block, add a #lst-identifier along with a lst-ca
 ```
 
 
-## Mathematical equations
+## Mathjax
 
-Use mathematics as usual with the dollar sign `$` at the beginning and end of the equation; either in **inline mode** with one dollar sign such as $E = mc^2$ or in **display mode** with two dollar signs: $$E = mc^2$$
+A little math formula :
 
-Important to note: do not leave a space between the '\$' and your mathematical notation.
+$$x = \sum_{i=1}^{n} \sqrt{\frac{y}{i}} $$
 
-Alternatively, you can use LaTeX for more control and when equations are more complicated. LaTeX equations are also automatically numbered if you define a label within the equation environment, which is useful if you have many equations and want to cross-reference them. The equation label needs to be written with '#eq:label' before the end of the equation (see @eq-mean):
-
-$$
-  \bar{X} = \frac{\sum_{i=1}^n X_i}{n}
-$$ {#eq-mean}
-
-Formulas and corresponding explanations should be integrated into the sentence and, thus, end with a comma or period. Here comes an example:
+Here is a more complex example where the equation is embedded in a LaTeX equation environment including numbering and crossreferencing:
 
 If the random variable $Y$ follows a standard normal distribution, i.e. $Y \sim N(0,1)$, it's density function can be described with
 
@@ -144,10 +158,7 @@ $$
   F_{Y}(y)=\Phi(y) \stackrel{\mathrm{def}}{=} \int_{-\infty}^y \varphi(x) \,\mathrm{d}x, \quad y \in \mathbb{R}
 $$ {#eq-dist-func}
 
-
 represents then the distribution function of @eq-density-norm.
-
-The numbering of equations, as in @eq-density-norm, should only be done if they are referred to in the rest of the text. Especially if there are many equations in the thesis, the use of LaTeX seems to make more sense.
 
 
 ## Images
@@ -180,12 +191,12 @@ Custom layout of images
 :::
 
 
-# Results
+
+# Analysis
 
 ## R output
 
 R output is typically shown in the monospace font (here an example with the `mtcars` dataset in the subfolder `data/`): 
-
 ```{r}
 # Import dataset from the data/ folder
 mtcars <- read.csv("data/mtcars.csv")
@@ -195,62 +206,35 @@ summary(mtcars[,1:4])
 
 ## Tables {#sec-tables}
 
-If the output format is Word tables are generated best using R packages instead of R Markdown syntax. The following two sections demonstrate some useful packages.
+Here is a simple table based on Markdown Syntax (@tbl-markdown).
 
-### Using the *knitr* package
+| A            | New              | Table          |
+|:-------------|:----------------:|---------------:|
+|left-aligned  |center-aligned    |right-aligned   |
+|$123          |$456              |$789            |
+|*italics*     |~~strikethrough~~ |**boldface**    |
 
-@tbl-kable is an example of using *knitr::kable()* to generate the table. 
-
-```{r}
-#| label: tbl-kable
-#| tbl-cap: "This is a table produced with knitr::kable()."
-# Plot only a subset of the data
-df <- mtcars[1:5, 1:6]
-knitr::kable(
-  df, 
-  longtable = TRUE,
-  booktabs = TRUE
-) 
-# (the last two options make the table a bit more readable)
-```
+: My Caption {#tbl-markdown}
 
 
-### The *huxtable* package
-
-If you are interested in further table adaptations for Word output, I highly recommend a look at the R package ['huxtable'](https://hughjonesd.github.io/huxtable/index.html). The following code will produce an example table if the *huxtable* package is installed:
+Here is a sample table output using the `knitr::kable()` function.
 
 ```{r}
-#| label: tbl-huxtable
-#| eval: !expr ifelse(nzchar(system.file(package = "huxtable")), "true", "false")
-library(huxtable)
-df <- mtcars[1:5, 1:6]
-ht <- as_hux(df, add_rownames = "model")
-ht <- set_outer_borders(ht, 0.4)
-bold(ht)[1,]           <- TRUE
-bottom_border(ht)[1,]  <- 0.4
-align(ht)[,2:7]          <- 'right'
-align(ht)[,1]          <- 'left'
-number_format(ht)      <- 2
-width(ht)              <- 1
-font_size(ht) <- 10
-caption(ht)            <- "Overview of the first lines and columns in the mtcars dataset."
-
-ht
+#| label: tbl-irismeans
+#| tbl-cap: "Species-specific mean lengths and widths."
+tab <- aggregate(. ~ Species, data = iris, mean)
+kable(tab)
 ```
 
 
 ## Figures {#sec-figures}
 
-A base graphics scatterplot (@fig-base).
+A base graphics histogram (@fig-basehist).
 
 ```{r}
-#| label: fig-base
-#| fig-cap: "Relationship between horsepower and fuel economy."
-plot(mtcars$hp, mtcars$mpg,
-xlab = "Gross Horsepower",
-ylab = "Miles Per Gallon",
-pch = 19)
-abline(lm(mpg ~ hp, data = mtcars), col = "red")
+#| fig-cap: "A Histogram made with the basic graphics package"
+#| label: fig-basehist
+hist(rnorm(100))
 ```
 
 Here for comparison a boxplot with a different image height (@fig-boxplot).
@@ -261,6 +245,41 @@ Here for comparison a boxplot with a different image height (@fig-boxplot).
 #| fig-height: 3
 #| fig-width: 3
 boxplot(mpg ~ am, mtcars)
+```
+
+
+## Tabbed sections
+
+You can create a tabset via a markdown div with the class name *panel-tabset*. Each top-level heading within the div creates a new tab as shown below:
+
+::: {.panel-tabset}
+
+#### First tab
+
+```{r}
+#| fig-cap: "Boxplot made with the basic graphics package"
+#| label: fig-boxplottab
+boxplot(rnorm(100), rnorm(100))
+```
+
+#### Second tab
+
+Cum eaque dicta architecto culpa eius. Dignissimos officiis error exercitationem. Adipisci odit ad ea iusto fugiat laborum maiores. Dolore sunt et veritatis alias nesciunt maxime cumque. Culpa aut non ea. Culpa ex quia debitis sint eveniet cum.
+
+:::  
+<!-- End tabset -->
+
+## Interactive figures with plotly
+
+If the package 'plotly' is installed, the following code block will be executed:
+
+```{r}
+#| eval: !expr ifelse(nzchar(system.file(package = "plotly")), "true", "false")
+#| fig-cap: "This is the interactive htmlwidget 'plotly'"
+#| fig-width: 8
+#| label: fig-plotly
+p <- plotly::plot_ly(data = mtcars, x = ~mpg, y = ~wt, color = ~cyl)
+plotly::add_markers(p)
 ```
 
 
@@ -344,24 +363,11 @@ Cell level options are here indicated with `//|`!
 :::
 
 
-# Adding citations and bibliography
-
-Link a `.bib` document via the YAML header, and the bibliography will be printed at the end. The default bibliography style is provided in the `sage-harvard.csl` file (do not delete), which adopts the [SAGE Harvard](https://uk.sagepub.com/sites/default/files/sage_harvard_reference_style_0.pdf) reference style.
-
-References can be cited directly within the document using the Quarto equivalent of the \LaTeX citation system `[@key]`, where key is the citation key in the first line of the entry in the .csl file. Example: [@Taylor1937]. To cite multiple entries, separate the keys by semicolons (e.g., [@Knupp1999; @Kamm2000]. You can also write in-text citations, as follows: @Taylor1937 say this and that.
-
-There is also the package [citr](https://github.com/crsh/citr) which I highly recommend: *citr* provides functions and an RStudio add-in to search a BibTeX-file to create and insert formatted Markdown citations into the current document. If you are using the reference manager [Zotero](https://www.zotero.org/) the add-in can access your reference database directly.
-
-## Software
-
-If you want to include a paragraph on the software used, here is some example text/code to get the current R and package versions. The code to create a separate bibliography file named 'packages.bib' with all package references has already been added at the beginning of this script (code chunk 'generate-package-refs').
-
-All analyses were performed using the statistical software R (version `r paste(R.Version()$major, R.Version()$minor, sep = ".")`) [@R-base]. This thesis, including tables, was generated using the R packages 'rmarkdown' (version `r packageVersion("rmarkdown")`) [@R-rmarkdown], 'UHHformats' (version `r packageVersion("UHHformats")`) [@R-UHHformats], and 'knitr' (version `r packageVersion("knitr")`) [@R-knitr]. 
-
-
-## Examples for footnotes
+# Footnotes
 
 Here is a footnote reference[^1], and another[^2].
+
+<!-- The following text will be displayed at the very end of the page. -->
 
 [^1]: Here is the footnote.
 
@@ -372,10 +378,22 @@ Here is a footnote reference[^1], and another[^2].
         { some.code }
 
     The whole paragraph can be indented, or just the first line. In this way, multi-paragraph footnotes work like multi-paragraph list items.
+    
 
-<!-- This will start a new page (LaTeX code) -->
+# Adding citations and bibliography
 
-\newpage
+Link a `.bib` document via the YAML header, and the bibliography will be printed at the end. The default bibliography style is provided in the `sage-harvard.csl` file (do not delete), which adopts the [SAGE Harvard](https://uk.sagepub.com/sites/default/files/sage_harvard_reference_style_0.pdf) reference style.
+
+References can be cited directly within the document using the Quarto equivalent of the \LaTeX citation system `[@key]`, where key is the citation key in the first line of the entry in the .csl file. Example: [@Taylor1937]. To cite multiple entries, separate the keys by semicolons (e.g., [@Knupp1999; @Kamm2000]. You can also write in-text citations, as follows: @Taylor1937 say this and that.
+
+There is also the package [citr](https://github.com/crsh/citr) which I highly recommend: *citr* provides functions and an RStudio add-in to search a BibTeX-file to create and insert formatted Markdown citations into the current document. If you are using the reference manager [Zotero](https://www.zotero.org/) the add-in can access your reference database directly.
+
+## Software
+
+If you want to include a paragraph on the software used, here is some example text/code to get the current R and package versions. The code to generate a bibliography file including all package references has been already added at the beginning of this script (code chunk 'generate-package-refs').
+
+All analyses were performed using the statistical software R (version `r paste(R.Version()$major, R.Version()$minor, sep = ".")`) [@R-base]. This report, including tables and figures, was generated using the R packages 'rmarkdown' (version `r packageVersion("rmarkdown")`) [@R-rmarkdown], 'UHHformats' (version `r packageVersion("UHHformats")`) [@R-UHHformats], and 'knitr' (version `r packageVersion("knitr")`) [@R-knitr].
+
 
 <!-- Pandoc will automatically generate a list of works cited and place it in the document if the style calls for it. It will be placed in a div with the id refs if one exists: -->
 
@@ -384,7 +402,9 @@ Here is a footnote reference[^1], and another[^2].
 ::: {#refs}
 :::
 
-# Acknowledgments {.unnumbered .unlisted}
+
+# Acknowledgments {.appendix .unnumbered .unlisted}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit odio. Donec fermentum tellus neque, vitae fringilla orci pretium vitae. Fusce maximus finibus facilisis. Donec ut ullamcorper turpis.
+
 

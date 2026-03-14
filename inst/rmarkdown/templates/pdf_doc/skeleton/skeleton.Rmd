@@ -1,23 +1,15 @@
 ---
 title: "Document title"
+subtitle: "Subtitle"
 author: "Author name(s)"
 date: "`r Sys.Date()`"
 fontsize: 11pt
 german: false # default is English
 bibliography: bib/references.bib, bib/packages.bib
 bibliographystyle: bib/bibstyle.bst
-params:
-  # replace path to images or remove lines (one has to be kept in!)
-  cover: images/cover.png
-  title_logo_left: images/uhh_logo.png
-  title_logo_right: images/min_logo.png
-header-includes:
-  # if you removed one image path in 'params', remove the respective line here:
-  - \newcommand{\cover}{`r gsub("_", "\\_", params$cover)`}
-  - \newcommand{\titlelogoleft}{`r gsub("_", "\\_", params$title_logo_left)`}
-  - \newcommand{\titlelogoright}{`r gsub("_", "\\_", params$title_logo_right)`}
+abstract: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit odio. Donec fermentum tellus neque, vitae fringilla orci pretium vitae. Fusce maximus finibus facilisis. Donec ut ullamcorper turpis. Donec ut porta ipsum. Nullam cursus mauris a sapien ornare pulvinar. Aenean malesuada molestie erat quis mattis. Praesent scelerisque posuere faucibus. Praesent nunc nulla, ullamcorper ut ullamcorper sed, molestie ut est. Donec consequat libero nisi, non semper velit vulputate et. Quisque eleifend tincidunt ligula, bibendum finibus massa cursus eget. Curabitur aliquet vehicula quam non pulvinar. Aliquam facilisis tortor nec purus finibus, sit amet elementum eros sodales. Ut porta porttitor vestibulum."
 output: 
-  UHHformats::pdf_report:
+  UHHformats::pdf_doc:
     font: "Helvetica" # alternative: "TheSansUHH"  
 ---
 
@@ -42,42 +34,40 @@ library(tidyverse)
 knitr::write_bib(
   x = c(.packages(), 'bookdown', 'rmarkdown', 'UHHformats',
     # Add here now all packages that are loaded above:
-    'knitr', 'kableExtra', 'xtable', 'tidyverse'), 
+    'knitr', 'kableExtra', 'xtable', 'tidyverse'),
   file = 'bib/packages.bib'
 )
 ```
 
 <!-- This is how you can define comments in an .Rmd file (outside the R code snippets) -->
 
-# The Article Header Information
+# Introduction 
 
 Configure the YAML header including the following elements:
 
 * `title`: Title
+* `subtitle`: Subitle; remove option completely, if you don't need a subtitle.
 * `author`: Character of single or multiple author(s)
-* `date`: The date; by default `\date`, will populate the date automatically.
+* `date`: The date; by default set to today's date automatically.
 * `fontsize`: Font size for body text; choose between `10pt`, `11pt` (default), and `12pt`.
-* `german`: If option is set to `true`, the table and figure caption, the page information, as well as the ToC and reference header will be in German; default is `false` (i.e., English).
-* `linkcolor`, `filecolor`, `citecolor`, `urlcolor`: Specify here colors for internal links (incl. ToC), external links, citation links, and linked URLs, respectively, if you don't want the default colors; use options allowed by xcolor, including the dvipsnames, svgnames, and x11names lists.
-* `classoption`: Further options for the document class `article` (used for this report); specify here whether report should be 'onesided' (default) or 'twosided'.
-* `bibliography`: A path to the bibliography file(s) to use for references (BibTeX *.bib* file). This template uses the bibliography-related package [natbib](https://ctan.org/pkg/natbib). The current file 'references.bib' in the 'bib/' folder includes 3 dummy references; either insert your references into this file or replace the file with your own.
+* `linkcolor`, `filecolor`, `citecolor`, `urlcolor`: Specify here colors for internal links, external links, citation links, and linked URLs, respectively, if you don't want the default colors; use options allowed by xcolor, including the dvipsnames, svgnames, and x11names lists.
+* `german`: If option is set to `true`, the table and figure caption as well as the abstract and reference header will be in German; default is `false` (i.e., English).
+* `bibliography`: A path to the bibliography file(s) to use for references (BibTeX *.bib* file). This template uses the bibliography-related package [natbib](https://ctan.org/pkg/natbib). The current file 'references.bib' in the 'bib/' folder includes 3 dummy references; either insert your references into this file or replace the file with your own. 
 * `bibliographystyle`: The style is provided in the bibstyle.bst file, which adopts the [SAGE Harvard](https://uk.sagepub.com/sites/default/files/sage_harvard_reference_style_0.pdf) reference style. Just leave the file as it is.
-* `params`: The cover and logo image directories for the front page are specified here.
+* `abstract`: Write here your abstract or remove option if you don't want to include an abstract.
+* `output`: The nested fields for the output field are based on the arguments of the output function. Since `UHHformats::pdf_doc` is based on `rmarkdown::pdf_document`, see its help page for more options. Current default settings are
+    * `number_sections: TRUE`
+    * `highlight: "kate"`
+    * `font = "Helvetica"`
+    * `citation_package: "natbib"`
+    * `latex_engine: "xelatex"`
 * `header_includes`: Here you can add additional \LaTeX code to include in the header, before the `\\begin\{document\}` statement. 
 * If you want to add additional LaTeX code to include before the `\\end\{document\}` statement use the field `include_after`. 
-* `output`: The nested fields for the output field are based on the arguments of the output function. Since `UHHformats::pdf_report` is based on `rmarkdown::pdf_document`, see its help page for more options. Current default settings are
-    * `toc = TRUE`
-    * `toc_depth = 5`
-    * `number_sections = TRUE`
-    * `highlight = "kate"`
-    * `font = "Helvetica"`
-    * `citation_package = "natbib"`
-    * `latex_engine = "xelatex"`
-    
+
 If you are associated with the UHH you can also use the University's own font "TheSansUHH". In that case replace `font = "Helvetica"` with `font = "TheSansUHH"`. To use another font, simply use the setting "other" and replace the 'font_XXX.ttf' files in the working directory with your own files. Please note, that you have to name these files exactly as the template font files.
 
 
-# The Body of the Article
+# Methods
 
 ## R Markdown syntax vs \LaTeX syntax
 
@@ -96,27 +86,27 @@ This is a dummy text to show you that you can also write in \textbf{bold} and in
 
 To cross-references figures or tables you have to have a:
 
-* **caption to your figure (or table)**: 
+* **caption to your figure (or table)**:
     * NOTE: figures without a caption will be included directly as images and will therefore not be a numbered figure
 * **labeled code chunk**: this provides the identifier for referencing the figure or table generated by the chunk.
 
-Cross-references within the text can then be made using the standard \LaTeX syntax `\@ref{type:label}`, where label is the chunk label and type is the environment being referenced (e.g. tab, fig, or eq). Examples are given in the sections below (e.g. in 
-[R Markdown table]).
+Cross-references within the text can then be made using the standard \LaTeX syntax `\@ref{type:label}`, where label is the chunk label and type is the environment being referenced (e.g. tab, fig, or eq). Examples are given in the sections below (e.g. in [R Markdown table]).
 
 To cross-reference sections simply put the section header in square brackets, e.g. [R output] via `[R output]`.
 
 
 ## Mathematics
 
-Use mathematics in R Markdown as usual using the dollar sign `$`; either in inline mode with one dollar sign, e.g. $E = mc^2$, or in display mode with two:
+Use mathematics as usual with the dollar sign `$`; either in inline mode with one dollar sign, e.g. $E = mc^2$, or in display mode with two:
 
 $$E = mc^2$$
+
 Important to note: do not leave a space between the `$` and your mathematical notation.
 
-Alternatively, you can use \LaTeX for more control, e.g. for setting equation numbers that can be cross-referenced: 
+Alternatively, you can use \LaTeX for more control, e.g. for setting equation numbers that can be cross-referenced:
 
 \begin{equation} \label{eq:mean}
-  \bar{X} = \frac{\sum_{i=1}^n X_i}{n} 
+  \bar{X} = \frac{\sum_{i=1}^n X_i}{n}
 \end{equation}
 
 You may refer to this equation using `\ref{eq:label}`, e.g., see Equation \ref{eq:mean}
@@ -126,11 +116,14 @@ You may refer to this equation using `\ref{eq:label}`, e.g., see Equation \ref{e
 \newpage
 
 
+# Results
+
 ## R output
 
 R output is typically shown in the monospace font (here an example with the `mtcars` dataset in the subfolder `data/`): 
+
 ```{r}
-# Import dataset from the data/folder
+# Import dataset from the data/ folder
 mtcars <- read.csv("data/mtcars.csv")
 summary(mtcars[,1:4])
 ```
@@ -140,7 +133,7 @@ summary(mtcars[,1:4])
 
 ### R Markdown table
 
-Table \ref{tab:rmd_tab} is a R Markdown table including a caption (note: the table number is automatically assigned) and label for cross-referencing: 
+Table \ref{tab:rmd_tab} is a R Markdown table including a caption (note: the table number is automatically assigned) and label for cross-referencing:
 
 | A            | New              | Table          |
 |:-------------|:----------------:|---------------:|
@@ -155,18 +148,15 @@ Table: Your Caption \label{tab:rmd_tab}
 
 #### Using the *knitr* and  *kableExtra* packages
 
-&nbsp; <!-- This creates vertical space and is the same than \vspace{12pt} for latex -->
-
 Table \ref{tab:kable_tab} is an example when using `knitr::kable()` to generate the table and *kableExtra* functions to modify it:
 
 ```{r}
 df <- mtcars[1:5, 1:6]
-kable(df, "latex", 
-  booktabs = TRUE, 
+kable(df, "latex", booktabs = TRUE,
   caption = "A table produced with knitr and kableextra",
   label = "kable_tab") %>%
 kable_styling(position = "center", font_size = 9,
-latex_options = "HOLD_position") %>%
+latex_options = "striped") %>%
 add_header_above(c(" " = 1, "Group 1" = 2, "Group 2" = 2,
 "Group 3" = 1, "Group 4" = 1)) %>%
 add_header_above(c(" ", "Group 5" = 4, "Group 6" = 2), bold = T) %>%
@@ -181,24 +171,6 @@ Another useful package for tables for PDF output is [xtable](https://cran.r-proj
 xt <- xtable(df, caption = "A table made with xtable", 
   label = "tab:xtable_tab")
 print(xt, comment = FALSE, caption.placement = "top", booktabs = TRUE)
-```
-
-You can also use \LaTeX in the R code chunk:
-
-```{r, results = "asis", eval=ifelse(nzchar(system.file(package = "xtable")), TRUE, FALSE)}
-tab <- xtable(head(iris, n = 20), align = "|C|C|C|C|C|C|")
-
-addtorow <- list()
-addtorow$pos <- list()
-addtorow$pos[[1]] <- -1
-addtorow$command <- c("\\rowcolor{lightgray}")
-
-print(tab,
-      include.rownames = FALSE,
-      tabular.environment = "tabularx",
-      width = "\\textwidth",
-      comment = FALSE,
-      add.to.row = addtorow)
 ```
 
 
@@ -221,18 +193,22 @@ boxplot(mpg ~ am, mtcars)
 ```
 
 
+# Discussion
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+
 
 # Adding citations and bibliography
 
 Link a `.bib` document via the YAML header and the bibliography will be printed at the very end (as usual). The default bibliography style is provided in the `bib.bst` file (do not delete), which adopts the [SAGE Harvard](https://uk.sagepub.com/sites/default/files/sage_harvard_reference_style_0.pdf) reference style.
 
-References can be cited directly within the document using the R Markdown equivalent of the \LaTeX citation system `[@key]`, where key is the citation key in the first line of the entry in the .bib file. Example: [@Taylor1937]. To cite multiple entries, separate the keys by semicolons, e.g. [@Knupp1999; @Kamm2000].
+References can be cited directly within the document using the R Markdown equivalent of the \LaTeX citation system `[@key]`, where key is the citation key in the first line of the entry in the .bib file. Example: [@Taylor1937]. To cite multiple entries, separate the keys by semicolons (e.g., [@Knupp1999; @Kamm2000].
 
-There is also the package [citr](https://github.com/crsh/citr), which I highly recommend: *citr* provides functions and an RStudio add-in to search a BibTeX-file to create and insert formatted Markdown citations into the current document. If you are using the reference manager [Zotero](https://www.zotero.org/) the add-in can access your reference database directly. 
+There is also the package [citr](https://github.com/crsh/citr), which I highly recommend: *citr* provides functions and an RStudio add-in to search a BibTeX-file to create and insert formatted Markdown citations into the current document. If you are using the reference manager [Zotero](https://www.zotero.org/) the add-in can access your reference database directly.
 
 
 ## Software
 
-If you want to include a paragraph on the software used, here is some example text/code to get the current R and package versions. The code to create a separate bibiliography file named 'packages.bib' with all package references has already been added at the beginning of this script (code chunk 'generate-package-refs').
+If you want to include a paragraph on the software used, here is some example text/code to get the current R and package versions. The code to create a separate bibliography file named 'packages.bib' with all package references has already been added at the beginning of this script (code chunk 'generate-package-refs').
 
 All analyses were performed using the statistical software R (version `r paste(R.Version()$major, R.Version()$minor, sep = ".")`) [@R-base]. This report, including tables and figures, was generated using the packages 'rmarkdown' (version `r packageVersion("rmarkdown")`) [@R-rmarkdown], 'bookdown' (version `r packageVersion("bookdown")`) [@R-bookdown], 'UHHformats' (version `r packageVersion("UHHformats")`) [@R-UHHformats], 'knitr' (version `r packageVersion("knitr")`) [@R-knitr], 'kableExtra' (version `r packageVersion("kableExtra")`) [@R-kableExtra], 'xtable' (version `r packageVersion("xtable")`) [@R-xtable], and 'tidyverse' (version `r packageVersion("tidyverse")`) [@R-tidyverse.]

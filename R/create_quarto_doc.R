@@ -5,48 +5,49 @@
 #' based on the standard template of the University of Hamburg.
 #'
 #' @param dirname character; the name of the directory to create.
-#' @param template character; the template type to use. Choose "html" (default),
-#'   "pdf_simple", "pdf_report", "pdf_cheatsheet", "word_doc", "typst_simple",
-#'   or "typst_report".
+#' @param template character; the template type to use. Choose "html_doc" (default),
+#'   "pdf_doc", "pdf_report", "pdf_cheatsheet", or "word_doc".
 #' @param font The font family of the document. Default is "Helvetica" (i.e. Helvetica Neue).
 #'   For members of the UHH, there is also the font "TheSansUHH" available for the PDF, Word,
-#'   and Typst document.
+#'   and Word document.
+#' @param path character; the path where the directory should be created. Default
+#'   is the current working directory (".").
 #'
 #' @examples
 #' \dontrun{
 #'  # Create template for HTML document
-#'  create_quarto_doc(dirname = "my_html_doc", template = "html")
+#'  create_quarto_doc(dirname = "my_html_doc", template = "html_doc")
 #'  # Create template for simple PDF document using the default font 'Helvetica'
-#'  create_quarto_doc(dirname = "my_pdf_doc", template = "pdf_simple")
+#'  create_quarto_doc(dirname = "my_pdf_doc", template = "pdf_doc")
 #'  # Create template for Word document using the University's
 #'  # font 'TheSansUHH'
 #'  create_quarto_doc(dirname = "my_word_doc", template = "word_doc", font = "TheSansUHH")
-#'  # Create template for simple Typst PDF (no TeX required)
-#'  create_quarto_doc(dirname = "my_typst_doc", template = "typst_simple")
 #'  # Create template for PDF cheatsheet (landscape, multi-column)
 #'  create_quarto_doc(dirname = "my_cheatsheet", template = "pdf_cheatsheet")
-#'  # Create template for Typst report with cover page
-#'  create_quarto_doc(dirname = "my_typst_report", template = "typst_report")
+#'  # Create in a specific directory
+#'  create_quarto_doc(dirname = "my_doc", template = "pdf_doc", path = "~/Documents")
 #' }
 #' @seealso \code{\link{create_rmd_doc}} for R Markdown templates.
 #' @export
 
-create_quarto_doc <- function(dirname = "new-doc", template = "html",
-  font = "Helvetica") {
+create_quarto_doc <- function(dirname = "new-doc", template = "html_doc",
+  font = "Helvetica", path = ".") {
 
   if (!font %in% c("Helvetica", "TheSansUHH", "other")) {
     stop('Set the font option to "Helvetica" or "TheSansUHH".')
   }
 
-  templates <- c("html", "pdf_simple", "pdf_report", "pdf_cheatsheet",
-    "word_doc", "typst_simple", "typst_report")
+  templates <- c("html_doc", "pdf_doc", "pdf_report", "pdf_cheatsheet",
+    "word_doc")
   template <- match.arg(template, templates)
-  tmp_dir <- paste(dirname, "_tmp", sep = "")
-  if (file.exists(dirname) || file.exists(tmp_dir)) {
+
+  target_dir <- file.path(path, dirname)
+  tmp_dir <- paste(target_dir, "_tmp", sep = "")
+  if (file.exists(target_dir) || file.exists(tmp_dir)) {
     stop(paste("Cannot run create_quarto_doc() from a directory containing already",
-      dirname, "or", tmp_dir))
+      dirname, "or", paste0(dirname, "_tmp")))
   }
-  dir.create(tmp_dir)
+  dir.create(tmp_dir, recursive = TRUE)
   template_dir <- template
 
   # Get all file names in the template folder
@@ -61,8 +62,8 @@ create_quarto_doc <- function(dirname = "new-doc", template = "html",
   }
 
 
-  # Copy selected resource file into new path
-  if (template %in% c("pdf_simple", "pdf_report", "pdf_cheatsheet", "typst_simple", "typst_report")) {
+  # Copy font files for LaTeX-based PDF templates (Quarto standalone)
+  if (template %in% c("pdf_doc", "pdf_report", "pdf_cheatsheet")) {
     copy_font_files(template, font, type = "quarto", current_dir = tmp_dir)
   }
 
@@ -75,8 +76,8 @@ create_quarto_doc <- function(dirname = "new-doc", template = "html",
     )
   }
 
-  file.rename(tmp_dir, dirname)
-  file.rename(file.path(dirname, "skeleton.qmd"), file.path(dirname, paste0(dirname, ".qmd")))
+  file.rename(tmp_dir, target_dir)
+  file.rename(file.path(target_dir, "skeleton.qmd"), file.path(target_dir, paste0(dirname, ".qmd")))
   unlink(tmp_dir, recursive = TRUE)
 
 }

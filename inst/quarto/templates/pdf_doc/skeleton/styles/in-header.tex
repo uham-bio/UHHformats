@@ -1,21 +1,17 @@
 % This is an UHH LaTeX template for a Quarto PDF document.
 
 % -----------------------------------------------------
-% --- FORMAT STYLE FOR KOMA DOCUMENT CLASS SCRBOOK ---
+% --- FORMAT STYLE FOR KOMA DOCUMENT CLASS SCRARTCL ---
 % -----------------------------------------------------
 
 
 % %----------------------------------------------- General format
 
+\KOMAoptions{paper=a4, pagesize=pdftex}
+
+
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{hyphenat}
-
-% For title page
-\usepackage{afterpage}  
-\usepackage{tikz}
-\usetikzlibrary{fadings}
-\usepackage[pagecolor=none]{pagecolor}
 
 % Paragraph settings {{{
 \setlength{\parindent}{0em}           %  indentation at the first line of a paragraph (here set to 0)
@@ -25,8 +21,6 @@
 
 
 % %----------------------------------------------- Fonts
-
-\usepackage{anyfontsize}
 
 % General {{{
 \defaultfontfeatures{Mapping = tex-text}
@@ -84,20 +78,46 @@ pdfpagemode=UseOutlines
 % }}}
 
 
+% %----------------------------------------------- Title page
+
+% Aligning title to the left {{{
+\usepackage{xpatch}
+\makeatletter
+\xpatchcmd{\@maketitle}{\begin{center}}{\begin{flushleft}}{}{}
+\xpatchcmd{\@maketitle}{\end{center}}{\end{flushleft}}{}{}
+\xpatchcmd{\@maketitle}{\begin{tabular}[t]{c}}{\begin{tabular}[t]{@{}l@{}}}{}{}
+\makeatother
+% }}}
+
+% Adjust abstract section (full width and left aligned) {{{
+\renewenvironment{abstract}
+ {\rmfamily\small
+  \begin{flushleft}
+  \rmfamily\bfseries\color{bluegray} \abstractname\vspace{-0.5em}\vspace{0pt}
+  \end{flushleft}
+  \list{}{
+    \setlength{\leftmargin}{.0cm}
+    \setlength{\rightmargin}{\leftmargin}
+  }
+  \item\relax}
+ {\endlist}
+% }}}
+ 
 % %----------------------------------------------- Header and footer
 
 % Delete default settings and define your own {{{
 \usepackage[headsepline, automark]{scrlayer-scrpage}
 \clearpairofpagestyles
-\ohead[]{\headmark}
+\ohead[]{\headmark} 
 \ofoot[\pagemark]{\pagemark}
 \newcommand{\footlogo}{\includegraphics[height=10mm]{logo.png}}
 \ifoot[\footlogo]{\footlogo}
 % }}}
 
 
-
 % %----------------------------------------------- Lists
+
+\usepackage{enumitem}
 
 % Itemized lists {{{
 \renewcommand{\labelitemi}{\tiny\textcolor{blue}{$\blacksquare$}}
@@ -114,9 +134,7 @@ pdfpagemode=UseOutlines
 % }}}
 
 
-
 % %----------------------------------------------- Graphics
 
 \usepackage{graphicx}
 \graphicspath{ {images/} } % images have to be in the /image subfolder
-\usepackage{picture}

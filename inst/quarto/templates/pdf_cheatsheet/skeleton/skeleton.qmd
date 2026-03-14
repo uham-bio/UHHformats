@@ -1,11 +1,12 @@
 ---
 author: "created by Jane Doe"
 date: today
+fontsize: 11pt
 ### Cheatsheet layout settings:
 multicols: 3                       # number of columns (any value > 1)
 reduce-space-before-code: false    # reduce space before code blocks (set true if echo: true)
 footer-logo: images/uhh_logo.png   # path to logo in footer (remove line for no logo)
-license: "CC-BY-SA"                # license displayed in footer
+license-text: "CC-BY-SA"             # license displayed in footer
 ### Color settings (hex codes WITHOUT hashtag):
 col-title: "8B8B83"                # title color
 col-sections: "000000"             # section header color
@@ -24,7 +25,7 @@ format:
     template: styles/cheatsheet-template.tex
     pdf-engine: xelatex
     highlight-style: kate
-    toc-depth: 1
+    toc-depth: 4
 execute:
   echo: false
   warning: false

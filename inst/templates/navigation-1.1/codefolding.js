@@ -4,12 +4,14 @@ window.initializeCodeFolding = function(show) {
   // handlers for show-all and hide all
   $("#rmd-show-all-code").click(function() {
     $('div.r-code-collapse').each(function() {
-      $(this).collapse('show');
+      $(this).addClass('show');
+      $(this).prev().find('.code-folding-btn span').text('Hide');
     });
   });
   $("#rmd-hide-all-code").click(function() {
     $('div.r-code-collapse').each(function() {
-      $(this).collapse('hide');
+      $(this).removeClass('show');
+      $(this).prev().find('.code-folding-btn span').text('Code');
     });
   });
 
@@ -21,9 +23,9 @@ window.initializeCodeFolding = function(show) {
   rCodeBlocks.each(function() {
 
     // create a collapsable div to wrap the code in
-    var div = $('<div class="collapse r-code-collapse"></div>');
+    var div = $('<div class="r-code-collapse"></div>');
     if (show || $(this)[0].classList.contains('fold-show'))
-      div.addClass('in');
+      div.addClass('show');
     var id = 'rcode-643E0F36' + currentIndex++;
     div.attr('id', id);
     $(this).before(div);
@@ -31,28 +33,21 @@ window.initializeCodeFolding = function(show) {
 
     // add a show code button right above
     var showCodeText = $('<span>' + (show ? 'Hide' : 'Code') + '</span>');
-    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
+    var showCodeButton = $('<button type="button" class="code-folding-btn"></button>');
     showCodeButton.append(showCodeText);
-    showCodeButton
-        .attr('data-toggle', 'collapse')
-        .attr('data-target', '#' + id)
-        .attr('aria-expanded', show)
-        .attr('aria-controls', id);
 
-    var buttonRow = $('<div class="row"></div>');
-    var buttonCol = $('<div class="col-md-12"></div>');
+    div.before(showCodeButton);
 
-    buttonCol.append(showCodeButton);
-    buttonRow.append(buttonCol);
-
-    div.before(buttonRow);
-
-    // update state of button on show/hide
-    div.on('hidden.bs.collapse', function () {
-      showCodeText.text('Code');
-    });
-    div.on('show.bs.collapse', function () {
-      showCodeText.text('Hide');
+    // toggle on click
+    showCodeButton.on('click', function() {
+      var target = $('#' + id);
+      if (target.hasClass('show')) {
+        target.removeClass('show');
+        showCodeText.text('Code');
+      } else {
+        target.addClass('show');
+        showCodeText.text('Hide');
+      }
     });
   });
 

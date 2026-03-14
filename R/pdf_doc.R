@@ -1,4 +1,4 @@
-#' Convert to report-like PDF/LaTeX document in English (default) or German
+#' Convert to simple PDF/LaTeX document in English (en)
 #'
 #' This function serves as wrapper to \code{\link[rmarkdown]{pdf_document}}, with a
 #' custom Pandoc \LaTeX template and different default values for other arguments
@@ -8,8 +8,6 @@
 #' and report layout are inspired by INWTlab's
 #' \href{https://github.com/INWTlab/ireports}{ireports} package.
 #'
-#' @param toc logical; \code{TRUE} to include a table of contents in the output.
-#' @param toc_depth integer; Depth of headers to include in table of contents. Default set to 5.
 #' @param number_sections logical; \code{TRUE} to number section headings.
 #' @param highlight character; syntax highlighting style. Supported styles include "default",
 #'        "tango", "pygments", "kate" (default here), "monochrome", "espresso", "zenburn", and "haddock".
@@ -28,6 +26,7 @@
 #' Possible arguments for the YAML header are:
 #' \itemize{
 #'   \item \code{title} Title of the manuscript.
+#'   \item \code{subtitle} Subtitle of the manuscript.
 #'   \item \code{author} Character of single or multiple author(s).
 #'   \item \code{date} The date (automatically set).
 #'   \item \code{fontsize} The font size for the body text (default is 11pt).
@@ -56,18 +55,15 @@
 #' @return R Markdown output format to pass to \code{\link[rmarkdown]{render}}
 #' @export
 #'
-pdf_report <- function(toc = TRUE,toc_depth = 5, number_sections = TRUE,
-  highlight = "kate", font = "Helvetica", citation_package = "natbib",
-  latex_engine = "xelatex", ...) {
+pdf_doc <- function(number_sections = TRUE, highlight = "kate",
+  font = "Helvetica", citation_package = "natbib", latex_engine = "xelatex", ...) {
 
   # Font setting
   if (!font %in% c("Helvetica", "TheSansUHH", "other")) {
     stop('Set the font option to "Helvetica", "TheSansUHH" or "other".')
   }
   rmd_pdf_document_format(
-    "pdf_report",
-    toc = toc,
-    toc_depth = toc_depth,
+    "pdf_doc",
     number_sections = number_sections,
     highlight = highlight,
     citation_package = citation_package,
@@ -76,4 +72,13 @@ pdf_report <- function(toc = TRUE,toc_depth = 5, number_sections = TRUE,
     ...
   )
 
+}
+
+
+#' @rdname pdf_doc
+#' @usage # Deprecated: use pdf_doc() instead
+#' @export
+pdf_simple <- function(...) {
+  .Deprecated("pdf_doc")
+  pdf_doc(...)
 }

@@ -4,7 +4,7 @@ version: 1.1.0
 quarto-required: ">=1.4.0"
 contributes:
   formats:
-    html:
+    html-doc:
       theme: default
       css: styles/styles.css
       include-after-body: styles/js_logo.html
@@ -12,7 +12,7 @@ contributes:
       toc: true
       toc-depth: 3
       toc-location: left
-    pdf-simple:
+    pdf-doc:
       documentclass: scrartcl
       pdf-engine: xelatex
       mainfont: "Helvetica Neue"
@@ -34,19 +34,3 @@ contributes:
       mainfont: "Helvetica Neue"
       highlight-style: kate
       toc-depth: 1
-    typst-simple:
-      format: typst
-      template: styles/uhh-template.typ
-      section-numbering: "1.1.1"
-      toc: false
-      toc-depth: 3
-      columns: 1
-      mainfont: "Helvetica Neue"
-    typst-report:
-      format: typst
-      template: styles/uhh-report-template.typ
-      section-numbering: "1.1.1"
-      toc: true
-      toc-depth: 3
-      columns: 1
-      mainfont: "Helvetica Neue"

@@ -9,6 +9,26 @@
  */
 (function($) {
   "use strict";
+
+  // Custom tab show function (replaces Bootstrap .tab('show'))
+  function showTab(tabLink) {
+    var $tabLink = $(tabLink);
+    var targetId = $tabLink.attr('href');
+    if (!targetId) return;
+
+    // Find the tab list and tab content
+    var $tabList = $tabLink.closest('ul');
+    var $tabContent = $tabList.next('.tab-content');
+
+    // Deactivate all tabs in this tabset
+    $tabList.children('li').removeClass('active');
+    $tabContent.children('.tab-pane').removeClass('active show in');
+
+    // Activate the selected tab
+    $tabLink.parent('li').addClass('active');
+    $(targetId).addClass('active show');
+  }
+
   $.fn.rmarkdownStickyTabs = function() {
     var context = this;
     // Show the tab corresponding with the hash in the URL, or the first tab
@@ -16,13 +36,13 @@
       var hash = window.location.hash;
       var selector = hash ? 'a[href="' + hash + '"]' : 'li.active > a';
       var $selector = $(selector, context);
-      if($selector.data('toggle') === "tab") {
-        $selector.tab('show');
+      if($selector.data('action') === "tab") {
+        showTab($selector);
         // walk up the ancestors of this element, show any hidden tabs
         $selector.parents('.section.tabset').each(function(i, elm) {
           var link = $('a[href="#' + $(elm).attr('id') + '"]');
-          if(link.data('toggle') === "tab") {
-            link.tab("show");
+          if(link.data('action') === "tab") {
+            showTab(link);
           }
         });
       }
@@ -82,7 +102,7 @@ window.buildTabsets = function(tocID) {
       // get the tab div
       var tab = $(tabs[i]);
 
-      // get the id then sanitize it for use with bootstrap tabs
+      // get the id then sanitize it for use with tabs
       var id = tab.attr('id');
 
       // see if this is marked as the active tab
@@ -93,7 +113,7 @@ window.buildTabsets = function(tocID) {
       // this ID (since we'll be removing the heading element)
       $("div#" + tocID + " li a[href='#" + id + "']").parent().remove();
 
-      // sanitize the id for use with bootstrap tabs
+      // sanitize the id for use with tabs
       id = id.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_');
       tab.attr('id', id);
 
@@ -103,7 +123,7 @@ window.buildTabsets = function(tocID) {
       heading.remove();
 
       // build and append the tab list item
-      var a = $('<a role="tab" data-toggle="tab">' + headingText + '</a>');
+      var a = $('<a role="tab" data-action="tab">' + headingText + '</a>');
       a.attr('href', '#' + id);
       a.attr('aria-controls', id);
       var li = $('<li role="presentation"></li>');
@@ -126,10 +146,32 @@ window.buildTabsets = function(tocID) {
     var active = $(tabContent.children('div.section')[activeTab]);
     active.addClass('active');
     if (fade)
-      active.addClass('in');
+      active.addClass('show');
+
+    // Handle tab clicks
+    tabList.on('click', 'a[data-action="tab"]', function(e) {
+      e.preventDefault();
+      showTab(this);
+    });
 
     if (tabset.hasClass("tabset-sticky"))
       tabset.rmarkdownStickyTabs();
+  }
+
+  // Custom tab show function (accessible from buildTabsets scope)
+  function showTab(tabLink) {
+    var $tabLink = $(tabLink);
+    var targetId = $tabLink.attr('href');
+    if (!targetId) return;
+
+    var $tabList = $tabLink.closest('ul');
+    var $tabContent = $tabList.next('.tab-content');
+
+    $tabList.children('li').removeClass('active');
+    $tabContent.children('.tab-pane').removeClass('active show in');
+
+    $tabLink.parent('li').addClass('active');
+    $(targetId).addClass('active show');
   }
 
   // convert section divs with the .tabset class to tabsets
@@ -138,4 +180,3 @@ window.buildTabsets = function(tocID) {
     buildTabset($(tabsets[i]));
   });
 };
-

@@ -4,14 +4,17 @@
 \alias{create_rmd_doc}
 \title{Create a new directory with the R Markdown template}
 \usage{
-create_rmd_doc(dirname = "new-doc", template = "html_simple")
+create_rmd_doc(dirname = "new-doc", template = "html_doc", path = ".")
 }
 \arguments{
 \item{dirname}{Name of the directory to create.}
 
-\item{template}{The name of the template to use. Default is "html_simple", other
-options are "pdf_simple", "pdf_report", "word_doc", and
+\item{template}{The name of the template to use. Default is "html_doc", other
+options are "pdf_doc", "pdf_report", "word_doc", and
 "pdf_cheatsheet".}
+
+\item{path}{character; the path where the directory should be created. Default
+is the current working directory (".").}
 }
 \description{
 \code{create_rmd_doc} creates a new subdirectory inside the current directory, which will
@@ -24,9 +27,11 @@ The function is a modified version of the \code{create.doc} function in the
 \examples{
 \dontrun{
 # Create template for a simple HTML document
-create_rmd_doc("my_html_doc", template = "html_simple")
+create_rmd_doc("my_html_doc", template = "html_doc")
 # Create template for a PDF report document
 create_rmd_doc("my_report", template = "pdf_report")
+# Create in a specific directory
+create_rmd_doc("my_doc", template = "pdf_doc", path = "~/Documents")
 }
 }
 \seealso{

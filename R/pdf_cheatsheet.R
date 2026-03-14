@@ -64,14 +64,11 @@ pdf_cheatsheet <- function(highlight = "kate", font = "Helvetica",
   if (!font %in% c("Helvetica", "TheSansUHH", "other")) {
     stop('Set the font option to "Helvetica", "TheSansUHH" or "other".')
   }
-  if (font %in% c("Helvetica", "TheSansUHH")) {
-    copy_font_files("pdf_cheatsheet", font)
-  }
-
   rmd_pdf_document_format(
     "pdf_cheatsheet",
     highlight = highlight,
     latex_engine = latex_engine,
+    pandoc_args = font_pandoc_args(font),
     ...
   )
 }

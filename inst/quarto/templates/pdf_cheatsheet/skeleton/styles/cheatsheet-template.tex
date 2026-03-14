@@ -249,8 +249,8 @@ $endif$
 
 % Fonts -> use Helvetica from local files
 \defaultfontfeatures{Mapping = tex-text}
-\setmainfont[BoldFont = font_bold.ttf, ItalicFont = font_italic.ttf, BoldItalicFont = font_bolditalic.ttf]{font_regular.ttf}
-\newfontfamily\headingfont[ItalicFont = font_bolditalic.ttf]{font_bold.ttf}
+\setmainfont[Path = styles/, BoldFont = font_bold.ttf, ItalicFont = font_italic.ttf, BoldItalicFont = font_bolditalic.ttf]{font_regular.ttf}
+\newfontfamily\headingfont[Path = styles/, ItalicFont = font_bolditalic.ttf]{font_bold.ttf}
 
 
 % Paragraph settings
@@ -291,7 +291,8 @@ $endif$
             {\color{colorsections}\normalfont\normalsize\bfseries}}
 \makeatother
 
-% How many sectioning levels to show in ToC
+
+% How many sectioning levels to show in ToC/PDF bookmarks
 \setcounter{tocdepth}{$toc-depth$}
 % No section numbers
 \setcounter{secnumdepth}{0}
@@ -396,7 +397,7 @@ $if(footer-logo)$
 $else$
 \lfoot{}
 $endif$
-\rfoot{\footnotesize $author$ \enspace \textbullet  \enspace $date$ \enspace \textbullet  \enspace  $if(license)$$license$$endif$}
+\rfoot{\footnotesize $author$ \enspace \textbullet  \enspace $date$ \enspace \textbullet  \enspace  $if(license-text)$$license-text$$endif$}
 \renewcommand\headrulewidth{0pt}
 \renewcommand\footrulewidth{0pt}
 % }}}

@@ -2,7 +2,6 @@
 
 ## New features
 
-* New Quarto templates for Typst PDF output (`typst_simple` and `typst_report`). These produce PDF documents without requiring a TeX installation (Quarto 1.4+).
 * New Quarto `pdf_cheatsheet` template: landscape, multi-column cheatsheet with configurable colored textboxes.
 * Quarto extension available: install via `quarto add uham-bio/UHHformats` for standalone use without R.
 

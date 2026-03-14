@@ -2,8 +2,10 @@
 
 export(create_quarto_doc)
 export(create_rmd_doc)
+export(html_doc)
 export(html_simple)
 export(pdf_cheatsheet)
+export(pdf_doc)
 export(pdf_report)
 export(pdf_simple)
 export(word_doc)

@@ -32,6 +32,9 @@ University’s own font TheSans UHH (available to UHH members).
 > **Backward compatibility:** The old function names `html_simple()` and
 > `pdf_simple()` still work as aliases.
 
+See the [template gallery](docs/gallery.md) for screenshots of each
+template.
+
 ## Installation
 
 Install from GitHub:
@@ -62,10 +65,13 @@ Quarto templates can also be installed as a standalone extension
 
     quarto add uham-bio/UHHformats
 
-## Quick start
+## Getting started
 
-See `vignette("UHHformats")` for detailed instructions on creating and
-rendering documents.
+See [docs/getting-started.md](docs/getting-started.md) for detailed
+instructions on creating and rendering documents (RStudio, console,
+prerequisites).
+
+Or use `vignette("UHHformats")` for a quick overview from within R.
 
 ## Credits
 

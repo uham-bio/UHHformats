@@ -2,7 +2,7 @@
 title: "Getting started with UHHformats"
 output: rmarkdown::html_vignette
 description: >
-  How to create and render R Markdown and Quarto documents using the UHHformats templates.
+  Quick introduction to the UHHformats R Markdown and Quarto templates.
 vignette: >
   %\VignetteIndexEntry{Getting started with UHHformats}
   %\VignetteEngine{knitr::rmarkdown}
@@ -11,7 +11,7 @@ vignette: >
 
 <img src="images/UHHformats_logo.png" align="right" width="90" height="100" />
 
-The UHHformats package provides R Markdown and Quarto templates for HTML, PDF, and Word output. This vignette shows how to create documents from these templates and render them.
+The UHHformats package provides R Markdown and Quarto templates for HTML, PDF, and Word output. This vignette gives a quick overview --- for detailed instructions and screenshots see the [Getting Started guide](https://github.com/uham-bio/UHHformats/blob/master/docs/getting-started.md) and the [Template Gallery](https://github.com/uham-bio/UHHformats/blob/master/docs/gallery.md) on GitHub.
 
 
 ## Available templates
@@ -24,100 +24,32 @@ The UHHformats package provides R Markdown and Quarto templates for HTML, PDF, a
 | PDF cheat sheet | PDF | `pdf_cheatsheet()` | `pdf_cheatsheet` |
 | Word document | Word | `word_doc()` | `word_doc` |
 
-All templates include example text and code demonstrating formatting, equations, tables, figures, cross-references, and citations.
 
+## R Markdown
 
-## R Markdown documents
+In RStudio: **File** > **New File** > **R Markdown** > **From Template**, then select a UHHformats template.
 
-### In RStudio
-
-1. Choose **File** > **New File** > **R Markdown** > **From Template**
-2. Select one of the UHHformats templates:
-
-```{r, echo=FALSE, fig.align='center', fig.alt="demo create document", out.width="70%"}
-knitr::include_graphics("images/img_create_document.png")
-```
-
-3. Choose a directory and file name, then click **OK**
-4. Click **Knit** to render the document
-
-### From the console
-
-Use `create_rmd_doc()` to create a new directory with all template files:
+From the console:
 
 ```{r, eval=FALSE}
 UHHformats::create_rmd_doc(dirname = "my_report", template = "pdf_report")
-```
-
-Or use the standard rmarkdown function:
-
-```{r, eval=FALSE}
-rmarkdown::draft("my_report.Rmd", template = "html_doc", package = "UHHformats")
-```
-
-Render with:
-
-```{r, eval=FALSE}
 rmarkdown::render("my_report/my_report.Rmd")
 ```
 
-### YAML header example
 
-Each template pre-fills an appropriate YAML header. For example, `html_doc`:
-
-```
----
-title: "Title"
-author: "Name"
-date: "`r Sys.Date()`"
-output:
-  UHHformats::html_doc:
-    highlight: kate
-    code_folding: show
-    use_bookdown: true
-    number_sections: false
----
-```
-
-See the help pages (e.g. `?html_doc`) for all available options.
-
-
-## Quarto documents
-
-Use `create_quarto_doc()` to set up a Quarto project:
+## Quarto
 
 ```{r, eval=FALSE}
 UHHformats::create_quarto_doc(dirname = "my_html", template = "html_doc")
-UHHformats::create_quarto_doc(dirname = "my_pdf", template = "pdf_doc", font = "TheSansUHH")
-```
-
-Open the `.qmd` file in RStudio and click **Render**, or render from the console:
-
-```{r, eval=FALSE}
 quarto::quarto_render("my_html/my_html.qmd")
 ```
 
-### Standalone Quarto extension
-
-The templates are also available as a Quarto extension that can be installed without the R package:
-
-```
-quarto add uham-bio/UHHformats
-```
+Or install as a standalone extension: `quarto add uham-bio/UHHformats`
 
 
-## Font options
+## Prerequisites
 
-The default font for all templates is Helvetica. For PDF and Word templates, you can switch to the University of Hamburg's own font TheSans UHH by setting `font = "TheSansUHH"` in the YAML header (R Markdown) or via the `font` argument in `create_quarto_doc()`.
+- **PDF output** requires a LaTeX distribution. Recommended: [tinytex](https://yihui.org/tinytex/).
+- **Quarto templates** require the [Quarto CLI](https://quarto.org/docs/get-started/).
 
-
-## LaTeX requirements
-
-PDF templates require a LaTeX installation. The easiest option is [tinytex](https://yihui.org/tinytex/):
-
-```{r, eval=FALSE}
-install.packages("tinytex")
-tinytex::install_tinytex()
-```
-
-You may need to install additional LaTeX packages on your first render --- tinytex handles this automatically in most cases.
+See `?html_doc`, `?pdf_doc`, `?pdf_report`, `?pdf_cheatsheet`, or `?word_doc` for all YAML options.

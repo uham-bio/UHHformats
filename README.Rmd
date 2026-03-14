@@ -31,6 +31,8 @@ The default font is Helvetica. PDF and Word templates also support the Universit
 
 > **Backward compatibility:** The old function names `html_simple()` and `pdf_simple()` still work as aliases.
 
+See the [template gallery](docs/gallery.md) for screenshots of each template.
+
 
 ## Installation
 
@@ -61,9 +63,11 @@ quarto add uham-bio/UHHformats
 ```
 
 
-## Quick start
+## Getting started
 
-See `vignette("UHHformats")` for detailed instructions on creating and rendering documents.
+See [docs/getting-started.md](docs/getting-started.md) for detailed instructions on creating and rendering documents (RStudio, console, prerequisites).
+
+Or use `vignette("UHHformats")` for a quick overview from within R.
 
 
 ## Credits

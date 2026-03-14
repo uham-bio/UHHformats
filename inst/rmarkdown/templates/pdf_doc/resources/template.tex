@@ -237,19 +237,37 @@ $endfor$
 % Header and footer {{{
 \pagestyle{fancy}
 \fancyhf{} % clear all
-\fancyhead[R]{\nouppercase{\rightmark}} % dynamic section name
+\fancyhead[R]{\nouppercase{\rightmark}} % show first section name on page
 \fancyfoot[R]{\thepage}
 \fancyfoot[L]{\raisebox{-2.5mm}{\includegraphics[height=10mm]{logo.png}}}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
 
-\fancypagestyle{plain}{% for first page
+% Make \rightmark track sections (first on page) and ignore subsections
+$if(numbersections)$
+\renewcommand{\sectionmark}[1]{\markboth{\thesection\ #1}{\thesection\ #1}}
+$else$
+\renewcommand{\sectionmark}[1]{\markboth{#1}{#1}}
+$endif$
+\renewcommand{\subsectionmark}[1]{}
+
+% Section start pages also show header (LaTeX sets \thispagestyle{plain} on \section)
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[R]{\nouppercase{\rightmark}}
+  \fancyfoot[R]{\thepage}
+  \fancyfoot[L]{\raisebox{-2.5mm}{\includegraphics[height=10mm]{logo.png}}}
+  \renewcommand{\headrulewidth}{0.4pt}
+}
+
+% Title page: no header, no header rule
+\fancypagestyle{titlepage}{%
   \fancyhf{}
   \fancyfoot[R]{\thepage}
   \fancyfoot[L]{\raisebox{-2.5mm}{\includegraphics[height=10mm]{logo.png}}}
   \renewcommand{\headrulewidth}{0pt}
 }
-\thispagestyle{plain}
+\thispagestyle{titlepage}
 % }}}
 
 

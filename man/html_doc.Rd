@@ -30,7 +30,7 @@ html_doc(
 \arguments{
 \item{highlight}{Syntax highlighting style. Supported styles include
 "default", "tango", "pygments", "kate" (default), "monochrome", "espresso",
-"zenburn", "haddock", and "textmate". Pass \code{NULL} to prevent syntax
+"zenburn", and "haddock". Pass \code{NULL} to prevent syntax
 highlighting.}
 
 \item{code_folding}{Enable document readers to toggle the display of R code chunks.
@@ -44,7 +44,7 @@ link that can be used by readers to download the code.}
 
 \item{toc}{\code{TRUE} to include a fixed table of contents in the output (upper right corner).}
 
-\item{toc_depth}{Depth of headers to include in table of contents. Default is set to 4.}
+\item{toc_depth}{Depth of headers to include in table of contents. Default is set to 3.}
 
 \item{number_sections}{\code{FALSE} to not number section headings.}
 
@@ -80,7 +80,7 @@ R Markdown output format to pass to \code{\link[rmarkdown]{render}}
 }
 \description{
 This function converts the R Markdown file into a simple HTML document output format
-that has a fixed table of content as naivation bar in the upper right corner.
+that has a fixed table of contents as navigation bar in the upper right corner.
 The basis for this function and the HTML, CSS, and JavaScript code is the
 \code{html_clean} R Markdown template developed by
 Julien Barnier in the \href{https://github.com/juba/rmdformats}{rmdformats}

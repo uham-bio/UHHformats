@@ -46,7 +46,7 @@ string such as "April 2020".
 \item \code{logo} Path to a logo for the footer (optional)
 \item \code{license} Character; the creative commons license displayed in
 the footer (optional); default is the "CC-BY-SA" licence; for more
-see info on creative commons license see this website
+for more information on creative commons licenses, see
 \href{https://creativecommons.org/licenses/}{https://creativecommons.org/licenses/}.
 \item \code{multicols} The number of columns in the overall layout; you can choose
 any value > 1, default is 3.

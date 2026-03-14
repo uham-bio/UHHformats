@@ -8,8 +8,8 @@
 #' @param template character; the template type to use. Choose "html_doc" (default),
 #'   "pdf_doc", "pdf_report", "pdf_cheatsheet", or "word_doc".
 #' @param font The font family of the document. Default is "Helvetica" (i.e. Helvetica Neue).
-#'   For members of the UHH, there is also the font "TheSansUHH" available for the PDF, Word,
-#'   and Word document.
+#'   For members of the UHH, there is also the font "TheSansUHH" available for the PDF and
+#'   Word templates.
 #' @param path character; the path where the directory should be created. Default
 #'   is the current working directory (".").
 #'

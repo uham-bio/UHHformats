@@ -28,7 +28,7 @@
 #'        bookdown's default terminology will be used.
 #' @param dpi integer; the resolution of the output figures, default is 144 dots per inch.
 #' @param pandoc_args Additional command line options to pass to pandoc.
-#' @param ... Additional parameters to pass to \code{\link[bookdown]{pdf_book}}.
+#' @param ... Additional parameters to pass to \code{\link[bookdown]{word_document2}}.
 #'
 #' @return A modified \code{\link[rmarkdown]{word_document}} based on a UHH Word template.
 #'

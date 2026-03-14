@@ -51,7 +51,7 @@ bookdown's default terminology will be used.}
 
 \item{pandoc_args}{Additional command line options to pass to pandoc.}
 
-\item{...}{Additional parameters to pass to \code{\link[bookdown]{pdf_book}}.}
+\item{...}{Additional parameters to pass to \code{\link[bookdown]{word_document2}}.}
 }
 \value{
 A modified \code{\link[rmarkdown]{word_document}} based on a UHH Word template.

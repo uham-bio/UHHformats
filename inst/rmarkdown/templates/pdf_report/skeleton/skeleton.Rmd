@@ -32,7 +32,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE,
 # packages
 library(knitr)
 library(kableExtra)
-library(xtable)
+library(flextable)
 library(tidyverse)
 ```
 
@@ -42,7 +42,7 @@ library(tidyverse)
 knitr::write_bib(
   x = c(.packages(), 'bookdown', 'rmarkdown', 'UHHformats',
     # Add here now all packages that are loaded above:
-    'knitr', 'kableExtra', 'xtable', 'tidyverse'), 
+    'knitr', 'kableExtra', 'flextable', 'tidyverse'),
   file = 'bib/packages.bib'
 )
 ```
@@ -164,42 +164,28 @@ df <- mtcars[1:5, 1:6]
 kable(df, "latex", 
   booktabs = TRUE, 
   caption = "A table produced with knitr and kableextra",
-  label = "kable_tab") %>%
-kable_styling(position = "center", font_size = 9,
-latex_options = "HOLD_position") %>%
-add_header_above(c(" " = 1, "Group 1" = 2, "Group 2" = 2,
-"Group 3" = 1, "Group 4" = 1)) %>%
-add_header_above(c(" ", "Group 5" = 4, "Group 6" = 2), bold = T) %>%
-footnote(general = "Your comments go here.")
+  label = "kable_tab") |>
+  kable_styling(position = "center", font_size = 9,
+  latex_options = "HOLD_position") |>
+  add_header_above(c(" " = 1, "Group 1" = 2, "Group 2" = 2,
+    "Group 3" = 1, "Group 4" = 1)) |>
+  add_header_above(c(" ", "Group 5" = 4, "Group 6" = 2), bold = T) |>
+  kableExtra::footnote(general = "Your comments go here.")  # note: flextable has also a function named footnote()
 ```
 
-#### The *xtable* package
+#### The *flextable* package
 
-Another useful package for tables for PDF output is [xtable](https://cran.r-project.org/web/packages/xtable/vignettes/xtableGallery.pdf). The following code will produce an example table if the *xtable* package is installed. Note that you need to add the chunk option `results = "asis"` inside `{r}` otherwise the PDF will contain the \LaTeX code of the table!
+[flextable](https://ardata-fr.github.io/flextable-book/) creates tables that work well in both PDF and Word output, making it a good choice if you plan to generate both formats:
 
-```{r, results = "asis", eval=ifelse(nzchar(system.file(package = "xtable")), TRUE, FALSE)}
-xt <- xtable(df, caption = "A table made with xtable", 
-  label = "tab:xtable_tab")
-print(xt, comment = FALSE, caption.placement = "top", booktabs = TRUE)
+```{r}
+df <- mtcars[1:5, 1:6]
+flextable(df) |>
+  autofit() |>
+  theme_booktabs() |>
+  bold(part = "header")
 ```
 
-You can also use \LaTeX in the R code chunk:
-
-```{r, results = "asis", eval=ifelse(nzchar(system.file(package = "xtable")), TRUE, FALSE)}
-tab <- xtable(head(iris, n = 20), align = "|C|C|C|C|C|C|")
-
-addtorow <- list()
-addtorow$pos <- list()
-addtorow$pos[[1]] <- -1
-addtorow$command <- c("\\rowcolor{lightgray}")
-
-print(tab,
-      include.rownames = FALSE,
-      tabular.environment = "tabularx",
-      width = "\\textwidth",
-      comment = FALSE,
-      add.to.row = addtorow)
-```
+> **Tip:** Another excellent table package is [gt](https://gt.rstudio.com/), which provides a tidyverse-compatible grammar for tables.
 
 
 ## Figures
@@ -226,13 +212,13 @@ boxplot(mpg ~ am, mtcars)
 
 Link a `.bib` document via the YAML header and the bibliography will be printed at the very end (as usual). The default bibliography style is provided in the `bib.bst` file (do not delete), which adopts the [SAGE Harvard](https://uk.sagepub.com/sites/default/files/sage_harvard_reference_style_0.pdf) reference style.
 
-References can be cited directly within the document using the R Markdown equivalent of the \LaTeX citation system `[@key]`, where key is the citation key in the first line of the entry in the .bib file. Example: [@Taylor1937]. To cite multiple entries, separate the keys by semicolons, e.g. [@Knupp1999; @Kamm2000].
+References can be cited directly within the document using the R Markdown equivalent of the \LaTeX citation system `[@key]`, where key is the citation key in the first line of the entry in the .bib file. Example: [@Taylor1937]. To cite multiple entries, separate the keys by semicolons, e.g., [@Knupp1999; @Kamm2000]).
 
 There is also the package [citr](https://github.com/crsh/citr), which I highly recommend: *citr* provides functions and an RStudio add-in to search a BibTeX-file to create and insert formatted Markdown citations into the current document. If you are using the reference manager [Zotero](https://www.zotero.org/) the add-in can access your reference database directly. 
 
 
 ## Software
 
-If you want to include a paragraph on the software used, here is some example text/code to get the current R and package versions. The code to create a separate bibiliography file named 'packages.bib' with all package references has already been added at the beginning of this script (code chunk 'generate-package-refs').
+If you want to include a paragraph on the software used, here is some example text/code to get the current R and package versions. The code to create a separate bibliography file named 'packages.bib' with all package references has already been added at the beginning of this script (code chunk 'generate-package-refs').
 
-All analyses were performed using the statistical software R (version `r paste(R.Version()$major, R.Version()$minor, sep = ".")`) [@R-base]. This report, including tables and figures, was generated using the packages 'rmarkdown' (version `r packageVersion("rmarkdown")`) [@R-rmarkdown], 'bookdown' (version `r packageVersion("bookdown")`) [@R-bookdown], 'UHHformats' (version `r packageVersion("UHHformats")`) [@R-UHHformats], 'knitr' (version `r packageVersion("knitr")`) [@R-knitr], 'kableExtra' (version `r packageVersion("kableExtra")`) [@R-kableExtra], 'xtable' (version `r packageVersion("xtable")`) [@R-xtable], and 'tidyverse' (version `r packageVersion("tidyverse")`) [@R-tidyverse.]
+All analyses were performed using the statistical software R (version `r paste(R.Version()$major, R.Version()$minor, sep = ".")`) [@R-base]. This report, including tables and figures, was generated using the packages 'rmarkdown' (version `r packageVersion("rmarkdown")`) [@R-rmarkdown], 'bookdown' (version `r packageVersion("bookdown")`) [@R-bookdown], 'UHHformats' (version `r packageVersion("UHHformats")`) [@R-UHHformats], 'knitr' (version `r packageVersion("knitr")`) [@R-knitr], 'kableExtra' (version `r packageVersion("kableExtra")`) [@R-kableExtra], 'flextable' (version `r packageVersion("flextable")`) [@R-flextable], and 'tidyverse' (version `r packageVersion("tidyverse")`) [@R-tidyverse].

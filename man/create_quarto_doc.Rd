@@ -18,8 +18,8 @@ create_quarto_doc(
 "pdf_doc", "pdf_report", "pdf_cheatsheet", or "word_doc".}
 
 \item{font}{The font family of the document. Default is "Helvetica" (i.e. Helvetica Neue).
-For members of the UHH, there is also the font "TheSansUHH" available for the PDF, Word,
-and Word document.}
+For members of the UHH, there is also the font "TheSansUHH" available for the PDF and
+Word templates.}
 
 \item{path}{character; the path where the directory should be created. Default
 is the current working directory (".").}

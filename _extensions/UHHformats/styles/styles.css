@@ -16,6 +16,7 @@ body {
   color: white;
   margin-left: -50px;
   padding-left: 30px;
+  padding-right: 18px;
 }
 
 .sidebar nav[role=doc-toc] a.active {
@@ -27,6 +28,7 @@ body {
 #toc-title {
   /* font-weight: bold; */
   font-size: 1.2rem;
+  margin-top: 18px;
 }
 
 .sidebar .header-section-number {

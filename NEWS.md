@@ -3,7 +3,6 @@
 ## New features
 
 * New Quarto `pdf_cheatsheet` template: landscape, multi-column cheatsheet with configurable colored textboxes.
-* Quarto extension available: install via `quarto add uham-bio/UHHformats` for standalone use without R.
 
 ## Breaking changes
 

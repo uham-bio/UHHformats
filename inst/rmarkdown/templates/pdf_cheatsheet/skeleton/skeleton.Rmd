@@ -63,7 +63,7 @@ You can define in the YAML header under `params`
     + `col_greenbox` for the `greenbox` (default is 7fa16a)
     + `col_yellowbox` for the `yellowbox` (default is eeb422)
     + `col_graybox` for the `graybox` (default is 8c8c8c)
-    + `col_blackbox` for the `blackbox`` (default is 191919)
+    + `col_blackbox` for the `blackbox` (default is 191919)
     + `col_whitebox` for the `whitebox` (default is e0e0e0)
 
 Note that you have to use the color hex coding **without** the hashtag. If you need more colors than these 7, you can define 14 more colors by appending the number 2 or 3 to each color and box, e.g. `col_redbox2` and `col_redbox3` for `redbox2` and `redbox3`, respectively.
@@ -192,7 +192,7 @@ Or use \LaTeX syntax, which gives you even more control!
   \columnbreak
   
   \includegraphics[width=0.5cm]{images/checklist2.png}
-  \textbf{column 1}\\
+  \textbf{column 2}\\
   Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
   \end{multicols}
 \end{greenbox}
@@ -210,11 +210,11 @@ Or use \LaTeX syntax, which gives you even more control!
   \begin{subbox}{colgraybox}{Info 1}
   info
   \end{subbox}
-  \begin{subbox}{colgraybox}{Info 1}
+  \begin{subbox}{colgraybox}{Info 2}
   $a \to b$
   \mycommand{CTRL+C}{copy}
   \end{subbox}
-  \begin{subbox}{colgraybox}{Info 1}
+  \begin{subbox}{colgraybox}{Info 3}
   more text
   \end{subbox}
   \end{multibox}

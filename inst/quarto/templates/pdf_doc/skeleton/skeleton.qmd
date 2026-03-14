@@ -72,7 +72,7 @@ Configure the YAML header including the following elements:
 - `author`: Character of single or multiple author(s)
 - `date`: A date
 - `abstract`: The abstract will be shown right after the title in smaller font size. 
-- `language`: If language is NOT English refer to th file `custom_lang.yml` for automatic text in German. If the document language is another one, adjust this file.
+- `language`: If language is NOT English refer to the file `custom_lang.yml` for automatic text in German. If the document language is another one, adjust this file.
 - `bibliography`: A path to the bibliography file to use for references (BibTeX `.bib` file). The current file includes 3 dummy references; either insert your references into this file or replace the file with your own.
 - `csl`: The style is provided in the 'sage-harvard.csl' file, which adopts the [SAGE Harvard](https://uk.sagepub.com/sites/default/files/sage_harvard_reference_style_0.pdf) reference style. Just leave the file as it is.
 - `format - pdf`: In this template many of the Quarto options for PDF output are listed in the YAML header. If you want to know more about these settings I recommend the [PDF format reference](https://quarto.org/docs/reference/formats/pdf.html) for a complete list of available options. For instance, you can adjust the figure and table references with `fig-title`, `tbl-title`, `fig-prefix`, and `tbl-prefix`.
@@ -144,7 +144,7 @@ $$ {#eq-mean}
 
 Formulas and corresponding explanations should be integrated into the sentence and, thus, end with a comma or period. Here comes an example:
 
-If the random variable $Y$ follows a standard normal distribution, i.e. $Y \sim N(0,1)$, it's density function can be described with
+If the random variable $Y$ follows a standard normal distribution, i.e. $Y \sim N(0,1)$, its density function can be described with
 
 $$
 f_{Y}(y)=\varphi(y) \stackrel{\mathrm{def}}{=} \frac{1}{\sqrt{2 \pi}} \exp \left\{ -\frac{y^2}{2} \right\}, \quad y \in \mathbb{R}.
@@ -223,36 +223,40 @@ Here is a simple table based on Markdown Syntax (@tbl-markdown).
 : My Caption {#tbl-markdown}
 
 
-### Using the *knitr* package
+### Using the *knitr* and *kableExtra* packages
 
-@tbl-kable is an example of using `knitr::kable()` to generate the table.
+@tbl-kable is an example of using `knitr::kable()` to generate the table and *kableExtra* functions to modify it:
 
 ```{r}
 #| label: tbl-kable
-#| tbl-cap: "This is a table produced with knitr::kable()."
-# Plot only a subset of the data
+#| tbl-cap: "A table produced with knitr and kableExtra."
+library(kableExtra)
 df <- mtcars[1:5, 1:6]
-knitr::kable(
-  df,
-  longtable = TRUE,
-  booktabs = TRUE
-)
-# (the last two options make the table a bit more readable)
+knitr::kable(df, booktabs = TRUE) |>
+  kable_styling(position = "center", font_size = 9) |>
+  add_header_above(c(" " = 1, "Group 1" = 2, "Group 2" = 2,
+    "Group 3" = 1, "Group 4" = 1)) |>
+  add_header_above(c(" ", "Group 5" = 4, "Group 6" = 2), bold = TRUE) |>
+  kableExtra::footnote(general = "Your comments go here.")  # note: flextable has also a function named footnote()
 ```
 
 
-### The *xtable* package
+### The *flextable* package
 
-Another useful package for tables for PDF output is [xtable](https://cran.r-project.org/web/packages/xtable/vignettes/xtableGallery.pdf). The following code will produce an example table if the *xtable* package is installed. Note that you need to add the chunk option `results = "asis"` inside `{r}` otherwise the PDF will contain the \LaTeX code of the table!
+[flextable](https://ardata-fr.github.io/flextable-book/) creates tables that work well in both PDF and Word output. @tbl-flextable shows an example:
 
 ```{r}
-#| label: tbl-xtable
-#| tbl-cap: "A table made with xtable."
-#| eval: !expr ifelse(nzchar(system.file(package = "xtable")), "true", "false")
-#| results: "asis"
-xt <- xtable::xtable(df)
-print(xt, comment = FALSE, caption.placement = "top", booktabs = TRUE)
+#| label: tbl-flextable
+#| tbl-cap: "Overview of the first rows and columns in the mtcars dataset."
+library(flextable)
+df <- mtcars[1:5, 1:6]
+flextable(df) |>
+  autofit() |>
+  theme_booktabs() |>
+  bold(part = "header")
 ```
+
+**Tip:** Another excellent table package is [gt](https://gt.rstudio.com/), which provides a tidyverse-compatible grammar for tables.
 
 
 ## Figures {#sec-figures}
@@ -282,7 +286,7 @@ boxplot(mpg ~ am, mtcars)
 
 ## Diagrams
 
-Quarto has native support for embedding *Mermaid* and *Graphviz* diagrams. This enables you to create flowcharts, sequence diagrams, state diagrams, gnatt charts, and more using a plain text syntax inspired by markdown.
+Quarto has native support for embedding *Mermaid* and *Graphviz* diagrams. This enables you to create flowcharts, sequence diagrams, state diagrams, Gantt charts, and more using a plain text syntax inspired by markdown.
 
 ### Mermaid
 
@@ -346,7 +350,7 @@ Cell level options are here indicated with `//|`!
 
 Link a `.bib` document via the YAML header, and the bibliography will be printed at the end. The default bibliography style is provided in the `sage-harvard.csl` file (do not delete), which adopts the [SAGE Harvard](https://uk.sagepub.com/sites/default/files/sage_harvard_reference_style_0.pdf) reference style.
 
-References can be cited directly within the document using the Quarto equivalent of the \LaTeX citation system `[@key]`, where key is the citation key in the first line of the entry in the .csl file. Example: [@Taylor1937]. To cite multiple entries, separate the keys by semicolons (e.g., [@Knupp1999; @Kamm2000]. You can also write in-text citations, as follows: @Taylor1937 say this and that.
+References can be cited directly within the document using the Quarto equivalent of the \LaTeX citation system `[@key]`, where key is the citation key in the first line of the entry in the .bib file. Example: [@Taylor1937]. To cite multiple entries, separate the keys by semicolons (e.g., [@Knupp1999; @Kamm2000]). You can also write in-text citations, as follows: @Taylor1937 say this and that.
 
 There is also the package [citr](https://github.com/crsh/citr) which I highly recommend: *citr* provides functions and an RStudio add-in to search a BibTeX-file to create and insert formatted Markdown citations into the current document. If you are using the reference manager [Zotero](https://www.zotero.org/) the add-in can access your reference database directly.
 

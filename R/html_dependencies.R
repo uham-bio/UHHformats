@@ -13,14 +13,6 @@ html_dependency_magnific_popup <- function() {
                             stylesheet = "magnific-popup.css")
 }
 
-# create an html dependency for jquery-stickytableheaders
-html_dependency_jquery_stickytableheaders <- function()  {
-  htmltools::htmlDependency(name = "jquery-stickytableheaders",
-                            version = "0.1.11",
-                            src = system.file("templates/jquery-stickytableheaders-0.1.11", package = "UHHformats"),
-                            script = "jquery.stickytableheaders.min.js")
-}
-
 
 # Mathjax (functions copied from rmarkdown)
 default_mathjax <- function() {

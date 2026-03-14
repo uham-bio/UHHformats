@@ -65,7 +65,7 @@ Configure the YAML header including the following elements:
 - *format - docx*: In this template many of the Quarto options for Word output are listed in the YAML header. If you want to know more about these settings I recommend the [MS Word format reference](https://quarto.org/docs/reference/formats/docx.html) for a complete list of available options. For instance, you can adjust the figure and table references with *fig-title*, *tbl-title*, *fig-prefix*, and *tbl-prefix*.
 - *execute*: Global options for customizing output from executed code are specified within this execute key.
 
-This Quarto template uses a 'uhh-template.docx' Word file, which is based on the [standard template file](https://www.kus.uni-hamburg.de/themen/oeffentlichkeitsarbeit/corporate-design/vorlagen.html) of the University of Hamburg (UHH) except for the font type, which is by default 'Helvetica'.  If you are associated with the UHH you are allowed to use the University's own font style 'TheSansUHH'. You can choose between both fonts when running the function, e.g., `UHHformats::create_quarto_doc(dirname = "your_word_doc", template = "word", font = "TheSansUHH")`.
+This Quarto template uses a 'uhh-template.docx' Word file, which is based on the [standard template file](https://www.kus.uni-hamburg.de/themen/oeffentlichkeitsarbeit/corporate-design/vorlagen.html) of the University of Hamburg (UHH) except for the font type, which is by default 'Helvetica'.  If you are associated with the UHH you are allowed to use the University's own font style 'TheSansUHH'. You can choose between both fonts when running the function, e.g., `UHHformats::create_quarto_doc(dirname = "your_word_doc", template = "word_doc", font = "TheSansUHH")`.
 
 If you feel like using your own template or the standard Word template (i.e. the Normal.dot file), simply provide the path to your file or comment/delete this line, respectively. 
 
@@ -132,7 +132,7 @@ $$ {#eq-mean}
 
 Formulas and corresponding explanations should be integrated into the sentence and, thus, end with a comma or period. Here comes an example:
 
-If the random variable $Y$ follows a standard normal distribution, i.e. $Y \sim N(0,1)$, it's density function can be described with
+If the random variable $Y$ follows a standard normal distribution, i.e. $Y \sim N(0,1)$, its density function can be described with
 
 $$
 f_{Y}(y)=\varphi(y) \stackrel{\mathrm{def}}{=} \frac{1}{\sqrt{2 \pi}} \exp \left\{ -\frac{y^2}{2} \right\}, \quad y \in \mathbb{R}.
@@ -215,28 +215,22 @@ knitr::kable(
 ```
 
 
-### The *huxtable* package
+### The *flextable* package
 
-If you are interested in further table adaptations for Word output, I highly recommend a look at the R package ['huxtable'](https://hughjonesd.github.io/huxtable/index.html). The following code will produce an example table if the *huxtable* package is installed:
+[flextable](https://ardata-fr.github.io/flextable-book/) creates tables that work well in both PDF and Word output. @tbl-flextable shows an example:
 
 ```{r}
-#| label: tbl-huxtable
-#| eval: !expr ifelse(nzchar(system.file(package = "huxtable")), "true", "false")
-library(huxtable)
+#| label: tbl-flextable
+#| tbl-cap: "Overview of the first rows and columns in the mtcars dataset."
+library(flextable)
 df <- mtcars[1:5, 1:6]
-ht <- as_hux(df, add_rownames = "model")
-ht <- set_outer_borders(ht, 0.4)
-bold(ht)[1,]           <- TRUE
-bottom_border(ht)[1,]  <- 0.4
-align(ht)[,2:7]          <- 'right'
-align(ht)[,1]          <- 'left'
-number_format(ht)      <- 2
-width(ht)              <- 1
-font_size(ht) <- 10
-caption(ht)            <- "Overview of the first lines and columns in the mtcars dataset."
-
-ht
+flextable(df) |>
+  autofit() |>
+  theme_booktabs() |>
+  bold(part = "header")
 ```
+
+> **Tip:** Another excellent table package is [gt](https://gt.rstudio.com/), which provides a tidyverse-compatible grammar for tables.
 
 
 ## Figures {#sec-figures}
@@ -266,7 +260,7 @@ boxplot(mpg ~ am, mtcars)
 
 ## Diagrams
 
-Quarto has native support for embedding *Mermaid* and *Graphviz* diagrams. This enables you to create flowcharts, sequence diagrams, state diagrams, gnatt charts, and more using a plain text syntax inspired by markdown.
+Quarto has native support for embedding *Mermaid* and *Graphviz* diagrams. This enables you to create flowcharts, sequence diagrams, state diagrams, Gantt charts, and more using a plain text syntax inspired by markdown.
 
 ### Mermaid
 
@@ -348,7 +342,7 @@ Cell level options are here indicated with `//|`!
 
 Link a `.bib` document via the YAML header, and the bibliography will be printed at the end. The default bibliography style is provided in the `sage-harvard.csl` file (do not delete), which adopts the [SAGE Harvard](https://uk.sagepub.com/sites/default/files/sage_harvard_reference_style_0.pdf) reference style.
 
-References can be cited directly within the document using the Quarto equivalent of the \LaTeX citation system `[@key]`, where key is the citation key in the first line of the entry in the .csl file. Example: [@Taylor1937]. To cite multiple entries, separate the keys by semicolons (e.g., [@Knupp1999; @Kamm2000]. You can also write in-text citations, as follows: @Taylor1937 say this and that.
+References can be cited directly within the document using the Quarto equivalent of the \LaTeX citation system `[@key]`, where key is the citation key in the first line of the entry in the .bib file. Example: [@Taylor1937]. To cite multiple entries, separate the keys by semicolons (e.g., [@Knupp1999; @Kamm2000]). You can also write in-text citations, as follows: @Taylor1937 say this and that.
 
 There is also the package [citr](https://github.com/crsh/citr) which I highly recommend: *citr* provides functions and an RStudio add-in to search a BibTeX-file to create and insert formatted Markdown citations into the current document. If you are using the reference manager [Zotero](https://www.zotero.org/) the add-in can access your reference database directly.
 

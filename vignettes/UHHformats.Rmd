@@ -11,40 +11,162 @@ vignette: >
 
 <img src="images/UHHformats_logo.png" align="right" width="90" height="100" />
 
-The UHHformats package provides R Markdown and Quarto templates for HTML, PDF, and Word output. This vignette gives a quick overview --- for detailed instructions and screenshots see the [Getting Started guide](https://github.com/uham-bio/UHHformats/blob/master/docs/getting-started.md) and the [Template Gallery](https://github.com/uham-bio/UHHformats/blob/master/docs/gallery.md) on GitHub.
+The UHHformats package provides R Markdown and Quarto templates for HTML, PDF, and Word output. This vignette gives a quick overview of the different templates and how to get started.
 
 
 ## Available templates
 
-| Template | Output | R Markdown | Quarto |
-|---|---|---|---|
+| Template | Output | R Markdown function | Quarto template |
+|:---------|:-------|:--------------------|:----------------|
 | HTML document | HTML | `html_doc()` | `html_doc` |
-| Simple PDF | PDF | `pdf_doc()` | `pdf_doc` |
+| Simple PDF document | PDF | `pdf_doc()` | `pdf_doc` |
 | PDF report | PDF | `pdf_report()` | `pdf_report` |
 | PDF cheat sheet | PDF | `pdf_cheatsheet()` | `pdf_cheatsheet` |
 | Word document | Word | `word_doc()` | `word_doc` |
 
 
-## R Markdown
+## Getting started
 
-In RStudio: **File** > **New File** > **R Markdown** > **From Template**, then select a UHHformats template.
+### R Markdown documents
 
-From the console:
+#### Creating a document in RStudio
 
-```{r, eval=FALSE}
+Once you installed the package you might need to close and re-open RStudio to see the `UHHformats`
+templates listed.
+
+1. Choose **File** > **New File** > **R Markdown**, then select **From Template**.
+You should then be able to create a new document from one of the package templates:
+
+![Creating a new document in RStudio](./images/img_create_document.png)
+
+2. Choose the directory in which you want to save your file and provide a file name (that name will be used for both the .Rmd file and the new folder in which the .Rmd file will be placed). 
+
+3. If you are interested in the documentation already provided in the template file for getting started, render the document once before you start changing the content (click the `Knit` button).
+
+
+#### Creating a document from the console
+
+Use `create_rmd_doc()` to create a new directory with the template and all associated files:
+
+```{r, eval = FALSE}
 UHHformats::create_rmd_doc(dirname = "my_report", template = "pdf_report")
+```
+
+Or use the standard rmarkdown function:
+
+```{r, eval = FALSE}
+rmarkdown::draft("my_report.Rmd", template = "html_doc", package = "UHHformats")
+```
+
+Both functions create a subdirectory containing the `.Rmd` file and all required resources (images, fonts, LaTeX templates, etc.).
+
+#### Rendering
+
+In RStudio, click the **Knit** button. From the console:
+
+```{r, eval = FALSE}
 rmarkdown::render("my_report/my_report.Rmd")
 ```
 
 
-## Quarto
+**Important note**: `rmarkdown::render` uses as default Pandoc to convert the Markdown document into PDF, HTML or Word. While RStudio uses its internal Pandoc installation (e.g., on a Mac located in '/Applications/RStudio.app/Contents/MacOS/pandoc/'), you need to have Pandoc and its citation parser also installed on your system. See https://pandoc.org/installing.html for instructions. This book chapter is also helpful: https://bookdown.org/yihui/rmarkdown-cookbook/install-pandoc.html
+
+#### YAML header
+
+Each template pre-fills an appropriate YAML header. For example, `html_doc`:
+
+```yaml
+---
+title: "Title"
+author: "Name"
+date: "`r Sys.Date()`"
+output:
+  UHHformats::html_doc:
+    highlight: kate
+    code_folding: show
+    use_bookdown: true
+    number_sections: false
+---
+```
+
+See the help pages (e.g. `?html_doc`, `?pdf_report`) for all available options.
+
+
+### Quarto documents 
+
+Use `create_quarto_doc()` to set up a Quarto project:
+
+
+```{r, eval = FALSE}
+UHHformats::create_quarto_doc(dirname = "my_html", template = "html_doc")
+UHHformats::create_quarto_doc(dirname = "my_pdf", template = "pdf_doc", font = "TheSansUHH")
+```
+
+Available templates: `html_doc`, `pdf_doc`, `pdf_report`, `pdf_cheatsheet`, `word_doc`.
+
+#### Rendering
+
+In RStudio, open the `.qmd` file and click **Render**. From the console:
 
 ```{r, eval=FALSE}
-UHHformats::create_quarto_doc(dirname = "my_html", template = "html_doc")
 quarto::quarto_render("my_html/my_html.qmd")
 ```
 
-Or install as a standalone extension: `quarto add uham-bio/UHHformats`
+
+## Template folder structure
+
+Both `create_rmd_doc()` and `create_quarto_doc()` create a new directory containing the template file and all required resources. The folder structure depends on the template and format:
+
+**R Markdown templates** typically contain:
+
+```
+my_report/
+├── my_report.Rmd        # The R Markdown document
+├── bib/                 # Bibliography (.bib) and citation style (.csl) files
+├── data/                # Example dataset (mtcars.csv)
+└── images/              # Example images used in the template
+```
+
+**Quarto templates** include additional files:
+
+```
+my_report/
+├── my_report.qmd        # The Quarto document
+├── bib/                 # Bibliography (.bib) and citation style (.csl) files
+├── data/                # Example dataset (mtcars.csv)
+├── images/              # Example images used in the template
+├── styles/              # Styling files (LaTeX headers, CSS, JS)
+└── custom_lang.yml      # Custom language settings (e.g., figure/table labels)
+```
+
+The `bib/` folder contains a sample `.bib` file with dummy references and a `.csl` file for the citation style (SAGE Harvard by default). The `styles/` folder in Quarto templates holds the LaTeX preamble files (for PDF) or CSS/JS files (for HTML) that control the document appearance. The `custom_lang.yml` file allows you to customise labels such as "Figure", "Table", or "Contents" for different languages.
+
+You can safely modify, add, or remove files in these folders to suit your needs.
+
+
+### Customising the `pdf_report` cover page
+
+The `pdf_report` template includes a front cover page with a background image. You can replace the default image by swapping the file `images/cover.png` with your own image (keeping the same file name).
+
+In the **Quarto version**, you can additionally customise the cover appearance directly in the YAML header:
+
+- `cover-bg-image`: path to the cover image.
+- `cover-page-color`: background colour as hex code (e.g., `"7EB7DF"`).
+- `cover-text-color`: title text colour as hex code (e.g., `"3A515C"`).
+- `cover-fade-effect`: if `true` (default), the background colour fades over the image from top to bottom. Set to `false` to display the image without the fade overlay.
+
+In the **R Markdown version**, the cover image path is set via the `params` field in the YAML header (e.g., `cover: images/cover.png`). Replace the image file to use your own cover.
+
+
+## Font options
+
+The default font for all templates is **Helvetica**. PDF and Word templates also support the University of Hamburg's own font **TheSans UHH** (available to UHH members). Set the font via:
+
+- **R Markdown:** `font: "TheSansUHH"` in the YAML header, or `font = "TheSansUHH"` in `create_rmd_doc()`
+- **Quarto:** `font = "TheSansUHH"` in `create_quarto_doc()`
+
+You can also use a custom font by setting `font = "other"` and replacing the `font_XXX.ttf` files in the template directory with your own files (keeping the same file names).
+
 
 
 ## Prerequisites
@@ -53,3 +175,5 @@ Or install as a standalone extension: `quarto add uham-bio/UHHformats`
 - **Quarto templates** require the [Quarto CLI](https://quarto.org/docs/get-started/).
 
 See `?html_doc`, `?pdf_doc`, `?pdf_report`, `?pdf_cheatsheet`, or `?word_doc` for all YAML options.
+
+

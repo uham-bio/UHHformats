@@ -1,0 +1,88 @@
+url: https://uham-bio.github.io/UHHformats/
+
+authors:
+  Saskia Otto:
+    href: https://github.com/saskiaotto
+
+template:
+  bootstrap: 5
+  bslib:
+    primary: "#0271BB"
+    link-color: "#0271BB"
+
+home:
+  title: "UHHformats – R Markdown & Quarto Templates for the UHH"
+  description: >
+    Ready-to-use R Markdown and Quarto templates for HTML, PDF, and
+    Word documents. Designed for the Department of Biology, University
+    of Hamburg.
+  sidebar:
+    structure: [links, license, authors, dev]
+    components:
+      links:
+        title: Links
+        text: >
+          [GitHub repository](https://github.com/uham-bio/UHHformats)<br>
+          [Maintainer's Uni link](https://www.biologie.uni-hamburg.de/forschung/marine-oekosystemdynamik/mitarbeiter/otto-saskia.html)
+
+navbar:
+  bg: primary
+  structure:
+    left:  [reference, articles, news]
+    right: [github]
+  components:
+    articles:
+      text: Articles
+      menu:
+      - text: "Getting started (EN)"
+        href: articles/UHHformats.html
+      - text: "Erste Schritte (DE)"
+        href: articles/UHHformats-de.html
+      - text: "---"
+      - text: "Template gallery"
+        href: articles/gallery.html
+
+footer:
+  structure:
+    left: developed_by
+    right: built_with
+
+reference:
+  - title: "Create documents"
+    desc: >
+      Helper functions to set up a new template directory with all
+      required files.
+    contents:
+      - create_rmd_doc
+      - create_quarto_doc
+
+  - title: "R Markdown output formats"
+    desc: >
+      Output format functions for use in the YAML header of `.Rmd` files.
+    contents:
+      - html_doc
+      - pdf_doc
+      - pdf_report
+      - pdf_cheatsheet
+      - word_doc
+
+  - title: "Package"
+    contents:
+      - UHHformats-package
+
+articles:
+  - title: "Documentation"
+    navbar: ~
+    contents:
+      - UHHformats
+      - UHHformats-de
+
+  - title: "Examples"
+    navbar: ~
+    contents:
+      - gallery
+
+news:
+  releases:
+    - text: "Version 1.1.0"
+      href: https://github.com/uham-bio/UHHformats/releases

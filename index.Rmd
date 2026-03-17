@@ -1,23 +1,18 @@
 ---
-output: github_document
+output: md_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# UHHformats <img src="vignettes/images/UHHformats_logo.png" align="right" width="90" height="100" />
-
-[![Author: Saskia Otto](https://img.shields.io/badge/author-Saskia%20Otto-blue)](https://github.com/saskiaotto)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+# UHHformats
 
 This R package provides ready-to-use **R Markdown** and **Quarto** templates for HTML, PDF, and Microsoft Word output formats. The templates are designed for the Department of Biology, University of Hamburg (UHH), and its *Data Science in Biology* program, but can be used by anyone --- logos and styles are easily customizable via the YAML header.
 
 All templates ship with example text and code for formatting, equations, tables, figures with cross-references, and citations.
 
-For thesis templates see the companion package [UHHthesis](https://github.com/uham-bio/UHHthesis) or the separate [Quarto extension](https://github.com/uham-bio/quarto-UHHthesis).
+> For thesis templates see the companion package [UHHthesis](https://github.com/uham-bio/UHHthesis) or the separate [Quarto extension](https://github.com/uham-bio/quarto-UHHthesis).
 
 ## Available templates
 
@@ -32,8 +27,6 @@ For thesis templates see the companion package [UHHthesis](https://github.com/uh
 The default font is Helvetica. PDF and Word templates also support the University's own font TheSans UHH (available to UHH members).
 
 > **Backward compatibility:** The old function names `html_simple()` and `pdf_simple()` still work as aliases.
-
-See the [template gallery](https://uham-bio.github.io/UHHformats/articles/gallery.html) for screenshots and demo files.
 
 ## Installation
 
@@ -79,12 +72,27 @@ tinytex::install_tinytex()
 
 For other distributions see <https://www.latex-project.org/get/>.
 
-----
+---
 
-## Credits
+## Learn more
 
-- Julien Barnier's [rmdformats](https://github.com/juba/rmdformats) package
-- The [rticles](https://github.com/rstudio/rticles) package
-- INWTlab's [ireports](https://github.com/INWTlab/ireports) package
-- Sarah Lang's [LaTeX cheat sheet template](https://www.overleaf.com/latex/templates/colourful-cheatsheet-template/qdsshbjktndd)
-- Eli Holmes' [quarto titlepages](https://nmfs-opensci.github.io/quarto_titlepages/) collection
+- [Getting started (EN)](articles/UHHformats.html) — quick walkthrough of all templates
+- [Erste Schritte (DE)](articles/UHHformats-de.html) — deutschsprachige Einführung
+- [Template gallery](articles/gallery.html) — screenshots and demo files for all templates
+
+---
+
+## Useful resources
+
+- R Markdown
+    - The official [R Markdown documentation](https://rmarkdown.rstudio.com/lesson-1.html) from RStudio
+    - R Markdown [reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+    - R Markdown [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf)
+    - The online book [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui Xie, J. J. Allaire, and Garrett Grolemund
+- Quarto
+    - The official [Quarto guide](https://quarto.org/docs/guide/)
+    - Quarto's [Gallery](https://quarto.org/docs/gallery/)
+- LaTeX
+    - The official [LaTeX help and documentation](https://www.latex-project.org/help/documentation/)
+    - The [overleaf](https://www.overleaf.com/learn) documentation
+- W3Schools Online Web Tutorial for [HTML](https://www.w3schools.com/html/default.asp) and for [CSS](https://www.w3schools.com/css/default.asp)

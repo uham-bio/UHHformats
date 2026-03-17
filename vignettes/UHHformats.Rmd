@@ -9,20 +9,18 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-<img src="images/UHHformats_logo.png" align="right" width="90" height="100" />
-
 The UHHformats package provides R Markdown and Quarto templates for HTML, PDF, and Word output. This vignette gives a quick overview of the different templates and how to get started.
 
 
 ## Available templates
 
-| Template | Output | R Markdown function | Quarto template |
-|:---------|:-------|:--------------------|:----------------|
-| HTML document | HTML | `html_doc()` | `html_doc` |
-| Simple PDF document | PDF | `pdf_doc()` | `pdf_doc` |
-| PDF report | PDF | `pdf_report()` | `pdf_report` |
-| PDF cheat sheet | PDF | `pdf_cheatsheet()` | `pdf_cheatsheet` |
-| Word document | Word | `word_doc()` | `word_doc` |
+| Template | R Markdown function | Quarto template |
+|:---------|:--------------------|:----------------|
+| HTML document | `html_doc()` | `html_doc` |
+| Simple PDF document | `pdf_doc()` | `pdf_doc` |
+| PDF report | pdf_report()` | `pdf_report` |
+| PDF cheat sheet | pdf_cheatsheet()` | `pdf_cheatsheet` |
+| Word document | `word_doc()` | `word_doc` |
 
 
 ## Getting started
@@ -35,14 +33,13 @@ Once you installed the package you might need to close and re-open RStudio to se
 templates listed.
 
 1. Choose **File** > **New File** > **R Markdown**, then select **From Template**.
-You should then be able to create a new document from one of the package templates:
-
-![Creating a new document in RStudio](./images/img_create_document.png)
+You should then be able to create a new document from one of the package templates.
 
 2. Choose the directory in which you want to save your file and provide a file name (that name will be used for both the .Rmd file and the new folder in which the .Rmd file will be placed). 
 
 3. If you are interested in the documentation already provided in the template file for getting started, render the document once before you start changing the content (click the `Knit` button).
 
+![Creating a new document in RStudio](./images/img_create_document.png)
 
 #### Creating a document from the console
 

@@ -1,4 +1,4 @@
-# UHHformats 1.1.0
+# UHHformats 2.0.0
 
 ## New features
 

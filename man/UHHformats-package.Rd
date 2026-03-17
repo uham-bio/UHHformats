@@ -48,11 +48,13 @@ box layouts.
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://uham-bio.github.io/UHHformats/}
   \item \url{https://github.com/uham-bio/UHHformats}
+  \item Report bugs at \url{https://github.com/uham-bio/UHHformats/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Saskia Otto \email{saskia.a.otto@gmail.com}
+\strong{Maintainer}: Saskia Otto \email{saskia.a.otto@gmail.com} (\href{https://orcid.org/0000-0001-7780-1322}{ORCID})
 
 }

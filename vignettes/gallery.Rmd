@@ -1,0 +1,201 @@
+---
+title: "Template gallery"
+output: rmarkdown::html_vignette
+description: >
+  Screenshots and demo files for all UHHformats R Markdown and Quarto templates.
+vignette: >
+  %\VignetteIndexEntry{Template gallery}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+base_url <- "https://github.com/uham-bio/UHHformats/raw/master/resources/examples"
+```
+
+Each template ships with example content covering text formatting, equations, tables, figures with cross-references, and citations. Click **Download demo** to get a ready-to-open example file.
+
+---
+
+## R Markdown templates
+
+### HTML document (*html_doc*)
+
+A self-contained HTML page with a fixed table of contents, code folding, and lightbox image display. Uses `bookdown::html_document2` for automatic figure/table numbering and cross-references.
+
+```{r}
+htmltools::tags$figure(
+  htmltools::tags$img(
+    src = "images/img_rmd_html_doc.png",
+    alt = "html_doc template screenshot",
+    style = "width:60%; border: 1px solid #ddd; border-radius: 4px;"
+  )
+)
+```
+
+[Download demo (HTML)](`r paste0(base_url, "/demo_rmd_html_doc.html")`){.btn .btn-outline-primary .btn-sm}
+
+---
+
+### Simple PDF document (*pdf_doc*)
+
+A clean PDF article suitable for student assignments. Supports English and German, customisable logos and header/footer.
+
+```{r}
+htmltools::tags$figure(
+  htmltools::tags$img(
+    src = "images/img_rmd_pdf_doc.png",
+    alt = "pdf_doc template screenshot",
+    style = "width:60%; border: 1px solid #ddd; border-radius: 4px;"
+  )
+)
+```
+
+[Download demo (PDF)](`r paste0(base_url, "/demo_rmd_pdf_doc.pdf")`){.btn .btn-outline-primary .btn-sm}
+
+---
+
+### PDF report (*pdf_report*)
+
+A report-style PDF with a cover page, header/footer, and table of contents. Suitable for project reports and course work.
+
+```{r}
+htmltools::tags$figure(
+  htmltools::tags$img(
+    src = "images/img_rmd_pdf_report.png",
+    alt = "pdf_report template screenshot",
+    style = "width:60%; border: 1px solid #ddd; border-radius: 4px;"
+  )
+)
+```
+
+[Download demo (PDF)](`r paste0(base_url, "/demo_rmd_pdf_report.pdf")`){.btn .btn-outline-primary .btn-sm}
+
+---
+
+### PDF cheat sheet (*pdf_cheatsheet*)
+
+A landscape A4 cheat sheet with configurable columns, coloured text boxes, and adjustable font sizes.
+
+```{r}
+htmltools::tags$figure(
+  htmltools::tags$img(
+    src = "images/img_rmd_pdf_cheatsheet.png",
+    alt = "pdf_cheatsheet template screenshot",
+    style = "width:60%; border: 1px solid #ddd; border-radius: 4px;"
+  )
+)
+```
+
+[Download demo (PDF)](`r paste0(base_url, "/demo_rmd_pdf_cheatsheet.pdf")`){.btn .btn-outline-primary .btn-sm}
+
+---
+
+### Word document (*word_doc*)
+
+A Microsoft Word document using the UHH corporate design. Supports automatic language switching for figure and table captions.
+
+```{r}
+htmltools::tags$figure(
+  htmltools::tags$img(
+    src = "images/img_rmd_word_doc.png",
+    alt = "word_doc template screenshot",
+    style = "width:60%; border: 1px solid #ddd; border-radius: 4px;"
+  )
+)
+```
+
+[Download demo (DOCX)](`r paste0(base_url, "/demo_rmd_word_doc.docx")`){.btn .btn-outline-primary .btn-sm}
+
+---
+
+## Quarto templates
+
+### HTML document (*html_doc*)
+
+A Quarto HTML page with navigation bar and UHH logo. Supports all standard Quarto HTML features including tabsets, callouts, and interactive widgets.
+
+```{r}
+htmltools::tags$figure(
+  htmltools::tags$img(
+    src = "images/img_quarto_html_doc.png",
+    alt = "Quarto html_doc template screenshot",
+    style = "width:60%; border: 1px solid #ddd; border-radius: 4px;"
+  )
+)
+```
+
+[Download demo (HTML)](`r paste0(base_url, "/demo_quarto_html.html")`){.btn .btn-outline-primary .btn-sm}
+
+---
+
+### Simple PDF document (*pdf_doc*)
+
+A Quarto PDF document in the same style as the R Markdown `pdf_doc` template, using the KOMA-Script article class and XeLaTeX.
+
+```{r}
+htmltools::tags$figure(
+  htmltools::tags$img(
+    src = "images/img_quarto_pdf_doc.png",
+    alt = "Quarto pdf_doc template screenshot",
+    style = "width:60%; border: 1px solid #ddd; border-radius: 4px;"
+  )
+)
+```
+
+[Download demo (PDF)](`r paste0(base_url, "/demo_quarto_pdf_doc.pdf")`){.btn .btn-outline-primary .btn-sm}
+
+---
+
+### PDF report (*pdf_report*)
+
+A Quarto report-style PDF with a customisable cover page, title page, logos, and table of contents. Cover appearance (image, colours, fade effect) can be controlled via YAML.
+
+```{r}
+htmltools::tags$figure(
+  htmltools::tags$img(
+    src = "images/img_quarto_pdf_report.png",
+    alt = "Quarto pdf_report template screenshot",
+    style = "width:60%; border: 1px solid #ddd; border-radius: 4px;"
+  )
+)
+```
+
+[Download demo (PDF)](`r paste0(base_url, "/demo_quarto_pdf_report.pdf")`){.btn .btn-outline-primary .btn-sm}
+
+---
+
+### PDF cheat sheet (*pdf_cheatsheet*)
+
+A Quarto-based cheat sheet with configurable columns, coloured text boxes, and adjustable font sizes (see the R Markdown equivalent above for a visual comparison).
+
+```{r}
+htmltools::tags$figure(
+  htmltools::tags$img(
+    src = "images/img_quarto_pdf_cheatsheet.png",
+    alt = "Quarto pdf_cheatsheet template screenshot",
+    style = "width:60%; border: 1px solid #ddd; border-radius: 4px;"
+  )
+)
+```
+
+[Download demo (PDF)](`r paste0(base_url, "/demo_quarto_pdf_cheatsheet.pdf")`){.btn .btn-outline-primary .btn-sm}
+
+---
+
+### Word document (*word_doc*)
+
+A Quarto Word document using the UHH corporate design template with Helvetica or TheSans UHH font.
+
+```{r}
+htmltools::tags$figure(
+  htmltools::tags$img(
+    src = "images/img_quarto_word_doc.png",
+    alt = "Quarto word_doc template screenshot",
+    style = "width:60%; border: 1px solid #ddd; border-radius: 4px;"
+  )
+)
+```
+
+[Download demo (DOCX)](`r paste0(base_url, "/demo_quarto_word_doc.docx")`){.btn .btn-outline-primary .btn-sm}

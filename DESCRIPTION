@@ -1,19 +1,19 @@
 Package: UHHformats
 Type: Package
-Title: Templates for HTML and PDF/LaTeX Output Formats Designed for the UHH
-Version: 1.1.0.9000
-Date: 2026-03-11
-Authors@R: c(person("Saskia", "Otto", email="saskia.a.otto@gmail.com",
-    role=c("aut","cre")))
-Maintainer: Saskia Otto <saskia.a.otto@gmail.com>
-URL: https://github.com/uham-bio/UHHformats
+Title: Templates for HTML, PDF, and Word Output Formats Designed for the UHH
+Version: 2.0.0
+Date: 2026-03-17
+Authors@R: person("Saskia", "Otto", email = "saskia.a.otto@gmail.com",
+    role = c("aut", "cre"), comment = c(ORCID = "0000-0001-7780-1322"))
+URL: https://uham-bio.github.io/UHHformats/, https://github.com/uham-bio/UHHformats
+BugReports: https://github.com/uham-bio/UHHformats/issues
 Description: R Markdown and Quarto templates for HTML, PDF, and MS Word documents, which are used
     within the Biology Department of the University of Hamburg (UHH) and its 'Data Science in Biology'
     program. These include templates for student assignments and project reports.
     The package aims to encourage reproducible research using simple Markdown syntax while
     embedding all of the R code to produce plots and analyses as well. Many templates are
     inspired by or based on other packages such as 'rmdformats' and 'ireports'.
-License: CC BY 4.0
+License: MIT + file LICENSE
 Encoding: UTF-8
 Depends:
     R(>= 4.1.0)

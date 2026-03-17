@@ -8,6 +8,5 @@
 Thumbs.db
 
 # pkgdown build artifacts
-docs/
 pkgdown/
 index.md

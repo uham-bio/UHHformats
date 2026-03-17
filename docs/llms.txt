@@ -1,0 +1,184 @@
+# UHHformats
+
+This R package provides ready-to-use **R Markdown** and **Quarto**
+templates for HTML, PDF, and Microsoft Word output formats. The
+templates are designed for the Department of Biology, University of
+Hamburg (UHH), and its *Data Science in Biology* program, but can be
+used by anyone — logos and styles are easily customizable via the YAML
+header.
+
+All templates ship with example text and code for formatting, equations,
+tables, figures with cross-references, and citations.
+
+For thesis templates see the companion package
+[UHHthesis](https://github.com/uham-bio/UHHthesis) or the separate
+[Quarto extension](https://github.com/uham-bio/quarto-UHHthesis).
+
+## Available templates
+
+| Template | R Markdown function | Quarto template |
+|:---|:---|:---|
+| HTML document | [`html_doc()`](https://uham-bio.github.io/UHHformats/reference/html_doc.md) | `html_doc` |
+| Simple PDF document | [`pdf_doc()`](https://uham-bio.github.io/UHHformats/reference/pdf_doc.md) | `pdf_doc` |
+| PDF report | [`pdf_report()`](https://uham-bio.github.io/UHHformats/reference/pdf_report.md) | `pdf_report` |
+| PDF cheat sheet | [`pdf_cheatsheet()`](https://uham-bio.github.io/UHHformats/reference/pdf_cheatsheet.md) | `pdf_cheatsheet` |
+| Word document | [`word_doc()`](https://uham-bio.github.io/UHHformats/reference/word_doc.md) | `word_doc` |
+
+The default font is Helvetica. PDF and Word templates also support the
+University’s own font TheSans UHH (available to UHH members).
+
+> **Backward compatibility:** The old function names
+> [`html_simple()`](https://uham-bio.github.io/UHHformats/reference/html_doc.md)
+> and
+> [`pdf_simple()`](https://uham-bio.github.io/UHHformats/reference/pdf_doc.md)
+> still work as aliases.
+
+## Installation
+
+Install from GitHub:
+
+``` R
+# Using the package 'pak' (recommended)
+if (!require("pak")) install.packages("pak")
+pak::pak("uham-bio/UHHformats")
+
+# Alternatively, using 'remotes'
+if (!require("remotes")) install.packages("remotes")
+remotes::install_github("uham-bio/UHHformats", build_vignettes = TRUE)
+```
+
+Required dependencies (rmarkdown, knitr, bookdown) are installed
+automatically.
+
+## Prerequisites
+
+### Quarto CLI
+
+For Quarto templates, install the [Quarto
+CLI](https://quarto.org/docs/get-started/). To render `.qmd` files from
+R, also install the quarto R package:
+
+``` R
+install.packages("quarto")
+```
+
+### Pandoc
+
+R Markdown and Quarto use [Pandoc](https://pandoc.org/) to convert
+documents. RStudio ships with its own Pandoc installation. If you render
+from the console without RStudio, you need Pandoc installed on your
+system:
+
+- Installation: <https://pandoc.org/installing.html>
+- Minimum required version: 2.17
+
+### LaTeX (for PDF output)
+
+For PDF output you also need a LaTeX distribution. An easy
+cross-platform option is the [tinytex](https://yihui.org/tinytex/) R
+package:
+
+``` R
+install.packages("tinytex")
+tinytex::install_tinytex()
+```
+
+For other distributions see <https://www.latex-project.org/get/>.
+
+------------------------------------------------------------------------
+
+## Learn more
+
+- [Getting started
+  (EN)](https://uham-bio.github.io/UHHformats/articles/UHHformats.md) —
+  quick walkthrough of all templates
+- [Erste Schritte
+  (DE)](https://uham-bio.github.io/UHHformats/articles/UHHformats-de.md)
+  — deutschsprachige Einführung
+- [Template
+  gallery](https://uham-bio.github.io/UHHformats/articles/gallery.md) —
+  screenshots and demo files for all templates
+
+------------------------------------------------------------------------
+
+## Useful resources
+
+- R Markdown
+  - The official [R Markdown
+    documentation](https://rmarkdown.rstudio.com/lesson-1.html) from
+    RStudio
+  - R Markdown [reference
+    guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+  - R Markdown
+    [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf)
+  - The online book [R Markdown: The Definitive
+    Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui Xie, J. J.
+    Allaire, and Garrett Grolemund
+- Quarto
+  - The official [Quarto guide](https://quarto.org/docs/guide/)
+  - Quarto’s [Gallery](https://quarto.org/docs/gallery/)
+- LaTeX
+  - The official [LaTeX help and
+    documentation](https://www.latex-project.org/help/documentation/)
+  - The [overleaf](https://www.overleaf.com/learn) documentation
+- W3Schools Online Web Tutorial for
+  [HTML](https://www.w3schools.com/html/default.asp) and for
+  [CSS](https://www.w3schools.com/css/default.asp)
+
+# Package index
+
+## Create documents
+
+Helper functions to set up a new template directory with all required
+files.
+
+- [`create_rmd_doc()`](https://uham-bio.github.io/UHHformats/reference/create_rmd_doc.md)
+  : Create a new directory with the R Markdown template
+- [`create_quarto_doc()`](https://uham-bio.github.io/UHHformats/reference/create_quarto_doc.md)
+  : Create a new directory with the Quarto template
+
+## R Markdown output formats
+
+Output format functions for use in the YAML header of `.Rmd` files.
+
+- [`html_doc()`](https://uham-bio.github.io/UHHformats/reference/html_doc.md)
+  : Convert to a simple HTML document
+- [`pdf_doc()`](https://uham-bio.github.io/UHHformats/reference/pdf_doc.md)
+  : Convert to simple PDF/LaTeX document in English (en)
+- [`pdf_report()`](https://uham-bio.github.io/UHHformats/reference/pdf_report.md)
+  : Convert to report-like PDF/LaTeX document in English (default) or
+  German
+- [`pdf_cheatsheet()`](https://uham-bio.github.io/UHHformats/reference/pdf_cheatsheet.md)
+  : Convert to cheat sheet
+- [`word_doc()`](https://uham-bio.github.io/UHHformats/reference/word_doc.md)
+  : Convert R Markdown to a Microsoft Word document
+
+## Package
+
+- [`UHHformats`](https://uham-bio.github.io/UHHformats/reference/UHHformats-package.md)
+  [`UHHformats-package`](https://uham-bio.github.io/UHHformats/reference/UHHformats-package.md)
+  : UHHformats: R Markdown/Quarto templates designed for the University
+  of Hamburg
+
+# Articles
+
+### Documentation
+
+- [Getting started with
+  UHHformats](https://uham-bio.github.io/UHHformats/articles/UHHformats.md):
+
+  Quick introduction to the UHHformats R Markdown and Quarto templates.
+
+- [Erste Schritte mit
+  UHHformats](https://uham-bio.github.io/UHHformats/articles/UHHformats-de.md):
+
+  Schnelle Einführung in die R Markdown- und Quarto-Vorlagen des
+  UHHformats-Pakets.
+
+### Examples
+
+- [Template
+  gallery](https://uham-bio.github.io/UHHformats/articles/gallery.md):
+
+  Screenshots and demo files for all UHHformats R Markdown and Quarto
+  templates.

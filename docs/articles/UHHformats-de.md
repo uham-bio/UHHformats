@@ -86,7 +86,7 @@ Jede Vorlage enthält einen vorausgefüllten YAML-Header. Zum Beispiel für
 ---
 title: "Titel"
 author: "Name"
-date: "2026-03-17"
+date: "2026-03-18"
 output:
   UHHformats::html_doc:
     highlight: kate

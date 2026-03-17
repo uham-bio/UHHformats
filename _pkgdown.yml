@@ -22,8 +22,7 @@ home:
       links:
         title: Links
         text: >
-          [GitHub repository](https://github.com/uham-bio/UHHformats)<br>
-          [Maintainer's Uni link](https://www.biologie.uni-hamburg.de/forschung/marine-oekosystemdynamik/mitarbeiter/otto-saskia.html)
+          [GitHub repository](https://github.com/uham-bio/UHHformats)
 
 navbar:
   bg: primary
@@ -84,5 +83,5 @@ articles:
 
 news:
   releases:
-    - text: "Version 1.1.0"
+    - text: "Version 2.0.0"
       href: https://github.com/uham-bio/UHHformats/releases

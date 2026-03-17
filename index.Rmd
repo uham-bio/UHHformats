@@ -96,3 +96,12 @@ For other distributions see <https://www.latex-project.org/get/>.
     - The official [LaTeX help and documentation](https://www.latex-project.org/help/documentation/)
     - The [overleaf](https://www.overleaf.com/learn) documentation
 - W3Schools Online Web Tutorial for [HTML](https://www.w3schools.com/html/default.asp) and for [CSS](https://www.w3schools.com/css/default.asp)
+
+
+---
+
+## Author
+
+**Saskia A. Otto**
+University of Hamburg · Department of Biology · Institute of Marine Ecosystem and Fisheries Science · 
+[GitHub](https://github.com/saskiaotto) · [Website](https://www.biologie.uni-hamburg.de/forschung/marine-oekosystemdynamik/mitarbeiter/otto-saskia.html)

@@ -87,7 +87,7 @@ Each template pre-fills an appropriate YAML header. For example,
 ---
 title: "Title"
 author: "Name"
-date: "2026-03-17"
+date: "2026-03-18"
 output:
   UHHformats::html_doc:
     highlight: kate

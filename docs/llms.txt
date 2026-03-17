@@ -10,9 +10,9 @@ header.
 All templates ship with example text and code for formatting, equations,
 tables, figures with cross-references, and citations.
 
-For thesis templates see the companion package
-[UHHthesis](https://github.com/uham-bio/UHHthesis) or the separate
-[Quarto extension](https://github.com/uham-bio/quarto-UHHthesis).
+> For thesis templates see the companion package
+> [UHHthesis](https://github.com/uham-bio/UHHthesis) or the separate
+> [Quarto extension](https://github.com/uham-bio/quarto-UHHthesis).
 
 ## Available templates
 
@@ -124,6 +124,15 @@ For other distributions see <https://www.latex-project.org/get/>.
 - W3Schools Online Web Tutorial for
   [HTML](https://www.w3schools.com/html/default.asp) and for
   [CSS](https://www.w3schools.com/css/default.asp)
+
+------------------------------------------------------------------------
+
+## Author
+
+**Saskia A. Otto** University of Hamburg · Department of Biology ·
+Institute of Marine Ecosystem and Fisheries Science ·
+[GitHub](https://github.com/saskiaotto) ·
+[Website](https://www.biologie.uni-hamburg.de/forschung/marine-oekosystemdynamik/mitarbeiter/otto-saskia.html)
 
 # Package index
 

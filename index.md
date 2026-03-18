@@ -1,0 +1,152 @@
+# UHHformats
+
+This R package provides ready-to-use **R Markdown** and **Quarto**
+templates for HTML, PDF, and Microsoft Word output formats. The
+templates are designed for the Department of Biology, University of
+Hamburg (UHH), and its *Data Science in Biology* program, but can be
+used by anyone — logos and styles are easily customizable via the YAML
+header.
+
+All templates ship with example text and code for formatting, equations,
+tables, figures with cross-references, and citations.
+
+> For thesis templates see the companion package
+> [UHHthesis](https://github.com/uham-bio/UHHthesis) or the separate
+> [Quarto extension](https://github.com/uham-bio/quarto-UHHthesis).
+
+## Available templates
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Template</th>
+<th style="text-align: left;">R Markdown function</th>
+<th style="text-align: left;">Quarto template</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">HTML document</td>
+<td style="text-align: left;"><code>html_doc()</code></td>
+<td style="text-align: left;"><code>html_doc</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Simple PDF document</td>
+<td style="text-align: left;"><code>pdf_doc()</code></td>
+<td style="text-align: left;"><code>pdf_doc</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">PDF report</td>
+<td style="text-align: left;"><code>pdf_report()</code></td>
+<td style="text-align: left;"><code>pdf_report</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">PDF cheat sheet</td>
+<td style="text-align: left;"><code>pdf_cheatsheet()</code></td>
+<td style="text-align: left;"><code>pdf_cheatsheet</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Word document</td>
+<td style="text-align: left;"><code>word_doc()</code></td>
+<td style="text-align: left;"><code>word_doc</code></td>
+</tr>
+</tbody>
+</table>
+
+The default font is Helvetica. PDF and Word templates also support the
+University’s own font TheSans UHH (available to UHH members).
+
+> **Backward compatibility:** The old function names `html_simple()` and
+> `pdf_simple()` still work as aliases.
+
+## Installation
+
+Install from GitHub:
+
+    # Using the package 'pak' (recommended)
+    if (!require("pak")) install.packages("pak")
+    pak::pak("uham-bio/UHHformats")
+
+    # Alternatively, using 'remotes'
+    if (!require("remotes")) install.packages("remotes")
+    remotes::install_github("uham-bio/UHHformats", build_vignettes = TRUE)
+
+Required dependencies (rmarkdown, knitr, bookdown) are installed
+automatically.
+
+## Prerequisites
+
+### Quarto CLI
+
+For Quarto templates, install the [Quarto
+CLI](https://quarto.org/docs/get-started/). To render `.qmd` files from
+R, also install the quarto R package:
+
+    install.packages("quarto")
+
+### Pandoc
+
+R Markdown and Quarto use [Pandoc](https://pandoc.org/) to convert
+documents. RStudio ships with its own Pandoc installation. If you render
+from the console without RStudio, you need Pandoc installed on your
+system:
+
+- Installation: <https://pandoc.org/installing.html>
+- Minimum required version: 2.17
+
+### LaTeX (for PDF output)
+
+For PDF output you also need a LaTeX distribution. An easy
+cross-platform option is the [tinytex](https://yihui.org/tinytex/) R
+package:
+
+    install.packages("tinytex")
+    tinytex::install_tinytex()
+
+For other distributions see <https://www.latex-project.org/get/>.
+
+------------------------------------------------------------------------
+
+## Learn more
+
+- [Getting started (EN)](articles/UHHformats.html) — quick walkthrough
+  of all templates
+- [Erste Schritte (DE)](articles/UHHformats-de.html) — deutschsprachige
+  Einführung
+- [Template gallery](articles/gallery.html) — screenshots and demo files
+  for all templates
+
+------------------------------------------------------------------------
+
+## Useful resources
+
+- R Markdown
+  - The official [R Markdown
+    documentation](https://rmarkdown.rstudio.com/lesson-1.html) from
+    RStudio
+  - R Markdown [reference
+    guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+  - R Markdown
+    [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf)
+  - The online book [R Markdown: The Definitive
+    Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui Xie, J. J.
+    Allaire, and Garrett Grolemund
+- Quarto
+  - The official [Quarto guide](https://quarto.org/docs/guide/)
+  - Quarto’s [Gallery](https://quarto.org/docs/gallery/)
+- LaTeX
+  - The official [LaTeX help and
+    documentation](https://www.latex-project.org/help/documentation/)
+  - The [overleaf](https://www.overleaf.com/learn) documentation
+- W3Schools Online Web Tutorial for
+  [HTML](https://www.w3schools.com/html/default.asp) and for
+  [CSS](https://www.w3schools.com/css/default.asp)
+
+------------------------------------------------------------------------
+
+## Author
+
+**Saskia A. Otto** University of Hamburg · Department of Biology ·
+Institute of Marine Ecosystem and Fisheries Science ·
+[GitHub](https://github.com/saskiaotto) ·
+[Website](https://www.biologie.uni-hamburg.de/forschung/marine-oekosystemdynamik/mitarbeiter/otto-saskia.html)

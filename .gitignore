@@ -6,7 +6,3 @@
 # OS
 .DS_Store
 Thumbs.db
-
-# pkgdown build artifacts
-pkgdown/
-index.md

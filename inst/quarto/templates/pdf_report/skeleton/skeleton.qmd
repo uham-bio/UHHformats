@@ -96,7 +96,8 @@ Configure the YAML header including the following elements:
 - `author`: Here you can list various author's names including their affiliation(s) and the email of the corresponding author.
 - `date`: A date
 - `abstract`: The abstract will be shown right after the title in smaller font size. 
-- `logo1` and `logo2`: path of the logos that will be displayed on the bottom left and right of title page (after the front cover).
+- `logo1` and `logo2`: path of the logos that will be displayed on the bottom left and right of title page (after the front cover). Comment out either or both if you do not want a logo.
+- `small footer logo`: The small logo shown in the footer of every page is controlled by the file `images/logo.png`. To use a different logo, replace that file with your own (keeping the name `logo.png`). To show no logo at all, simply delete or remove `images/logo.png`.
 - `language`: If language is NOT English refer to the file `custom_lang.yml` for automatic text in German. If the document language is another one, adjust this file.
 - `bibliography`: A path to the bibliography file to use for references (BibTeX `.bib` file). The current file includes 3 dummy references; either insert your references into this file or replace the file with your own.
 - `csl`: The style is provided in the 'sage-harvard.csl' file, which adopts the [SAGE Harvard](https://uk.sagepub.com/sites/default/files/sage_harvard_reference_style_0.pdf) reference style. Just leave the file as it is.

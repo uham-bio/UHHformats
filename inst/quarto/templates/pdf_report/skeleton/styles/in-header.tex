@@ -12,7 +12,7 @@
 \usepackage{hyphenat}
 
 % For title page
-\usepackage{afterpage}  
+\usepackage{afterpage}
 \usepackage{tikz}
 \usetikzlibrary{fadings}
 \usepackage[pagecolor=none]{pagecolor}
@@ -55,8 +55,8 @@
 \PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor} % for colorlinks
 
 % Define colors for headers and links: {{{
-\definecolor{bluegray}{HTML}{3B515B} 
-\definecolor{blue}{HTML}{0271BB} 
+\definecolor{bluegray}{HTML}{3B515B}
+\definecolor{blue}{HTML}{0271BB}
 % }}}
 
 % Font colors {{{
@@ -91,10 +91,11 @@ pdfpagemode=UseOutlines
 \clearpairofpagestyles
 \ohead[]{\headmark}
 \ofoot[\pagemark]{\pagemark}
-\newcommand{\footlogo}{\includegraphics[height=10mm]{logo.png}}
-\ifoot[\footlogo]{\footlogo}
+\IfFileExists{images/logo.png}{%
+  \newcommand{\footlogo}{\includegraphics[height=10mm]{logo.png}}%
+  \ifoot[\footlogo]{\footlogo}%
+}{}
 % }}}
-
 
 
 % %----------------------------------------------- Lists

@@ -49,8 +49,8 @@
 \PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor} % for colorlinks
 
 % Define colors for headers and links: {{{
-\definecolor{bluegray}{HTML}{3B515B} 
-\definecolor{blue}{HTML}{0271BB} 
+\definecolor{bluegray}{HTML}{3B515B}
+\definecolor{blue}{HTML}{0271BB}
 % }}}
 
 % Font colors {{{
@@ -102,16 +102,18 @@ pdfpagemode=UseOutlines
   \item\relax}
  {\endlist}
 % }}}
- 
+
 % %----------------------------------------------- Header and footer
 
 % Delete default settings and define your own {{{
 \usepackage[headsepline, automark]{scrlayer-scrpage}
 \clearpairofpagestyles
-\ohead[]{\headmark} 
+\ohead[]{\headmark}
 \ofoot[\pagemark]{\pagemark}
-\newcommand{\footlogo}{\includegraphics[height=10mm]{logo.png}}
-\ifoot[\footlogo]{\footlogo}
+\IfFileExists{images/logo.png}{%
+  \newcommand{\footlogo}{\includegraphics[height=10mm]{images/logo.png}}%
+  \ifoot[\footlogo]{\footlogo}%
+}{}
 % }}}
 
 

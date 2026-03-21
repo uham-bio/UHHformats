@@ -76,6 +76,7 @@ Configure the YAML header including the following elements:
 - `bibliography`: A path to the bibliography file to use for references (BibTeX `.bib` file). The current file includes 3 dummy references; either insert your references into this file or replace the file with your own.
 - `csl`: The style is provided in the 'sage-harvard.csl' file, which adopts the [SAGE Harvard](https://uk.sagepub.com/sites/default/files/sage_harvard_reference_style_0.pdf) reference style. Just leave the file as it is.
 - `format - pdf`: In this template many of the Quarto options for PDF output are listed in the YAML header. If you want to know more about these settings I recommend the [PDF format reference](https://quarto.org/docs/reference/formats/pdf.html) for a complete list of available options. For instance, you can adjust the figure and table references with `fig-title`, `tbl-title`, `fig-prefix`, and `tbl-prefix`.
+- `logo`: The footer logo is controlled by the file `images/logo.png`. To use a different logo, replace that file with your own (keeping the name `logo.png`). To show no logo at all, simply delete or remove `images/logo.png`.
 - `execute`: Global options for customizing output from executed code are specified within this execute key.
 - `fig-align`: Global settings for figure positioning. For other settings see the [PDF format reference](https://quarto.org/docs/reference/formats/pdf.html).
 
